@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kairos Space POS — Landing Page
 
-## Getting Started
+صفحة هبوط احترافية لنظام نقاط البيع **Kairos Space POS** للمطاعم والمقاهي والمتاجر في الأردن.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38bdf8?logo=tailwindcss)
+
+## 🚀 التشغيل
 
 ```bash
+# تثبيت الحزم
+npm install
+
+# تشغيل بيئة التطوير
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# بناء المشروع للإنتاج
+npm run build
+
+# تشغيل الإنتاج
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📁 هيكل المشروع
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+├── app/
+│   ├── globals.css          # الأنماط العامة + Tailwind
+│   ├── layout.tsx           # التخطيط الرئيسي + SEO + JSON-LD
+│   ├── page.tsx             # الصفحة الرئيسية
+│   ├── sitemap.ts           # خريطة الموقع
+│   └── robots.ts            # ملف robots.txt
+├── components/
+│   ├── Analytics.tsx         # GA4 + GTM + تتبع الأحداث
+│   ├── Navbar.tsx            # شريط التنقل الثابت
+│   ├── Hero.tsx              # القسم الرئيسي مع laptop mockup
+│   ├── Trust.tsx             # شريط الثقة
+│   ├── Features.tsx          # المميزات (6 ميزات)
+│   ├── Gallery.tsx           # معرض لقطات النظام التفاعلي
+│   ├── LeadForm.tsx          # نموذج التقاط العملاء المحتملين
+│   ├── Pricing.tsx           # باقات الأسعار
+│   ├── CtaBand.tsx           # شريط الدعوة للإجراء
+│   ├── Footer.tsx            # تذييل الصفحة
+│   ├── WhatsAppFloat.tsx     # زر واتساب العائم
+│   ├── RevealObserver.tsx    # مراقب الظهور التدريجي
+│   └── Icons.tsx             # أيقونات SVG
+└── lib/
+    └── constants.ts          # الثوابت (أرقام واتساب، رسائل، بيانات المعرض)
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ⚙️ Environment Variables
 
-## Learn More
+انسخ `.env.example` إلى `.env.local` وأضف القيم:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+cp .env.example .env.local
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| المتغير | الوصف |
+|---------|-------|
+| `NEXT_PUBLIC_GA_ID` | معرّف Google Analytics 4 |
+| `NEXT_PUBLIC_GTM_ID` | معرّف Google Tag Manager |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔍 SEO
 
-## Deploy on Vercel
+- ✅ Meta Title & Description
+- ✅ Open Graph Tags
+- ✅ Twitter Cards
+- ✅ Dynamic Sitemap (`/sitemap.xml`)
+- ✅ Dynamic Robots (`/robots.txt`)
+- ✅ Schema.org SoftwareApplication JSON-LD
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📊 Analytics & Tracking
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Google Analytics 4
+- Google Tag Manager
+- تتبع ضغطات واتساب
+- تتبع إرسال نموذج Lead Form
+
+## 🚀 النشر على Vercel
+
+1. اربط الـ Repository بـ [Vercel](https://vercel.com/new)
+2. أضف Environment Variables في لوحة Vercel
+3. اضغط **Deploy**
+
+## 📄 الترخيص
+
+© 2026 Kairos Space POS — جميع الحقوق محفوظة
