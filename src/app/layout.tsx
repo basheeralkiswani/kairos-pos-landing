@@ -17,6 +17,11 @@ const inter = Inter({
   display: "swap",
 });
 
+// الدومين المنشور — يُستخدم لتحويل صور الـOpenGraph إلى روابط مطلقة (واتساب/تويتر).
+// غيّره بضبط NEXT_PUBLIC_SITE_URL عند الانتقال إلى الدومين الرسمي.
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://kairos-pos-landing.vercel.app";
+
 export const metadata: Metadata = {
   title: "نظام نقاط البيع للمطاعم والمقاهي في الأردن | Kairos Space POS",
   description:
@@ -35,14 +40,14 @@ export const metadata: Metadata = {
   authors: [{ name: "Kairos Space" }],
   creator: "Kairos Space",
   publisher: "Kairos Space",
-  metadataBase: new URL("https://kairosspace.com"),
+  metadataBase: new URL(siteUrl),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "ar_JO",
-    url: "https://kairosspace.com",
+    url: siteUrl,
     siteName: "Kairos Space POS",
     title: "نظام نقاط البيع للمطاعم والمقاهي في الأردن | Kairos Space POS",
     description:
@@ -111,11 +116,6 @@ export default function RootLayout({
               ],
               description:
                 "نظام نقاط بيع متكامل للمطاعم والمقاهي والمتاجر في الأردن",
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "4.9",
-                ratingCount: "150",
-              },
               featureList: [
                 "كاشير فائق السرعة",
                 "تقارير لحظية",
