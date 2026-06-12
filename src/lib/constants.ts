@@ -5,9 +5,9 @@ export function waUrl(msg: string): string {
 }
 
 export const WA_MESSAGES = {
-  hero: "مرحباً 👋 بدي أعرف أكثر عن نظام Kairos Space POS وأحجز عرضاً توضيحياً.",
-  cta: "مرحباً 👋 بدي أعرف أكثر عن نظام Kairos Space POS وأحجز عرضاً توضيحياً.",
-  float: "مرحباً 👋 بدي أعرف أكثر عن نظام Kairos Space POS وأحجز عرضاً توضيحياً.",
+  hero: "مرحباً 👋 بدي أبدأ تجربة Kairos Space POS المجانية لمدة 7 أيام — بدون التزام.",
+  cta: "مرحباً 👋 بدي أبدأ تجربة Kairos Space POS المجانية لمدة 7 أيام — بدون التزام.",
+  float: "مرحباً 👋 بدي أبدأ تجربة Kairos Space POS المجانية لمدة 7 أيام — بدون التزام.",
   annual: "مرحباً 👋 بدي أشترك بنظام Kairos Space POS — الباقة السنوية (100 دينار / سنة).",
   monthly: "مرحباً 👋 بدي أشترك بنظام Kairos Space POS — الباقة الشهرية (15 دينار/شهر + تفعيل 15 دينار).",
 } as const;

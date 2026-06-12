@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Trust from "@/components/Trust";
 import Features from "@/components/Features";
 import Gallery from "@/components/Gallery";
+import Testimonials from "@/components/Testimonials";
 import LeadForm from "@/components/LeadForm";
 import Pricing from "@/components/Pricing";
 import CtaBand from "@/components/CtaBand";
@@ -25,6 +26,7 @@ export default function Home() {
       <Trust />
       <Features />
       <Gallery />
+      <Testimonials />
       <LeadForm />
       <Pricing />
       <CtaBand />
