@@ -20,7 +20,7 @@ const inter = Inter({
 // الدومين المنشور — يُستخدم لتحويل صور الـOpenGraph إلى روابط مطلقة (واتساب/تويتر).
 // غيّره بضبط NEXT_PUBLIC_SITE_URL عند الانتقال إلى الدومين الرسمي.
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://kairos-pos-landing.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.kairos-pos.com";
 
 export const metadata: Metadata = {
   title: "نظام نقاط البيع للمطاعم والمقاهي في الأردن | Kairos Space POS",

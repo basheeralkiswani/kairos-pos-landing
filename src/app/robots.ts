@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://kairosspace.com/sitemap.xml",
+    sitemap: "https://www.kairos-pos.com/sitemap.xml",
   };
 }
