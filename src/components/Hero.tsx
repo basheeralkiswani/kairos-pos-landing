@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { waUrl, WA_MESSAGES } from "@/lib/constants";
 import { trackWhatsAppClick } from "@/components/Analytics";
-import { WhatsAppIcon, ArrowIcon, CheckIcon, ChartIcon } from "@/components/Icons";
+import { WhatsAppIcon, ArrowIcon, CheckIcon, ChartIcon, ReceiptIcon } from "@/components/Icons";
 
 export default function Hero() {
   return (
@@ -11,9 +11,15 @@ export default function Hero() {
       <div className="max-w-[1240px] mx-auto px-7 relative z-1 grid grid-cols-[1fr_1.08fr] gap-14 items-center max-lg:grid-cols-1 max-lg:gap-[50px]">
         {/* Text */}
         <div>
-          <div className="reveal inline-flex items-center gap-[9px] py-2 px-4 bg-[rgba(212,175,55,0.08)] border border-[rgba(212,175,55,0.25)] rounded-full text-[13.5px] font-semibold text-primary-soft mb-[26px]">
-            <span className="w-[7px] h-[7px] rounded-full bg-green animate-[pulse-dot_2s_infinite]" />
-            نظام نقاط بيع متكامل · صُمّم في الأردن
+          <div className="reveal flex items-center gap-2.5 flex-wrap mb-[26px]">
+            <div className="inline-flex items-center gap-[9px] py-2 px-4 bg-[rgba(212,175,55,0.08)] border border-[rgba(212,175,55,0.25)] rounded-full text-[13.5px] font-semibold text-primary-soft">
+              <span className="w-[7px] h-[7px] rounded-full bg-green animate-[pulse-dot_2s_infinite]" />
+              نظام نقاط بيع متكامل · صُمّم في الأردن
+            </div>
+            <div className="inline-flex items-center gap-2 py-2 px-4 bg-[rgba(52,211,153,0.10)] border border-[rgba(52,211,153,0.30)] rounded-full text-[13.5px] font-semibold text-[#d4d4d8]">
+              <ReceiptIcon className="w-4 h-4 text-green" />
+              <span className="text-green font-bold">جديد:</span> متكامل مع نظام الفوترة الوطني
+            </div>
           </div>
 
           <h1 className="reveal d1 text-[clamp(38px,5.2vw,62px)] font-black leading-[1.13] tracking-[-0.5px] mb-[22px]">
