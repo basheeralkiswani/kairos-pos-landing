@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { waUrl, WA_NUMBER } from "@/lib/constants";
+import { WA_NUMBER } from "@/lib/constants";
 import { trackFormSubmit } from "@/components/Analytics";
 
 export default function LeadForm() {
@@ -17,7 +17,7 @@ export default function LeadForm() {
     trackFormSubmit({ name, business });
 
     const msg = `مرحباً 👋 أنا ${name} من ${business}.\nرقمي: ${phone}\nأرغب بمعرفة المزيد عن نظام Kairos Space POS والاشتراك.`;
-    const url = waUrl(msg);
+    const url = `/thank-you?msg=${encodeURIComponent(msg)}`;
 
     setSubmitted(true);
     window.open(url, "_blank", "noopener");

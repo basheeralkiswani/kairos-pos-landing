@@ -4,6 +4,12 @@ export function waUrl(msg: string): string {
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 }
 
+// رابط صفحة التحويل الوسيطة (تُستخدم كـ"عنوان تحويل" في Google Ads)،
+// تعرض رسالة تأكيد ثم تحوّل المستخدم إلى واتساب.
+export function goUrl(src: keyof typeof WA_MESSAGES): string {
+  return `/thank-you?src=${src}`;
+}
+
 export const WA_MESSAGES = {
   hero: "مرحباً 👋 بدي أبدأ تجربة Kairos Space POS المجانية لمدة 7 أيام — بدون التزام.",
   cta: "مرحباً 👋 بدي أبدأ تجربة Kairos Space POS المجانية لمدة 7 أيام — بدون التزام.",

@@ -1,6 +1,6 @@
 "use client";
 
-import { waUrl, WA_MESSAGES } from "@/lib/constants";
+import { goUrl } from "@/lib/constants";
 import { trackWhatsAppClick } from "@/components/Analytics";
 import { WhatsAppIcon } from "@/components/Icons";
 
@@ -19,7 +19,7 @@ export default function CtaBand() {
             <a
               id="ctaWa"
               className="inline-flex items-center gap-2.5 py-[15px] px-7 rounded-[13px] font-bold text-base no-underline bg-[#25D366] text-white shadow-[0_10px_30px_-8px_rgba(37,211,102,0.5)] hover:bg-[#20bd5a] hover:-translate-y-0.5 transition-all duration-250"
-              href={waUrl(WA_MESSAGES.cta)}
+              href={goUrl("cta")}
               target="_blank"
               rel="noopener"
               onClick={() => trackWhatsAppClick("cta")}
