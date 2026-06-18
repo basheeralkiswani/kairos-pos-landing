@@ -1,6 +1,6 @@
 "use client";
 
-import { waUrl, WA_MESSAGES } from "@/lib/constants";
+import { goUrl } from "@/lib/constants";
 import { trackWhatsAppClick } from "@/components/Analytics";
 import { CheckBoldIcon } from "@/components/Icons";
 
@@ -67,7 +67,7 @@ export default function Pricing() {
             <a
               id="annualWa"
               className="inline-flex items-center justify-center gap-2.5 py-[15px] px-7 rounded-[13px] font-bold text-base no-underline bg-primary text-[#0a0a0c] shadow-[0_10px_30px_-8px_rgba(212,175,55,0.55)] hover:bg-primary-soft hover:-translate-y-0.5 transition-all duration-250 w-full"
-              href={waUrl(WA_MESSAGES.annual)}
+              href={goUrl("annual")}
               target="_blank"
               rel="noopener"
               onClick={() => trackWhatsAppClick("annual")}
@@ -105,7 +105,7 @@ export default function Pricing() {
             <a
               id="monthlyWa"
               className="inline-flex items-center justify-center gap-2.5 py-[15px] px-7 rounded-[13px] font-bold text-base no-underline bg-white/4 text-text border border-secondary hover:border-[rgba(212,175,55,0.4)] hover:bg-white/7 transition-all duration-250 w-full"
-              href={waUrl(WA_MESSAGES.monthly)}
+              href={goUrl("monthly")}
               target="_blank"
               rel="noopener"
               onClick={() => trackWhatsAppClick("monthly")}

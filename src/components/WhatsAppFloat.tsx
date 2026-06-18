@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { waUrl, WA_MESSAGES } from "@/lib/constants";
+import { goUrl } from "@/lib/constants";
 import { trackWhatsAppClick } from "@/components/Analytics";
 import { WhatsAppIcon } from "@/components/Icons";
 
@@ -20,7 +20,7 @@ export default function WhatsAppFloat() {
     <a
       id="waFloat"
       className="fixed bottom-[26px] left-[26px] z-200 flex items-center no-underline group max-[560px]:bottom-[18px] max-[560px]:left-[18px]"
-      href={waUrl(WA_MESSAGES.float)}
+      href={goUrl("float")}
       target="_blank"
       rel="noopener"
       onClick={() => trackWhatsAppClick("float")}

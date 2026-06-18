@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { waUrl, WA_MESSAGES } from "@/lib/constants";
+import { goUrl } from "@/lib/constants";
 import { trackWhatsAppClick } from "@/components/Analytics";
 import { WhatsAppIcon, ArrowIcon, CheckIcon, ChartIcon, ReceiptIcon } from "@/components/Icons";
 
@@ -52,7 +52,7 @@ export default function Hero() {
             <a
               id="heroWa"
               className="inline-flex items-center gap-2.5 py-[15px] px-7 rounded-[13px] font-bold text-base no-underline bg-[#25D366] text-white shadow-[0_10px_30px_-8px_rgba(37,211,102,0.5)] hover:bg-[#20bd5a] hover:-translate-y-0.5 transition-all duration-250"
-              href={waUrl(WA_MESSAGES.hero)}
+              href={goUrl("hero")}
               target="_blank"
               rel="noopener"
               onClick={() => trackWhatsAppClick("hero")}
