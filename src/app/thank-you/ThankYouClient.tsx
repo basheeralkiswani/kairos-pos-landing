@@ -17,8 +17,13 @@ export default function ThankYouClient() {
     const url = waUrl(msg);
     setHref(url);
 
-    // إشارة تحويل لـ Google Analytics / Google Ads
-    const w = window as unknown as { gtag?: (...a: unknown[]) => void };
+    // إشارة تحويل — تُدفع إلى dataLayer ليلتقطها Google Tag Manager / Google Ads
+    const w = window as unknown as {
+      dataLayer?: Record<string, unknown>[];
+      gtag?: (...a: unknown[]) => void;
+    };
+    w.dataLayer = w.dataLayer || [];
+    w.dataLayer.push({ event: "lead_conversion", lead_source: src || "form" });
     if (w.gtag) {
       w.gtag("event", "generate_lead", {
         event_category: "conversion",

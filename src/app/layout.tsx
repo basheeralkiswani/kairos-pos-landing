@@ -22,6 +22,9 @@ const inter = Inter({
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.kairos-pos.com";
 
+// معرّف Google Tag Manager — يُحمّل على كل الصفحات (بما فيها /thank-you)
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? "GTM-MT2ZF278";
+
 export const metadata: Metadata = {
   title: "نظام نقاط البيع للمطاعم والمقاهي في الأردن | Kairos Space POS",
   description:
@@ -93,6 +96,20 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" className={`${tajawal.variable} ${inter.variable}`}>
       <head>
+        {/* Google Tag Manager */}
+        {GTM_ID && (
+          <script
+            id="gtm-head"
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${GTM_ID}');`,
+            }}
+          />
+        )}
+        {/* End Google Tag Manager */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -134,6 +151,18 @@ export default function RootLayout({
         />
       </head>
       <body className="font-[var(--font-ar)]">
+        {/* Google Tag Manager (noscript) */}
+        {GTM_ID && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
+        )}
+        {/* End Google Tag Manager (noscript) */}
         {children}
         <Analytics />
       </body>

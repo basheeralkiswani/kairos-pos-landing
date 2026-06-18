@@ -3,7 +3,7 @@
 import Script from "next/script";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "";
+// ملاحظة: Google Tag Manager يُحمَّل من src/app/layout.tsx (الوسم الرسمي في <head> و<body>).
 
 export function Analytics() {
   return (
@@ -26,48 +26,30 @@ export function Analytics() {
         </>
       )}
 
-      {/* Google Tag Manager */}
-      {GTM_ID && (
-        <>
-          <Script id="gtm-init" strategy="afterInteractive">
-            {`
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${GTM_ID}');
-            `}
-          </Script>
-          <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-              height="0"
-              width="0"
-              style={{ display: "none", visibility: "hidden" }}
-            />
-          </noscript>
-        </>
-      )}
     </>
   );
 }
 
-// Tracking helper functions
+// Tracking helper — يدفع الحدث إلى dataLayer (GTM) و gtag (GA4) إن وُجد
+function pushEvent(event: string, params: Record<string, unknown>) {
+  if (typeof window === "undefined") return;
+  const w = window as unknown as {
+    dataLayer?: Record<string, unknown>[];
+    gtag?: (...args: unknown[]) => void;
+  };
+  w.dataLayer = w.dataLayer || [];
+  w.dataLayer.push({ event, ...params });
+  if (w.gtag) w.gtag("event", event, params);
+}
+
 export function trackWhatsAppClick(label: string) {
-  if (typeof window !== "undefined" && "gtag" in window) {
-    (window as unknown as { gtag: (...args: unknown[]) => void }).gtag("event", "whatsapp_click", {
-      event_category: "engagement",
-      event_label: label,
-    });
-  }
+  pushEvent("whatsapp_click", { event_category: "engagement", event_label: label });
 }
 
 export function trackFormSubmit(formData: { name: string; business: string }) {
-  if (typeof window !== "undefined" && "gtag" in window) {
-    (window as unknown as { gtag: (...args: unknown[]) => void }).gtag("event", "lead_form_submit", {
-      event_category: "conversion",
-      event_label: formData.business,
-      value: 1,
-    });
-  }
+  pushEvent("lead_form_submit", {
+    event_category: "conversion",
+    event_label: formData.business,
+    value: 1,
+  });
 }
