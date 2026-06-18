@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Trust from "@/components/Trust";
+import FotaraBadge from "@/components/FotaraBadge";
 import Features from "@/components/Features";
 import Gallery from "@/components/Gallery";
 import Testimonials from "@/components/Testimonials";
@@ -24,6 +25,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Trust />
+      <FotaraBadge />
       <Features />
       <Gallery />
       <Testimonials />

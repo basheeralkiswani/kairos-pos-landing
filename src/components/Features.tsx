@@ -1,7 +1,8 @@
-import { LightningIcon, BarChartIcon, BoxIcon, ClockIcon, ChatIcon, UsersIcon } from "@/components/Icons";
+import { LightningIcon, BarChartIcon, BoxIcon, ClockIcon, ChatIcon, UsersIcon, ReceiptIcon } from "@/components/Icons";
 import { type ReactNode } from "react";
 
-const FEATURES: { icon: ReactNode; title: string; desc: string; delay: string }[] = [
+const FEATURES: { icon: ReactNode; title: string; desc: string; delay: string; badge?: string }[] = [
+  { icon: <ReceiptIcon />, title: "متكامل مع الفوترة الوطنية", desc: "أرسل فواتيرك مباشرةً إلى نظام الفوترة الوطني (JoFotara) التابع لدائرة ضريبة الدخل والمبيعات — التزام ضريبي كامل من داخل النظام بدون برامج منفصلة.", delay: "", badge: "جديد" },
   { icon: <LightningIcon />, title: "كاشير فائق السرعة", desc: "أضف المنتجات بنقرة، طبّق الخصومات، وأتمم الدفع نقداً أو بالبطاقة أو المحفظة خلال ثوانٍ مع طباعة فاتورة تلقائية.", delay: "" },
   { icon: <BarChartIcon />, title: "تقارير لحظية", desc: "لوحة تحكم تتحدّث تلقائياً كل 30 ثانية تُظهر الإيرادات، المصاريف، صافي الربح، والمنتجات الأكثر مبيعاً.", delay: "d1" },
   { icon: <BoxIcon />, title: "إدارة المخزون", desc: "سجّل فواتير الموردين، تتبّع الكميات لحظياً، واربط كل عملية بيع بخصم تلقائي من المخزون.", delay: "d2" },
@@ -30,8 +31,15 @@ export default function Features() {
           {FEATURES.map((f, i) => (
             <div
               key={i}
-              className={`feat-card reveal ${f.delay} relative overflow-hidden bg-gradient-to-b from-[rgba(24,24,27,0.7)] to-[rgba(18,18,20,0.5)] border border-secondary rounded-[20px] p-[30px_26px] transition-all duration-350 hover:-translate-y-[5px] hover:border-transparent`}
+              className={`feat-card reveal ${f.delay} relative overflow-hidden bg-gradient-to-b from-[rgba(24,24,27,0.7)] to-[rgba(18,18,20,0.5)] border rounded-[20px] p-[30px_26px] transition-all duration-350 hover:-translate-y-[5px] hover:border-transparent ${
+                f.badge ? "border-[rgba(212,175,55,0.45)]" : "border-secondary"
+              }`}
             >
+              {f.badge && (
+                <span className="absolute top-[18px] left-[18px] bg-primary text-[#0a0a0c] text-[11.5px] font-extrabold py-1 px-2.5 rounded-full">
+                  {f.badge}
+                </span>
+              )}
               <div className="w-[52px] h-[52px] rounded-[14px] bg-[rgba(212,175,55,0.1)] border border-[rgba(212,175,55,0.2)] flex items-center justify-center text-primary mb-5">
                 {f.icon}
               </div>
