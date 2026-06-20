@@ -122,7 +122,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               offers: [
                 {
                   "@type": "Offer",
-                  price: "100",
+                  price: "120",
                   priceCurrency: "JOD",
                   name: "الاشتراك السنوي",
                   description: "سنة كاملة من الاستخدام الكامل",

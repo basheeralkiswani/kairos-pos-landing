@@ -44,7 +44,7 @@ export default function Pricing() {
               الاشتراك السنوي
             </div>
             <div className="flex items-end gap-2 mb-1.5">
-              <span className="text-[54px] font-black font-[var(--font-en)] leading-none text-text num">100</span>
+              <span className="text-[54px] font-black font-[var(--font-en)] leading-none text-text num">120</span>
               <span className="text-[18px] font-bold text-muted mb-2">دينار</span>
               <span className="text-[15px] text-muted mb-[9px]">/ السنة</span>
             </div>
@@ -52,7 +52,7 @@ export default function Pricing() {
               سنة كاملة من الاستخدام الكامل — بدون أي رسوم إضافية.
             </div>
             <span className="inline-block text-[13px] font-bold text-green bg-[rgba(52,211,153,0.12)] border border-[rgba(52,211,153,0.3)] rounded-lg py-[5px] px-[11px] mb-[22px] w-fit">
-              وفّر أكثر من 90 ديناراً مقارنة بالشهري
+              وفّر 75 ديناراً في السنة الأولى مقارنة بالشهري
             </span>
             <ul className="list-none flex flex-col gap-[13px] mb-7 flex-1">
               {FEATURES_LIST.map((f, i) => (
