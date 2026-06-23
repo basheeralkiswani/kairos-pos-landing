@@ -25,6 +25,9 @@ const siteUrl =
 // معرّف Google Tag Manager — يُحمّل على كل الصفحات (بما فيها /thank-you)
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? "GTM-MT2ZF278";
 
+// معرّف Google Ads (gtag) — لتتبّع تحويلات الإعلانات
+const ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? "AW-18251871697";
+
 export const metadata: Metadata = {
   title: "نظام نقاط البيع للمطاعم والمقاهي في الأردن | Kairos Space POS",
   description:
@@ -110,6 +113,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         )}
         {/* End Google Tag Manager */}
+
+        {/* Google tag (gtag.js) — Google Ads */}
+        {ADS_ID && (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${ADS_ID}`}
+            />
+            <script
+              id="gtag-ads"
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${ADS_ID}');`,
+              }}
+            />
+          </>
+        )}
+        {/* End Google tag */}
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
