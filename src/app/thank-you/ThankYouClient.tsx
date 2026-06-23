@@ -5,6 +5,9 @@ import { waUrl, WA_MESSAGES } from "@/lib/constants";
 
 const REDIRECT_DELAY = 1600;
 
+// حدث تحويل Google Ads (page-load) لصفحة الشكر
+const ADS_CONVERSION_SEND_TO = "AW-18251871697/yyiNCL3qw8QcENHrlf9D";
+
 export default function ThankYouClient() {
   const [href, setHref] = useState("");
 
@@ -25,6 +28,9 @@ export default function ThankYouClient() {
     w.dataLayer = w.dataLayer || [];
     w.dataLayer.push({ event: "lead_conversion", lead_source: src || "form" });
     if (w.gtag) {
+      // تحويل Google Ads
+      w.gtag("event", "conversion", { send_to: ADS_CONVERSION_SEND_TO });
+      // حدث GA4 إضافي
       w.gtag("event", "generate_lead", {
         event_category: "conversion",
         event_label: src || "form",
