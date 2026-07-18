@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,7 +23,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-[1240px] mx-auto px-7 relative z-1 flex items-center justify-between gap-5">
-        <a href="#" className="flex items-center gap-3 no-underline" aria-label="Kairos Space - الرئيسية">
+        <Link href="/" className="flex items-center gap-3 no-underline" aria-label="Kairos Space - الرئيسية">
           <Image
             src="/images/logo-light.png"
             alt="Kairos Space"
@@ -34,25 +35,33 @@ export default function Navbar() {
           <span className="font-extrabold text-[19px] tracking-[0.5px] text-text">
             Kairos <b className="text-primary">Space</b>
           </span>
-        </a>
+        </Link>
 
+        {/* روابط الأقسام مُسبوقة بـ "/" فتعمل من الصفحات الفرعية أيضاً، لا من
+            الصفحة الرئيسية وحدها. وهي وسوم <a> عادية لا <Link> عمداً: الـ Link
+            يُسقط الـ hash عند الانتقال بين الصفحات فتهبط على أعلى الرئيسية بدل
+            القسم المقصود. الوسم العادي يحافظ عليه، ومن الرئيسية نفسها يتعامل
+            معه المتصفح كتمرير داخلي سلس بلا إعادة تحميل. */}
         <div className="hidden lg:flex items-center gap-[30px]">
-          <a href="#features" className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors">
+          <a href="/#features" className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors">
             المميزات
           </a>
-          <a href="#gallery" className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors">
+          <a href="/#gallery" className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors">
             واجهات النظام
           </a>
-          <a href="#pricing" className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors">
+          <a href="/#pricing" className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors">
             الأسعار
           </a>
-          <a href="#contact" className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors">
-            تواصل معنا
-          </a>
+          <Link href="/download" className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors">
+            تحميل
+          </Link>
+          <Link href="/support" className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors">
+            الدعم
+          </Link>
         </div>
 
         <a
-          href="#pricing"
+          href="/#pricing"
           className="bg-primary text-[#0a0a0c] py-[11px] px-[22px] rounded-xl font-bold text-[15px] no-underline transition-all duration-250 shadow-[0_6px_20px_-6px_rgba(212,175,55,0.5)] hover:bg-primary-soft hover:-translate-y-0.5"
         >
           اشترك الآن

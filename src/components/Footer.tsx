@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -12,16 +13,27 @@ export default function Footer() {
             </span>
           </div>
           <div className="flex gap-[26px] flex-wrap">
-            <a href="#features" className="text-muted no-underline text-[14.5px] hover:text-primary transition-colors">
+            {/* وسوم <a> عادية عمداً — انظر التعليق في Navbar: الـ Link يُسقط
+                الـ hash عند الانتقال من صفحة فرعية. */}
+            <a href="/#features" className="text-muted no-underline text-[14.5px] hover:text-primary transition-colors">
               المميزات
             </a>
-            <a href="#gallery" className="text-muted no-underline text-[14.5px] hover:text-primary transition-colors">
+            <a href="/#gallery" className="text-muted no-underline text-[14.5px] hover:text-primary transition-colors">
               واجهات النظام
             </a>
-            <a href="#pricing" className="text-muted no-underline text-[14.5px] hover:text-primary transition-colors">
+            <a href="/#pricing" className="text-muted no-underline text-[14.5px] hover:text-primary transition-colors">
               الأسعار
             </a>
-            <a href="#contact" className="text-muted no-underline text-[14.5px] hover:text-primary transition-colors">
+            <Link href="/download" className="text-muted no-underline text-[14.5px] hover:text-primary transition-colors">
+              تحميل النظام
+            </Link>
+            <Link href="/docs" className="text-muted no-underline text-[14.5px] hover:text-primary transition-colors">
+              دليل الاستخدام
+            </Link>
+            <Link href="/support" className="text-muted no-underline text-[14.5px] hover:text-primary transition-colors">
+              الدعم الفني
+            </Link>
+            <a href="/#contact" className="text-muted no-underline text-[14.5px] hover:text-primary transition-colors">
               تواصل معنا
             </a>
           </div>

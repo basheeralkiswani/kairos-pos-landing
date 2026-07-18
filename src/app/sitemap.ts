@@ -1,12 +1,14 @@
 import type { MetadataRoute } from "next";
 
+const BASE = "https://www.kairos-pos.com";
+
 export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date();
   return [
-    {
-      url: "https://www.kairos-pos.com",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
+    { url: BASE, lastModified: now, changeFrequency: "weekly", priority: 1 },
+    // صفحة التحميل تتغيّر مع كل نشرة إصدار، فتُفحص يومياً.
+    { url: `${BASE}/download`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
+    { url: `${BASE}/docs`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/support`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
   ];
 }

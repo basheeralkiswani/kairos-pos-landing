@@ -16,7 +16,26 @@ export const WA_MESSAGES = {
   float: "مرحباً 👋 بدي أبدأ تجربة Kairos Space POS المجانية لمدة 7 أيام — بدون التزام.",
   annual: "مرحباً 👋 بدي أشترك بنظام Kairos Space POS — الباقة السنوية (120 دينار / سنة).",
   monthly: "مرحباً 👋 بدي أشترك بنظام Kairos Space POS — الباقة الشهرية (15 دينار/شهر + تفعيل 15 دينار).",
+  download: "مرحباً 👋 حمّلت النظام وبدي مساعدة بالتثبيت أو التفعيل.",
+  support: "مرحباً 👋 بحتاج مساعدة فنية بنظام Kairos Space POS.",
 } as const;
+
+// ── التحميل المباشر (Phase 5) ────────────────────────────────────────────────
+// الملفات تُقدَّم من Cloudflare R2 عبر download.kairos-pos.com، ويرفعها
+// `npm run release` في مستودع الـ POS. الرابط الثابت `Kairos-Setup.exe` يشير
+// دائماً إلى آخر إصدار، فلا حاجة لتحديث الموقع مع كل نشرة.
+export const DOWNLOAD_BASE = "https://download.kairos-pos.com";
+export const DOWNLOAD_EXE = `${DOWNLOAD_BASE}/Kairos-Setup.exe`;
+export const DOWNLOAD_APK = `${DOWNLOAD_BASE}/KairosWaiter.apk`;
+export const UPDATES_MANIFEST = "https://updates.kairos-pos.com/latest.yml";
+
+// احتياطي يُعرض إن تعذّر قراءة الإصدار الحيّ من قناة التحديث وقت البناء.
+export const FALLBACK_VERSION = "1.12.0";
+
+// أقل إصدار POS يعمل معه تطبيق الويتر (متطلبات السيرفر وصلت في 1.11.0).
+export const WAITER_MIN_POS_VERSION = "1.11.0";
+
+export const SUPPORT_HOURS = "السبت – الخميس، 9 صباحاً – 9 مساءً";
 
 export const GALLERY_SHOTS = [
   { key: "cashier", title: "شاشة الكاشير", desc: "إضافة المنتجات للطلب بنقرة، تطبيق الخصومات، وإتمام الدفع نقداً أو بطاقة أو محفظة بسرعة.", src: "/images/shots/cashier.png", alt: "شاشة الكاشير في Kairos Space POS" },
