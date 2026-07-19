@@ -10,10 +10,16 @@ export function goUrl(src: keyof typeof WA_MESSAGES): string {
   return `/thank-you?src=${src}`;
 }
 
+// مدة التجربة المجانية — **مصدر واحد للحقيقة عبر الموقع كله**. كانت مكرّرة
+// كرقم حرفي في 8 مواضع فانحرفت عن الواقع (الموقع يعد بـ7 والتزويد يمنح 14).
+// أي تغيير هنا يسري على الرسائل والصفحات معاً. يجب أن يطابق `provision`
+// و`signup-manage` في مستودع الـ POS.
+export const TRIAL_DAYS = 14;
+
 export const WA_MESSAGES = {
-  hero: "مرحباً 👋 بدي أبدأ تجربة Kairos Space POS المجانية لمدة 7 أيام — بدون التزام.",
-  cta: "مرحباً 👋 بدي أبدأ تجربة Kairos Space POS المجانية لمدة 7 أيام — بدون التزام.",
-  float: "مرحباً 👋 بدي أبدأ تجربة Kairos Space POS المجانية لمدة 7 أيام — بدون التزام.",
+  hero: `مرحباً 👋 بدي أبدأ تجربة Kairos Space POS المجانية لمدة ${TRIAL_DAYS} يوم — بدون التزام.`,
+  cta: `مرحباً 👋 بدي أبدأ تجربة Kairos Space POS المجانية لمدة ${TRIAL_DAYS} يوم — بدون التزام.`,
+  float: `مرحباً 👋 بدي أبدأ تجربة Kairos Space POS المجانية لمدة ${TRIAL_DAYS} يوم — بدون التزام.`,
   annual: "مرحباً 👋 بدي أشترك بنظام Kairos Space POS — الباقة السنوية (120 دينار / سنة).",
   monthly: "مرحباً 👋 بدي أشترك بنظام Kairos Space POS — الباقة الشهرية (15 دينار/شهر + تفعيل 15 دينار).",
   download: "مرحباً 👋 حمّلت النظام وبدي مساعدة بالتثبيت أو التفعيل.",
@@ -36,6 +42,21 @@ export const FALLBACK_VERSION = "1.12.0";
 export const WAITER_MIN_POS_VERSION = "1.11.0";
 
 export const SUPPORT_HOURS = "السبت – الخميس، 9 صباحاً – 9 مساءً";
+
+// ── التسجيل الذاتي (Phase 6) ─────────────────────────────────────────────────
+// النموذج ينادي دالة `signup` على Supabase. الدالة معلَّمة verify_jwt=false،
+// فلا تحتاج ترويسة apikey إطلاقاً — والموقع لا يحمل أي مفتاح نتيجة لذلك.
+// (إرسال apikey كان يفرض preflight فيرفضه المتصفح؛ تُرك بلا ترويسات مخصّصة.)
+export const SIGNUP_ENDPOINT =
+  "https://zpgzcdmbxvnlejsgmedk.supabase.co/functions/v1/signup";
+
+
+export const BUSINESS_TYPES = [
+  { value: "supermarket", label: "سوبرماركت / بقالة" },
+  { value: "coffee", label: "كوفي شوب" },
+  { value: "restaurant", label: "مطعم" },
+  { value: "fastfood", label: "وجبات سريعة" },
+] as const;
 
 export const GALLERY_SHOTS = [
   { key: "cashier", title: "شاشة الكاشير", desc: "إضافة المنتجات للطلب بنقرة، تطبيق الخصومات، وإتمام الدفع نقداً أو بطاقة أو محفظة بسرعة.", src: "/images/shots/cashier.png", alt: "شاشة الكاشير في Kairos Space POS" },

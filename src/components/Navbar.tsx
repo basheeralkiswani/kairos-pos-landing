@@ -58,6 +58,12 @@ export default function Navbar() {
           <Link href="/support" className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors">
             الدعم
           </Link>
+          {/* التسجيل الذاتي (Phase 6). زر «اشترك الآن» الرئيسي ما زال يقود إلى
+              #pricing ← واتساب عمداً: مسار التحويل المدفوع الحالي لا يُغيَّر
+              بلا قرار من المالك. */}
+          <Link href="/signup" className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors">
+            ابدأ مجاناً
+          </Link>
         </div>
 
         <a

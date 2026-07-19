@@ -10,6 +10,7 @@ import {
   FALLBACK_VERSION,
   UPDATES_MANIFEST,
   WAITER_MIN_POS_VERSION,
+  TRIAL_DAYS,
   waUrl,
   WA_MESSAGES,
 } from "@/lib/constants";
@@ -17,7 +18,7 @@ import {
 export const metadata: Metadata = {
   title: "تحميل النظام | Kairos Space POS",
   description:
-    "حمّل نظام Kairos Space POS لويندوز مجاناً وابدأ تجربة 7 أيام، وحمّل تطبيق الويتر للأندرويد — روابط مباشرة بدون تسجيل.",
+    `حمّل نظام Kairos Space POS لويندوز مجاناً وابدأ تجربة ${TRIAL_DAYS} يوماً، وحمّل تطبيق الويتر للأندرويد — روابط مباشرة بدون تسجيل.`,
   alternates: { canonical: "/download" },
 };
 
@@ -63,7 +64,7 @@ export default async function DownloadPage() {
             حمّل <b className="text-primary">Kairos Space POS</b>
           </h1>
           <p className="text-muted text-[17px] mt-4">
-            التحميل مباشر وبدون تسجيل. ثبّت النظام وشغّله، وابدأ تجربة مجانية 7 أيام —
+            التحميل مباشر وبدون تسجيل. ثبّت النظام وشغّله، وابدأ تجربة مجانية <span className="num">{TRIAL_DAYS}</span> يوماً —
             وبعد التثبيت يحدّث نفسه تلقائياً، فلن تحتاج العودة لهذه الصفحة.
           </p>
         </header>

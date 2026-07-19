@@ -1,6 +1,6 @@
 "use client";
 
-import { goUrl } from "@/lib/constants";
+import { goUrl, TRIAL_DAYS } from "@/lib/constants";
 import { trackWhatsAppClick } from "@/components/Analytics";
 import { CheckBoldIcon } from "@/components/Icons";
 
@@ -30,7 +30,7 @@ export default function Pricing() {
             باقة واحدة بسيطة — كل المميزات
           </h2>
           <p className="text-[17px] text-muted">
-            لا رسوم خفية. جرّب النظام مجاناً 7 أيام — وبعدها اختر ما يناسبك.
+            لا رسوم خفية. جرّب النظام مجاناً <span className="num">{TRIAL_DAYS}</span> يوماً — وبعدها اختر ما يناسبك.
           </p>
         </div>
 

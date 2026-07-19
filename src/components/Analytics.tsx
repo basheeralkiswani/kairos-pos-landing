@@ -53,3 +53,14 @@ export function trackFormSubmit(formData: { name: string; business: string }) {
     value: 1,
   });
 }
+
+// Self-serve signup is a DIFFERENT funnel from the WhatsApp lead form, so it
+// gets its own event name. Reusing lead_form_submit would silently inflate the
+// Ads conversion that is already wired to the lead form.
+export function trackSignupSubmit(formData: { business: string }) {
+  pushEvent("signup_submit", {
+    event_category: "conversion",
+    event_label: formData.business,
+    value: 1,
+  });
+}

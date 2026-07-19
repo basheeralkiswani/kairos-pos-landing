@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { goUrl } from "@/lib/constants";
+import { goUrl, TRIAL_DAYS } from "@/lib/constants";
 import { trackWhatsAppClick } from "@/components/Analytics";
 import { WhatsAppIcon, ArrowIcon, CheckIcon, ChartIcon, ReceiptIcon } from "@/components/Icons";
 
@@ -45,7 +45,7 @@ export default function Hero() {
             <span className="inline-flex items-center gap-1.5 py-[5px] px-3 rounded-full bg-[rgba(212,175,55,0.10)] border border-[rgba(212,175,55,0.25)] font-bold text-primary-soft">
               ابدأ من <span className="num">15</span> د.أ / شهر
             </span>
-            <span className="text-muted">أو جرّبه مجاناً 7 أيام</span>
+            <span className="text-muted">أو جرّبه مجاناً <span className="num">{TRIAL_DAYS}</span> يوماً</span>
           </div>
 
           <div className="reveal d3 flex gap-3.5 flex-wrap mb-3">
@@ -58,7 +58,7 @@ export default function Hero() {
               onClick={() => trackWhatsAppClick("hero")}
             >
               <WhatsAppIcon className="w-5 h-5" />
-              جرّب مجاناً 7 أيام
+              جرّب مجاناً <span className="num">{TRIAL_DAYS}</span> يوماً
             </a>
             <a
               className="inline-flex items-center gap-2.5 py-[15px] px-7 rounded-[13px] font-bold text-base no-underline bg-white/4 text-text border border-secondary hover:border-[rgba(212,175,55,0.4)] hover:bg-white/7 transition-all duration-250"
