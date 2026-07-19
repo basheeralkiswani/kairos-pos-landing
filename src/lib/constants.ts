@@ -33,6 +33,7 @@ export const WA_MESSAGES = {
 export const DOWNLOAD_BASE = "https://download.kairos-pos.com";
 export const DOWNLOAD_EXE = `${DOWNLOAD_BASE}/Kairos-Setup.exe`;
 export const DOWNLOAD_APK = `${DOWNLOAD_BASE}/KairosWaiter.apk`;
+export const DOWNLOAD_CASHIER_APK = `${DOWNLOAD_BASE}/KairosCashier.apk`;
 export const UPDATES_MANIFEST = "https://updates.kairos-pos.com/latest.yml";
 
 // احتياطي يُعرض إن تعذّر قراءة الإصدار الحيّ من قناة التحديث وقت البناء.
@@ -40,6 +41,9 @@ export const FALLBACK_VERSION = "1.12.0";
 
 // أقل إصدار POS يعمل معه تطبيق الويتر (متطلبات السيرفر وصلت في 1.11.0).
 export const WAITER_MIN_POS_VERSION = "1.11.0";
+
+// أقل إصدار POS يعمل معه تابلت الكاشير الثاني (بوابة الاقتران وصلت في 1.14.0).
+export const CASHIER_MIN_POS_VERSION = "1.14.0";
 
 export const SUPPORT_HOURS = "السبت – الخميس، 9 صباحاً – 9 مساءً";
 

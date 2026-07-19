@@ -6,6 +6,8 @@ import WhatsAppFloat from "@/components/WhatsAppFloat";
 import RevealObserver from "@/components/RevealObserver";
 import {
   DOWNLOAD_APK,
+  DOWNLOAD_CASHIER_APK,
+  CASHIER_MIN_POS_VERSION,
   DOWNLOAD_EXE,
   FALLBACK_VERSION,
   UPDATES_MANIFEST,
@@ -18,7 +20,7 @@ import {
 export const metadata: Metadata = {
   title: "تحميل النظام | Kairos Space POS",
   description:
-    `حمّل نظام Kairos Space POS لويندوز مجاناً وابدأ تجربة ${TRIAL_DAYS} يوماً، وحمّل تطبيق الويتر للأندرويد — روابط مباشرة بدون تسجيل.`,
+    `حمّل نظام Kairos Space POS لويندوز مجاناً وابدأ تجربة ${TRIAL_DAYS} يوماً، وحمّل تطبيقات الأندرويد: الويتر وكاشير التابلت — روابط مباشرة بدون تسجيل.`,
   alternates: { canonical: "/download" },
 };
 
@@ -131,6 +133,38 @@ export default async function DownloadPage() {
               <div className="flex justify-between gap-4">
                 <dt className="text-muted">الشبكة</dt>
                 <dd className="font-medium">نفس شبكة جهاز الكاشير</dd>
+              </div>
+            </dl>
+          </Card>
+
+          <Card>
+            <div className="text-blue text-[13px] font-bold">كاشير ثانٍ · أندرويد</div>
+            <h2 className="text-[24px] font-extrabold mt-2">كاشير كايروس — تابلت</h2>
+            <p className="text-muted text-[15px] mt-3 leading-[1.75]">
+              حوّل أي تابلت أندرويد إلى نقطة بيع ثانية بشاشة الكاشير الكاملة — نفس
+              المنتجات ونفس الوردية ونفس التقارير. يقترن مرة واحدة برمز من جهاز
+              الكاشير الرئيسي، ويعمل على شبكة المحل بلا إنترنت.
+            </p>
+            <a
+              href={DOWNLOAD_CASHIER_APK}
+              className="mt-6 flex items-center justify-center bg-surface-2 border border-secondary text-text py-4 px-6 rounded-xl font-bold text-[16px] no-underline transition-all duration-250 hover:border-primary/50 hover:-translate-y-0.5"
+            >
+              تحميل APK · <span className="num mx-1.5">3</span> ميجابايت
+            </a>
+            <dl className="mt-6 pt-5 border-t border-white/6 text-[14px] space-y-2.5">
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted">نظام التشغيل</dt>
+                <dd className="font-medium">أندرويد <span className="num">7</span> فأحدث</dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted">يتطلّب</dt>
+                <dd className="font-medium">
+                  الكاشير على <span className="num">{CASHIER_MIN_POS_VERSION}</span> فأحدث
+                </dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted">الشبكة</dt>
+                <dd className="font-medium">نفس شبكة جهاز الكاشير الرئيسي</dd>
               </div>
             </dl>
           </Card>
