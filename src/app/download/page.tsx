@@ -82,7 +82,7 @@ export default async function DownloadPage() {
             </p>
             <a
               href={DOWNLOAD_EXE}
-              className="mt-6 flex items-center justify-center bg-primary text-[#0a0a0c] py-4 px-6 rounded-xl font-bold text-[16px] no-underline transition-all duration-250 shadow-[0_6px_20px_-6px_rgba(212,175,55,0.5)] hover:bg-primary-soft hover:-translate-y-0.5"
+              className="mt-6 flex items-center justify-center bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10] py-4 px-6 rounded-xl font-bold text-[16px] no-underline transition-all duration-250 shadow-[0_6px_20px_-6px_rgba(212,175,55,0.5)] hover:brightness-105 hover:-translate-y-0.5"
             >
               تحميل لويندوز · <span className="num mx-1.5">84</span> ميجابايت
             </a>
@@ -249,7 +249,7 @@ export default async function DownloadPage() {
             <div className="flex items-center justify-center gap-4 flex-wrap mt-6">
               <a
                 href={waUrl(WA_MESSAGES.download)}
-                className="bg-primary text-[#0a0a0c] py-3.5 px-7 rounded-xl font-bold text-[15px] no-underline transition-all duration-250 hover:bg-primary-soft hover:-translate-y-0.5"
+                className="bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10] py-3.5 px-7 rounded-xl font-bold text-[15px] no-underline transition-all duration-250 hover:brightness-105 hover:-translate-y-0.5"
               >
                 تواصل عبر واتساب
               </a>

@@ -14,8 +14,7 @@ import { trackSignupSubmit } from "@/components/Analytics";
 // يراجعه الفريق ثم يُفعَّل الحساب وتصل بيانات الدخول بالبريد. هذا مقصود:
 // النقطة الوحيدة المكشوفة على السحابة لا يجوز أن تنشئ مستأجرين بلا مراجعة.
 
-const inputCls =
-  "w-full bg-[rgba(255,255,255,0.04)] border border-secondary rounded-xl py-3 px-4 text-text text-[15px] placeholder:text-[#52525b] outline-none focus:border-primary/50 transition-colors";
+const inputCls = "field";
 
 const ERR_AR: Record<string, string> = {
   invalid_email: "البريد الإلكتروني غير صحيح",
@@ -73,8 +72,8 @@ export default function SignupForm() {
 
   if (done) {
     return (
-      <div className="bg-gradient-to-b from-[rgba(212,175,55,0.08)] to-[rgba(18,18,20,0.6)] border border-[rgba(212,175,55,0.2)] rounded-[24px] p-10 max-sm:p-6 text-center">
-        <div className="text-[44px] mb-3">✅</div>
+      <div className="bg-surface border border-[rgba(168,128,26,0.28)] rounded-[24px] shadow-[0_30px_60px_-35px_rgba(60,45,12,0.45)] p-10 max-sm:p-6 text-center">
+        <div className="w-[64px] h-[64px] mx-auto mb-4 rounded-full bg-[rgba(23,138,88,0.1)] border border-[rgba(23,138,88,0.35)] flex items-center justify-center"><svg viewBox="0 0 24 24" className="w-8 h-8 text-green" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
         <h2 className="text-[clamp(20px,3vw,28px)] font-black mb-3">استلمنا طلبك</h2>
         <p className="text-[15px] text-muted leading-[1.9] mb-6">
           أرسلنا تأكيداً إلى <span dir="ltr" className="text-text">{email.trim()}</span>.
@@ -88,7 +87,7 @@ export default function SignupForm() {
           href={waUrl(WA_MESSAGES.hero)}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2.5 py-3.5 px-7 rounded-[13px] font-bold text-base bg-primary text-[#0a0a0c] hover:bg-primary-soft transition-all"
+          className="btn-wa"
         >
           تواصل على واتساب
         </a>
@@ -97,12 +96,12 @@ export default function SignupForm() {
   }
 
   return (
-    <div className="bg-gradient-to-b from-[rgba(212,175,55,0.08)] to-[rgba(18,18,20,0.6)] border border-[rgba(212,175,55,0.2)] rounded-[24px] p-10 max-sm:p-6 relative overflow-hidden">
+    <div className="bg-surface border border-[rgba(168,128,26,0.28)] rounded-[24px] shadow-[0_30px_60px_-35px_rgba(60,45,12,0.45)] p-10 max-sm:p-6 relative overflow-hidden">
       <div className="absolute w-[300px] h-[300px] bg-[radial-gradient(circle,rgba(212,175,55,0.12),transparent_70%)] top-[-150px] right-[-80px] blur-[30px]" />
 
       <form onSubmit={submit} className="flex flex-col gap-4 relative">
         <div>
-          <label htmlFor="su-business" className="block text-[14px] font-semibold mb-2 text-[#d4d4d8]">
+          <label htmlFor="su-business" className="block text-[14px] font-semibold mb-2 text-text">
             اسم النشاط
           </label>
           <input
@@ -114,7 +113,7 @@ export default function SignupForm() {
         </div>
 
         <div>
-          <label htmlFor="su-type" className="block text-[14px] font-semibold mb-2 text-[#d4d4d8]">
+          <label htmlFor="su-type" className="block text-[14px] font-semibold mb-2 text-text">
             نوع النشاط
           </label>
           <select
@@ -129,7 +128,7 @@ export default function SignupForm() {
         </div>
 
         <div>
-          <label htmlFor="su-name" className="block text-[14px] font-semibold mb-2 text-[#d4d4d8]">
+          <label htmlFor="su-name" className="block text-[14px] font-semibold mb-2 text-text">
             اسم صاحب النشاط
           </label>
           <input
@@ -141,7 +140,7 @@ export default function SignupForm() {
         </div>
 
         <div>
-          <label htmlFor="su-email" className="block text-[14px] font-semibold mb-2 text-[#d4d4d8]">
+          <label htmlFor="su-email" className="block text-[14px] font-semibold mb-2 text-text">
             البريد الإلكتروني
           </label>
           <input
@@ -150,13 +149,13 @@ export default function SignupForm() {
             placeholder="you@example.com"
             className={`${inputCls} text-left`}
           />
-          <p className="text-[12px] text-[#52525b] mt-1.5">
+          <p className="text-[12px] text-muted mt-1.5">
             هذا هو بريد الدخول للنظام وللوحة التحكم — تأكد من صحته.
           </p>
         </div>
 
         <div>
-          <label htmlFor="su-phone" className="block text-[14px] font-semibold mb-2 text-[#d4d4d8]">
+          <label htmlFor="su-phone" className="block text-[14px] font-semibold mb-2 text-text">
             رقم الهاتف
           </label>
           <input
@@ -168,8 +167,8 @@ export default function SignupForm() {
         </div>
 
         <div>
-          <label htmlFor="su-notes" className="block text-[14px] font-semibold mb-2 text-[#d4d4d8]">
-            ملاحظات <span className="text-[#52525b] font-normal">(اختياري)</span>
+          <label htmlFor="su-notes" className="block text-[14px] font-semibold mb-2 text-text">
+            ملاحظات <span className="text-muted font-normal">(اختياري)</span>
           </label>
           <textarea
             id="su-notes" rows={3} value={notes}
@@ -189,7 +188,7 @@ export default function SignupForm() {
         </div>
 
         {error && (
-          <div className="rounded-xl border border-red-500/30 bg-red-500/10 text-red-300 text-[14px] py-3 px-4">
+          <div className="rounded-xl border border-red-700/30 bg-red-100 text-red-800 text-[14px] py-3 px-4">
             {error}
           </div>
         )}
@@ -197,12 +196,12 @@ export default function SignupForm() {
         <button
           type="submit"
           disabled={busy}
-          className="mt-2 w-full inline-flex items-center justify-center gap-2.5 py-4 px-7 rounded-[13px] font-bold text-base bg-primary text-[#0a0a0c] shadow-[0_10px_30px_-8px_rgba(212,175,55,0.55)] hover:bg-primary-soft hover:-translate-y-0.5 transition-all duration-250 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+          className="btn-gold mt-2 w-full disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {busy ? "جارٍ الإرسال…" : `ابدأ التجربة المجانية ${TRIAL_DAYS} يوماً`}
         </button>
 
-        <p className="text-center text-[12px] text-[#52525b] relative">
+        <p className="text-center text-[12px] text-muted relative">
           بلا بطاقة ائتمان — ولا التزام.
         </p>
       </form>

@@ -18,14 +18,14 @@ export default function Navbar() {
       id="nav"
       className={`fixed top-0 left-0 right-0 z-100 transition-all duration-350 ease-out ${
         scrolled
-          ? "bg-[rgba(10,10,12,0.82)] backdrop-blur-[18px] backdrop-saturate-[140%] border-b border-white/6 py-3"
+          ? "bg-[rgba(247,242,231,0.85)] backdrop-blur-[18px] backdrop-saturate-[140%] border-b border-[rgba(168,128,26,0.15)] py-3 shadow-[0_10px_30px_-18px_rgba(60,45,12,0.35)]"
           : "py-[18px]"
       }`}
     >
       <div className="max-w-[1240px] mx-auto px-7 relative z-1 flex items-center justify-between gap-5">
         <Link href="/" className="flex items-center gap-3 no-underline" aria-label="Kairos Space - الرئيسية">
           <Image
-            src="/images/logo-light.png"
+            src="/images/logo.png"
             alt="Kairos Space"
             width={46}
             height={46}
@@ -58,20 +58,17 @@ export default function Navbar() {
           <Link href="/support" className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors">
             الدعم
           </Link>
-          {/* التسجيل الذاتي (Phase 6). زر «اشترك الآن» الرئيسي ما زال يقود إلى
-              #pricing ← واتساب عمداً: مسار التحويل المدفوع الحالي لا يُغيَّر
-              بلا قرار من المالك. */}
-          <Link href="/signup" className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors">
-            ابدأ مجاناً
-          </Link>
         </div>
 
-        <a
-          href="/#pricing"
-          className="bg-primary text-[#0a0a0c] py-[11px] px-[22px] rounded-xl font-bold text-[15px] no-underline transition-all duration-250 shadow-[0_6px_20px_-6px_rgba(212,175,55,0.5)] hover:bg-primary-soft hover:-translate-y-0.5"
+        {/* قرار المالك (2026-07-20، إعادة التصميم): الزر الأساسي صار يقود إلى
+            التسجيل الذاتي /signup مباشرة — «أسهل للتسجيل». مسار واتساب المدفوع
+            بقي كاملاً كخيار ثانٍ في كل قسم (goUrl → /thank-you لم يتغير). */}
+        <Link
+          href="/signup"
+          className="btn-gold !py-[11px] !px-[22px] !text-[15px]"
         >
-          اشترك الآن
-        </a>
+          ابدأ مجاناً
+        </Link>
       </div>
     </nav>
   );

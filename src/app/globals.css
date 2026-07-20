@@ -1,37 +1,58 @@
 @import "tailwindcss";
 
+/* «دفتر الذهب» — هوية فاتحة دافئة تطابق واجهة النظام الفعلية (كريمي + ذهبي):
+   لقطات الشاشة الفاتحة تندمج مع الصفحة بدل أن تطفو على خلفية سوداء.
+   العاجيّ هو المسرح، والذهبي هو البطل، ولحظة داكنة واحدة (شريط الدعوة الختامي)
+   تصنع التباين الذي يثبت في الذاكرة. */
 @theme {
-  --color-bg: #0a0a0c;
-  --color-surface: #18181b;
-  --color-surface-2: #1f1f23;
-  --color-primary: #d4af37;
-  --color-primary-soft: #e6c75a;
-  --color-secondary: #27272a;
-  --color-text: #f4f4f5;
-  --color-muted: #a1a1aa;
-  --color-green: #34d399;
-  --color-blue: #60a5fa;
-  --color-purple: #c084fc;
-  --font-ar: 'Tajawal', sans-serif;
-  --font-en: 'Inter', sans-serif;
+  --color-bg: #f7f2e7;
+  --color-surface: #fffcf4;
+  --color-surface-2: #efe7d3;
+  --color-primary: #a8801a;        /* ذهبي غامق للنصوص والروابط — تباين ≥4.5 على العاجي */
+  --color-primary-soft: #c39a25;
+  --color-gold: #d4af37;           /* ذهب العلامة — للتعبئة والتدرجات */
+  --color-secondary: #e5dbc3;      /* حدود */
+  --color-text: #241f15;
+  --color-muted: #6e6552;
+  --color-green: #178a58;
+  --color-wa: #128c4a;             /* أخضر واتساب معمّق ليحمل نصاً أبيض بتباين كافٍ */
+  --color-dark: #221b10;           /* لحظات داكنة (شريط الدعوة) */
+  --color-dark-2: #322817;
+  --font-ar: 'Alexandria', sans-serif;
+  --font-en: 'Manrope', sans-serif;
 }
 
 ::selection {
-  background: rgba(212, 175, 55, 0.3);
-  color: #fff;
+  background: rgba(212, 175, 55, 0.35);
+  color: #241f15;
 }
 
 html {
   scroll-behavior: smooth;
+  /* body وحدها لا تكفي: عناصر مثل .laptop-base تمتد يساراً (RTL) وتوسّع
+     scrollWidth على جذر المستند نفسه — clip يمنع شريط التمرير الأفقي نهائياً. */
+  overflow-x: clip;
 }
 
 body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-ar);
-  line-height: 1.6;
+  line-height: 1.65;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+/* نسيج ورقي خفيف — عمق بلا ضجيج */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(168, 128, 26, 0.05) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(180deg, #000 0%, transparent 45%, transparent 70%, #000 100%);
 }
 
 .num {
@@ -41,19 +62,19 @@ body {
   display: inline-block;
 }
 
-/* Ambient Glow */
+/* توهّج محيطي — ذهبي شفاف على العاجي */
 .glow {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.5;
+  filter: blur(90px);
+  opacity: 0.6;
 }
 
 /* Animations */
 @keyframes pulse-dot {
-  0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55); }
-  70% { box-shadow: 0 0 0 9px rgba(52, 211, 153, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(23, 138, 88, 0.45); }
+  70% { box-shadow: 0 0 0 9px rgba(23, 138, 88, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(23, 138, 88, 0); }
 }
 
 @keyframes floaty {
@@ -100,20 +121,20 @@ body {
   }
 }
 
-/* Laptop Mockup */
+/* Laptop Mockup — الإطار يبقى داكناً (جهاز حقيقي) والشاشة الفاتحة تتوهج داخله */
 .laptop-lid {
-  background: linear-gradient(160deg, #2a2a2e, #161619);
-  border: 1px solid #3a3a40;
+  background: linear-gradient(160deg, #3a332a, #201b13);
+  border: 1px solid #4c4335;
   border-radius: 18px 18px 5px 5px;
   padding: 14px 14px 16px;
-  box-shadow: 0 44px 100px -34px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0 44px 90px -30px rgba(60, 45, 12, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .laptop-cam {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #45454c;
+  background: #574c3a;
   margin: 0 auto 11px;
   box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.8);
 }
@@ -123,18 +144,18 @@ body {
   aspect-ratio: 1562 / 943;
   border-radius: 6px;
   overflow: hidden;
-  background: var(--color-bg);
-  border: 1px solid #000;
+  background: #fffcf4;
+  border: 1px solid #17120a;
 }
 
 .laptop-base {
   height: 15px;
   width: 118%;
   margin-left: -9%;
-  background: linear-gradient(#34343a, #161619);
+  background: linear-gradient(#463c2d, #201b13);
   border-radius: 0 0 14px 14px;
   position: relative;
-  box-shadow: 0 32px 44px -22px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 30px 40px -20px rgba(60, 45, 12, 0.5);
 }
 
 .laptop-base::after {
@@ -145,51 +166,53 @@ body {
   transform: translateX(-50%);
   width: 96px;
   height: 9px;
-  background: #0d0d0f;
+  background: #171208;
   border-radius: 0 0 9px 9px;
 }
 
-/* Price card gradient border */
+/* بطاقة السعر المميّزة — إطار ذهبي متدرج */
 .price-card-featured::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: 22px;
-  padding: 1.5px;
-  background: linear-gradient(160deg, var(--color-primary), rgba(212, 175, 55, 0.2) 60%);
+  padding: 2px;
+  background: linear-gradient(160deg, var(--color-gold), rgba(212, 175, 55, 0.25) 60%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
+  pointer-events: none;
 }
 
-/* Feature card gradient border */
+/* بطاقات المميزات — إطار ذهبي يظهر عند المرور */
 .feat-card::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: 20px;
-  padding: 1px;
-  background: linear-gradient(140deg, rgba(212, 175, 55, 0.4), transparent 40%);
+  padding: 1.5px;
+  background: linear-gradient(140deg, rgba(168, 128, 26, 0.55), transparent 45%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0;
   transition: opacity 0.35s;
+  pointer-events: none;
 }
 
 .feat-card:hover::before {
   opacity: 1;
 }
 
-/* CTA band glow */
+/* توهج الشريط الختامي الداكن */
 .cta-band-glow::after {
   content: '';
   position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.18), transparent 70%);
-  top: -200px;
-  right: -100px;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.22), transparent 70%);
+  top: -210px;
+  right: -110px;
   filter: blur(40px);
 }
 
@@ -207,4 +230,95 @@ body {
 
 .gallery-img.active {
   opacity: 1;
+}
+
+/* أزرار موحّدة — زر ذهبي أساسي واحد في كل شاشة */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 28px;
+  border-radius: 13px;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+  color: #221b10;
+  background: linear-gradient(160deg, #e3c14f, #c49b25);
+  box-shadow: 0 12px 28px -10px rgba(168, 128, 26, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: transform 0.25s, box-shadow 0.25s, filter 0.25s;
+  cursor: pointer;
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 16px 34px -10px rgba(168, 128, 26, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 28px;
+  border-radius: 13px;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-secondary);
+  transition: border-color 0.25s, background 0.25s, transform 0.25s;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  border-color: rgba(168, 128, 26, 0.5);
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+.btn-wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 28px;
+  border-radius: 13px;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+  color: #fff;
+  background: var(--color-wa);
+  box-shadow: 0 10px 26px -10px rgba(18, 140, 74, 0.55);
+  transition: transform 0.25s, filter 0.25s;
+  cursor: pointer;
+}
+
+.btn-wa:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.07);
+}
+
+/* حقول النماذج الموحّدة */
+.field {
+  width: 100%;
+  background: #fff;
+  border: 1.5px solid var(--color-secondary);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: var(--color-text);
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.field::placeholder {
+  color: #a89d85;
+}
+
+.field:focus {
+  border-color: var(--color-primary-soft);
+  box-shadow: 0 0 0 3px rgba(196, 155, 37, 0.18);
 }

@@ -42,10 +42,10 @@ export default function Testimonials() {
           {TESTIMONIALS.map((t, i) => (
             <figure
               key={i}
-              className="reveal bg-gradient-to-b from-[rgba(24,24,27,0.8)] to-[rgba(18,18,20,0.6)] border border-secondary rounded-[22px] p-[30px] flex flex-col"
+              className="reveal bg-surface border border-secondary shadow-[0_18px_40px_-30px_rgba(60,45,12,0.3)] rounded-[22px] p-[30px] flex flex-col"
             >
               <Stars count={t.rating ?? 5} />
-              <blockquote className="text-[16px] leading-[1.7] text-[#d4d4d8] my-5 flex-1">
+              <blockquote className="text-[16px] leading-[1.7] text-text my-5 flex-1">
                 “{t.quote}”
               </blockquote>
               <figcaption className="flex flex-col">

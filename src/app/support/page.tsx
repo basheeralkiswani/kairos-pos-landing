@@ -138,7 +138,7 @@ export default function SupportPage() {
             </p>
             <a
               href={waUrl(WA_MESSAGES.support)}
-              className="inline-block mt-6 bg-primary text-[#0a0a0c] py-3.5 px-7 rounded-xl font-bold text-[15px] no-underline transition-all duration-250 hover:bg-primary-soft hover:-translate-y-0.5"
+              className="inline-block mt-6 bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10] py-3.5 px-7 rounded-xl font-bold text-[15px] no-underline transition-all duration-250 hover:brightness-105 hover:-translate-y-0.5"
             >
               راسلنا على واتساب
             </a>

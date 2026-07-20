@@ -335,7 +335,7 @@ export default function DocsPage() {
                 <div className="flex items-center justify-center gap-4 flex-wrap mt-6">
                   <a
                     href={waUrl(WA_MESSAGES.support)}
-                    className="bg-primary text-[#0a0a0c] py-3.5 px-7 rounded-xl font-bold text-[15px] no-underline transition-all duration-250 hover:bg-primary-soft hover:-translate-y-0.5"
+                    className="bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10] py-3.5 px-7 rounded-xl font-bold text-[15px] no-underline transition-all duration-250 hover:brightness-105 hover:-translate-y-0.5"
                   >
                     اسأل على واتساب
                   </a>

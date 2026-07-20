@@ -1,39 +1,42 @@
 "use client";
 
+import Link from "next/link";
 import { goUrl, TRIAL_DAYS } from "@/lib/constants";
 import { trackWhatsAppClick } from "@/components/Analytics";
 import { WhatsAppIcon } from "@/components/Icons";
 
+// اللحظة الداكنة الوحيدة في الصفحة — تباين مقصود يجعل الدعوة الختامية محفورة
+// في الذاكرة وسط الهوية العاجية.
 export default function CtaBand() {
   return (
     <section className="pt-5 pb-[90px] relative" id="contact">
       <div className="max-w-[1240px] mx-auto px-7 relative z-1">
-        <div className="cta-band-glow bg-gradient-to-br from-[rgba(212,175,55,0.12)] to-[rgba(24,24,27,0.5)] border border-[rgba(212,175,55,0.25)] rounded-[28px] py-[60px] px-10 text-center relative overflow-hidden reveal">
-          <h2 className="text-[clamp(28px,4.2vw,46px)] font-black tracking-[-0.5px] mb-4 relative">
+        <div className="cta-band-glow bg-gradient-to-br from-dark to-dark-2 border border-[rgba(212,175,55,0.35)] rounded-[28px] py-[60px] px-10 text-center relative overflow-hidden reveal shadow-[0_40px_80px_-40px_rgba(34,27,16,0.7)]">
+          <h2 className="text-[clamp(28px,4.2vw,46px)] font-black tracking-[-0.5px] mb-4 relative text-[#f7f2e7]">
             جاهز تنقل عملك للمستوى التالي؟
           </h2>
-          <p className="text-[18px] text-muted mx-auto mb-7 max-w-[540px] relative">
-            ابدأ تجربتك المجانية لمدة <span className="num">{TRIAL_DAYS}</span> يوماً الآن — بدون التزام وبدون بطاقة ائتمان.
+          <p className="text-[18px] text-[#cfc4a8] mx-auto mb-7 max-w-[540px] relative">
+            ابدأ تجربتك المجانية لمدة <span className="num text-[#e3c14f] font-bold">{TRIAL_DAYS}</span> يوماً الآن — بدون التزام وبدون بطاقة ائتمان.
           </p>
           <div className="flex gap-3.5 flex-wrap justify-center relative">
+            <Link id="ctaSignup" href="/signup" className="btn-gold">
+              سجّل وابدأ الآن
+            </Link>
             <a
               id="ctaWa"
-              className="inline-flex items-center gap-2.5 py-[15px] px-7 rounded-[13px] font-bold text-base no-underline bg-[#25D366] text-white shadow-[0_10px_30px_-8px_rgba(37,211,102,0.5)] hover:bg-[#20bd5a] hover:-translate-y-0.5 transition-all duration-250"
+              className="btn-wa"
               href={goUrl("cta")}
               target="_blank"
               rel="noopener"
               onClick={() => trackWhatsAppClick("cta")}
             >
               <WhatsAppIcon className="w-5 h-5" />
-              جرّب مجاناً <span className="num">{TRIAL_DAYS}</span> يوماً
-            </a>
-            <a
-              className="inline-flex items-center gap-2.5 py-[15px] px-7 rounded-[13px] font-bold text-base no-underline bg-primary text-[#0a0a0c] shadow-[0_10px_30px_-8px_rgba(212,175,55,0.55)] hover:bg-primary-soft hover:-translate-y-0.5 transition-all duration-250"
-              href="tel:0788606428"
-            >
-              اتصل بنا: <span className="num">0788 606 428</span>
+              أو كلّمنا واتساب
             </a>
           </div>
+          <p className="relative mt-6 text-[14px] text-[#a89d85]">
+            تفضّل الهاتف؟ <a href="tel:0788606428" className="text-[#e3c14f] font-bold no-underline hover:underline num">0788 606 428</a>
+          </p>
         </div>
       </div>
     </section>

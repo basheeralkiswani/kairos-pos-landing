@@ -31,16 +31,16 @@ export default function Features() {
           {FEATURES.map((f, i) => (
             <div
               key={i}
-              className={`feat-card reveal ${f.delay} relative overflow-hidden bg-gradient-to-b from-[rgba(24,24,27,0.7)] to-[rgba(18,18,20,0.5)] border rounded-[20px] p-[30px_26px] transition-all duration-350 hover:-translate-y-[5px] hover:border-transparent ${
-                f.badge ? "border-[rgba(212,175,55,0.45)]" : "border-secondary"
+              className={`feat-card reveal ${f.delay} relative overflow-hidden bg-surface border rounded-[20px] p-[30px_26px] shadow-[0_18px_40px_-30px_rgba(60,45,12,0.3)] transition-all duration-350 hover:-translate-y-[5px] hover:shadow-[0_26px_50px_-28px_rgba(60,45,12,0.4)] ${
+                f.badge ? "border-[rgba(168,128,26,0.4)]" : "border-secondary"
               }`}
             >
               {f.badge && (
-                <span className="absolute top-[18px] left-[18px] bg-primary text-[#0a0a0c] text-[11.5px] font-extrabold py-1 px-2.5 rounded-full">
+                <span className="absolute top-[18px] left-[18px] bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10] text-[11.5px] font-extrabold py-1 px-2.5 rounded-full">
                   {f.badge}
                 </span>
               )}
-              <div className="w-[52px] h-[52px] rounded-[14px] bg-[rgba(212,175,55,0.1)] border border-[rgba(212,175,55,0.2)] flex items-center justify-center text-primary mb-5">
+              <div className="w-[52px] h-[52px] rounded-[14px] bg-[rgba(168,128,26,0.1)] border border-[rgba(168,128,26,0.22)] flex items-center justify-center text-primary mb-5">
                 {f.icon}
               </div>
               <h3 className="text-[19px] font-extrabold mb-[9px]">{f.title}</h3>

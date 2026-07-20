@@ -103,8 +103,8 @@ export default function Gallery() {
               onClick={() => handleTabClick(s.key)}
               className={`inline-flex items-center gap-[9px] py-[11px] px-[18px] rounded-full border text-[15px] font-semibold cursor-pointer transition-all duration-220 ${
                 active === s.key
-                  ? "bg-primary text-[#0a0a0c] border-primary font-bold shadow-[0_8px_22px_-8px_rgba(212,175,55,0.5)]"
-                  : "bg-surface border-secondary text-muted hover:text-text hover:border-[rgba(212,175,55,0.35)]"
+                  ? "bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10] border-transparent font-bold shadow-[0_8px_22px_-8px_rgba(168,128,26,0.55)]"
+                  : "bg-surface border-secondary text-muted hover:text-text hover:border-[rgba(168,128,26,0.4)]"
               }`}
               aria-label={`عرض ${TAB_LABELS[s.key]}`}
             >

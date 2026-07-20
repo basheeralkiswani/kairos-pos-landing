@@ -28,8 +28,8 @@ export default function LeadForm() {
   return (
     <section className="py-[60px] relative" id="lead-form">
       <div className="max-w-[640px] mx-auto px-7 relative z-1">
-        <div className="bg-gradient-to-b from-[rgba(212,175,55,0.08)] to-[rgba(18,18,20,0.6)] border border-[rgba(212,175,55,0.2)] rounded-[24px] p-10 max-sm:p-6 relative overflow-hidden">
-          <div className="absolute w-[300px] h-[300px] bg-[radial-gradient(circle,rgba(212,175,55,0.12),transparent_70%)] top-[-150px] right-[-80px] blur-[30px]" />
+        <div className="bg-surface border border-[rgba(168,128,26,0.28)] rounded-[24px] shadow-[0_30px_60px_-35px_rgba(60,45,12,0.45)] p-10 max-sm:p-6 relative overflow-hidden">
+          <div className="absolute w-[300px] h-[300px] bg-[radial-gradient(circle,rgba(212,175,55,0.16),transparent_70%)] top-[-150px] right-[-80px] blur-[30px]" />
 
           <div className="text-center mb-8 relative">
             <span className="inline-block text-[13px] font-bold text-primary tracking-[1px] uppercase mb-3">
@@ -45,7 +45,7 @@ export default function LeadForm() {
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4 relative">
             <div>
-              <label htmlFor="lead-name" className="block text-[14px] font-semibold mb-2 text-[#d4d4d8]">
+              <label htmlFor="lead-name" className="block text-[14px] font-semibold mb-2 text-text">
                 الاسم
               </label>
               <input
@@ -55,12 +55,12 @@ export default function LeadForm() {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="أدخل اسمك الكامل"
                 required
-                className="w-full bg-[rgba(255,255,255,0.04)] border border-secondary rounded-xl py-3 px-4 text-text text-[15px] placeholder:text-[#52525b] outline-none focus:border-primary/50 transition-colors"
+                className="field"
               />
             </div>
 
             <div>
-              <label htmlFor="lead-business" className="block text-[14px] font-semibold mb-2 text-[#d4d4d8]">
+              <label htmlFor="lead-business" className="block text-[14px] font-semibold mb-2 text-text">
                 اسم المشروع
               </label>
               <input
@@ -70,12 +70,12 @@ export default function LeadForm() {
                 onChange={(e) => setBusiness(e.target.value)}
                 placeholder="اسم المقهى أو المطعم أو المتجر"
                 required
-                className="w-full bg-[rgba(255,255,255,0.04)] border border-secondary rounded-xl py-3 px-4 text-text text-[15px] placeholder:text-[#52525b] outline-none focus:border-primary/50 transition-colors"
+                className="field"
               />
             </div>
 
             <div>
-              <label htmlFor="lead-phone" className="block text-[14px] font-semibold mb-2 text-[#d4d4d8]">
+              <label htmlFor="lead-phone" className="block text-[14px] font-semibold mb-2 text-text">
                 رقم الهاتف
               </label>
               <input
@@ -86,14 +86,14 @@ export default function LeadForm() {
                 placeholder="07XXXXXXXX"
                 required
                 dir="ltr"
-                className="w-full bg-[rgba(255,255,255,0.04)] border border-secondary rounded-xl py-3 px-4 text-text text-[15px] placeholder:text-[#52525b] outline-none focus:border-primary/50 transition-colors text-left"
+                className="field text-left"
               />
             </div>
 
             <button
               type="submit"
               disabled={submitted}
-              className="mt-2 w-full inline-flex items-center justify-center gap-2.5 py-4 px-7 rounded-[13px] font-bold text-base bg-primary text-[#0a0a0c] shadow-[0_10px_30px_-8px_rgba(212,175,55,0.55)] hover:bg-primary-soft hover:-translate-y-0.5 transition-all duration-250 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+              className="btn-wa mt-2 w-full disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {submitted ? (
                 "✓ تم الإرسال بنجاح!"
@@ -109,7 +109,7 @@ export default function LeadForm() {
             </button>
           </form>
 
-          <p className="text-center text-[12px] text-[#52525b] mt-4 relative">
+          <p className="text-center text-[12px] text-muted mt-4 relative">
             سيتم فتح محادثة واتساب مباشرة على الرقم <span className="num">{WA_NUMBER}</span>
           </p>
         </div>

@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
-import { Tajawal, Inter } from "next/font/google";
+import { Alexandria, Manrope } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@/components/Analytics";
 
-const tajawal = Tajawal({
+// Alexandria: عربي هندسي حديث بثقل كامل حتى 900 — شخصية «فاخر واضح» بدل
+// الحياد العام. Manrope للأرقام واللاتيني (tnum مفعّلة في .num).
+const alexandria = Alexandria({
   subsets: ["arabic", "latin"],
-  weight: ["400", "500", "700", "800"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   variable: "--font-ar",
   display: "swap",
 });
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-en",
@@ -97,7 +99,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl" className={`${tajawal.variable} ${inter.variable}`}>
+    <html lang="ar" dir="rtl" className={`${alexandria.variable} ${manrope.variable}`}>
       <head>
         {/* Google Tag Manager */}
         {GTM_ID && (
@@ -146,10 +148,17 @@ gtag('config', '${ADS_ID}');`,
               offers: [
                 {
                   "@type": "Offer",
-                  price: "120",
+                  price: "140",
                   priceCurrency: "JOD",
                   name: "الاشتراك السنوي",
                   description: "سنة كاملة من الاستخدام الكامل",
+                },
+                {
+                  "@type": "Offer",
+                  price: "70",
+                  priceCurrency: "JOD",
+                  name: "اشتراك 6 أشهر",
+                  description: "ستة أشهر من الاستخدام الكامل",
                 },
                 {
                   "@type": "Offer",

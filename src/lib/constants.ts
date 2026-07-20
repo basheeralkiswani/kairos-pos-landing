@@ -16,12 +16,17 @@ export function goUrl(src: keyof typeof WA_MESSAGES): string {
 // و`signup-manage` في مستودع الـ POS.
 export const TRIAL_DAYS = 14;
 
+// الأسعار — مصدر واحد للحقيقة (قرار المالك 2026-07-20): 15 شهري ·
+// 70 نصف سنوي · 140 سنوي، بلا رسوم تفعيل. تُغذّي البطاقات والرسائل معاً.
+export const PRICES = { monthly: 15, semiannual: 70, annual: 140 } as const;
+
 export const WA_MESSAGES = {
   hero: `مرحباً 👋 بدي أبدأ تجربة Kairos Space POS المجانية لمدة ${TRIAL_DAYS} يوم — بدون التزام.`,
   cta: `مرحباً 👋 بدي أبدأ تجربة Kairos Space POS المجانية لمدة ${TRIAL_DAYS} يوم — بدون التزام.`,
   float: `مرحباً 👋 بدي أبدأ تجربة Kairos Space POS المجانية لمدة ${TRIAL_DAYS} يوم — بدون التزام.`,
-  annual: "مرحباً 👋 بدي أشترك بنظام Kairos Space POS — الباقة السنوية (120 دينار / سنة).",
-  monthly: "مرحباً 👋 بدي أشترك بنظام Kairos Space POS — الباقة الشهرية (15 دينار/شهر + تفعيل 15 دينار).",
+  annual: `مرحباً 👋 بدي أشترك بنظام Kairos Space POS — الباقة السنوية (${PRICES.annual} دينار / سنة).`,
+  semiannual: `مرحباً 👋 بدي أشترك بنظام Kairos Space POS — باقة 6 أشهر (${PRICES.semiannual} دينار).`,
+  monthly: `مرحباً 👋 بدي أشترك بنظام Kairos Space POS — الباقة الشهرية (${PRICES.monthly} دينار/شهر).`,
   download: "مرحباً 👋 حمّلت النظام وبدي مساعدة بالتثبيت أو التفعيل.",
   support: "مرحباً 👋 بحتاج مساعدة فنية بنظام Kairos Space POS.",
 } as const;

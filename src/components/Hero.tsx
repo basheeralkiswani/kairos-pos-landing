@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { goUrl, TRIAL_DAYS } from "@/lib/constants";
+import Link from "next/link";
+import { goUrl, TRIAL_DAYS, PRICES } from "@/lib/constants";
 import { trackWhatsAppClick } from "@/components/Analytics";
-import { WhatsAppIcon, ArrowIcon, CheckIcon, ChartIcon, ReceiptIcon } from "@/components/Icons";
+import { WhatsAppIcon, CheckIcon, ChartIcon, ReceiptIcon } from "@/components/Icons";
 
 export default function Hero() {
   return (
@@ -12,11 +13,11 @@ export default function Hero() {
         {/* Text */}
         <div>
           <div className="reveal flex items-center gap-2.5 flex-wrap mb-[26px]">
-            <div className="inline-flex items-center gap-[9px] py-2 px-4 bg-[rgba(212,175,55,0.08)] border border-[rgba(212,175,55,0.25)] rounded-full text-[13.5px] font-semibold text-primary-soft">
+            <div className="inline-flex items-center gap-[9px] py-2 px-4 bg-[rgba(168,128,26,0.08)] border border-[rgba(168,128,26,0.3)] rounded-full text-[13.5px] font-semibold text-primary">
               <span className="w-[7px] h-[7px] rounded-full bg-green animate-[pulse-dot_2s_infinite]" />
               نظام نقاط بيع متكامل · صُمّم في الأردن
             </div>
-            <div className="inline-flex items-center gap-2 py-2 px-4 bg-[rgba(52,211,153,0.10)] border border-[rgba(52,211,153,0.30)] rounded-full text-[13.5px] font-semibold text-[#d4d4d8]">
+            <div className="inline-flex items-center gap-2 py-2 px-4 bg-[rgba(23,138,88,0.08)] border border-[rgba(23,138,88,0.3)] rounded-full text-[13.5px] font-semibold text-text">
               <ReceiptIcon className="w-4 h-4 text-green" />
               <span className="text-green font-bold">جديد:</span> متكامل مع نظام الفوترة الوطني
             </div>
@@ -25,47 +26,41 @@ export default function Hero() {
           <h1 className="reveal d1 text-[clamp(38px,5.2vw,62px)] font-black leading-[1.13] tracking-[-0.5px] mb-[22px]">
             أدِر مقهاك ومطعمك
             <br />
-            <span className="bg-gradient-to-l from-primary via-[#f0d97a] to-primary bg-clip-text text-transparent">
+            <span className="bg-gradient-to-l from-[#8a6a14] via-[#c49b25] to-[#8a6a14] bg-clip-text text-transparent">
               بضغطة زر واحدة.
             </span>
           </h1>
 
-          <p className="reveal d2 text-[clamp(16px,2vw,19px)] text-muted max-w-[520px] mb-[34px]">
+          <p className="reveal d2 text-[clamp(16px,2vw,19px)] text-muted max-w-[520px] mb-[30px]">
             نظام <b className="text-text font-bold">Kairos Space POS</b> يجمع الكاشير، إدارة المخزون، والتقارير اللحظية في واجهة واحدة أنيقة وسريعة — وهذه لقطات حقيقية من داخل النظام، مش مجرد رسومات.
           </p>
 
-          {/* Launch offer — honest social proof above the fold */}
-          <div className="reveal d2 inline-flex items-center gap-2.5 py-[7px] px-[14px] rounded-[12px] bg-[rgba(52,211,153,0.10)] border border-[rgba(52,211,153,0.28)] mb-[22px] text-[13.5px] font-semibold text-[#d4d4d8]">
-            <span className="text-base leading-none">🇯🇴</span>
-            صُمّم في الأردن لأصحاب المقاهي والمطاعم — كن من أوائل من يعتمده
-          </div>
-
-          {/* Price — above the fold */}
-          <div className="reveal d3 flex items-center gap-2.5 mb-4 text-[15px]">
-            <span className="inline-flex items-center gap-1.5 py-[5px] px-3 rounded-full bg-[rgba(212,175,55,0.10)] border border-[rgba(212,175,55,0.25)] font-bold text-primary-soft">
-              ابدأ من <span className="num">15</span> د.أ / شهر
+          {/* السعر فوق الطية — وضوح كامل قبل أي زر */}
+          <div className="reveal d2 flex items-center gap-2.5 mb-5 text-[15px] flex-wrap">
+            <span className="inline-flex items-center gap-1.5 py-[6px] px-3.5 rounded-full bg-surface border border-[rgba(168,128,26,0.35)] font-bold text-primary shadow-[0_6px_16px_-10px_rgba(168,128,26,0.5)]">
+              ابدأ من <span className="num">{PRICES.monthly}</span> د.أ / شهر
             </span>
-            <span className="text-muted">أو جرّبه مجاناً <span className="num">{TRIAL_DAYS}</span> يوماً</span>
+            <span className="text-muted">
+              وجرّبه قبلها مجاناً <span className="num font-bold text-text">{TRIAL_DAYS}</span> يوماً — بلا بطاقة ائتمان
+            </span>
           </div>
 
+          {/* CTA: التسجيل الذاتي هو الأساسي، وواتساب خيار بشري ثانٍ */}
           <div className="reveal d3 flex gap-3.5 flex-wrap mb-3">
+            <Link id="heroSignup" href="/signup" className="btn-gold">
+              ابدأ التجربة المجانية
+              <span className="num text-[13px] font-extrabold bg-[rgba(34,27,16,0.14)] rounded-full py-0.5 px-2">{TRIAL_DAYS} يوم</span>
+            </Link>
             <a
               id="heroWa"
-              className="inline-flex items-center gap-2.5 py-[15px] px-7 rounded-[13px] font-bold text-base no-underline bg-[#25D366] text-white shadow-[0_10px_30px_-8px_rgba(37,211,102,0.5)] hover:bg-[#20bd5a] hover:-translate-y-0.5 transition-all duration-250"
+              className="btn-wa"
               href={goUrl("hero")}
               target="_blank"
               rel="noopener"
               onClick={() => trackWhatsAppClick("hero")}
             >
               <WhatsAppIcon className="w-5 h-5" />
-              جرّب مجاناً <span className="num">{TRIAL_DAYS}</span> يوماً
-            </a>
-            <a
-              className="inline-flex items-center gap-2.5 py-[15px] px-7 rounded-[13px] font-bold text-base no-underline bg-white/4 text-text border border-secondary hover:border-[rgba(212,175,55,0.4)] hover:bg-white/7 transition-all duration-250"
-              href="#gallery"
-            >
-              شاهد النظام الحقيقي
-              <ArrowIcon className="w-[18px] h-[18px]" />
+              كلّمنا واتساب
             </a>
           </div>
 
@@ -111,8 +106,8 @@ export default function Hero() {
             style={{ transform: "rotateX(6deg) rotateY(-5deg)", transformStyle: "preserve-3d" }}
           >
             {/* Float tags */}
-            <div className="absolute top-[-20px] left-[-22px] z-4 bg-[rgba(24,24,27,0.92)] backdrop-blur-[10px] border border-[rgba(212,175,55,0.25)] rounded-[14px] py-[11px] px-[15px] flex items-center gap-2.5 shadow-[0_18px_40px_-16px_rgba(0,0,0,0.8)] animate-[floaty2_5s_ease-in-out_infinite] max-[560px]:hidden">
-              <div className="w-[34px] h-[34px] rounded-[10px] bg-[rgba(212,175,55,0.14)] flex items-center justify-center text-primary">
+            <div className="absolute top-[-20px] left-[-22px] z-4 bg-[rgba(255,252,244,0.94)] backdrop-blur-[10px] border border-[rgba(168,128,26,0.3)] rounded-[14px] py-[11px] px-[15px] flex items-center gap-2.5 shadow-[0_18px_40px_-16px_rgba(60,45,12,0.4)] animate-[floaty2_5s_ease-in-out_infinite] max-[560px]:hidden">
+              <div className="w-[34px] h-[34px] rounded-[10px] bg-[rgba(168,128,26,0.12)] flex items-center justify-center text-primary">
                 <CheckIcon className="w-[18px] h-[18px]" />
               </div>
               <div>
@@ -121,8 +116,8 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="absolute bottom-2 left-[-34px] z-4 bg-[rgba(24,24,27,0.92)] backdrop-blur-[10px] border border-[rgba(212,175,55,0.25)] rounded-[14px] py-[11px] px-[15px] flex items-center gap-2.5 shadow-[0_18px_40px_-16px_rgba(0,0,0,0.8)] animate-[floaty2_6s_ease-in-out_infinite_0.8s] max-[560px]:hidden">
-              <div className="w-[34px] h-[34px] rounded-[10px] bg-[rgba(212,175,55,0.14)] flex items-center justify-center text-primary">
+            <div className="absolute bottom-2 left-[-34px] z-4 bg-[rgba(255,252,244,0.94)] backdrop-blur-[10px] border border-[rgba(168,128,26,0.3)] rounded-[14px] py-[11px] px-[15px] flex items-center gap-2.5 shadow-[0_18px_40px_-16px_rgba(60,45,12,0.4)] animate-[floaty2_6s_ease-in-out_infinite_0.8s] max-[560px]:hidden">
+              <div className="w-[34px] h-[34px] rounded-[10px] bg-[rgba(168,128,26,0.12)] flex items-center justify-center text-primary">
                 <ChartIcon className="w-[18px] h-[18px]" />
               </div>
               <div>
