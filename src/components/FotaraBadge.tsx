@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function FotaraBadge() {
   return (
@@ -20,6 +21,12 @@ export default function FotaraBadge() {
             <div className="text-[13.5px] text-muted leading-[1.6]">
               فواتيرك تُرفع مباشرةً إلى دائرة ضريبة الدخل والمبيعات — التزام ضريبي كامل من داخل النظام.
             </div>
+            <Link
+              href="/jofotara"
+              className="inline-block text-primary font-bold text-[13.5px] mt-2 no-underline hover:underline"
+            >
+              كل ما تريد معرفته عن جوفوترة ←
+            </Link>
           </div>
         </div>
       </div>
