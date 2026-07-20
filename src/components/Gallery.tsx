@@ -3,25 +3,25 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { GALLERY_SHOTS } from "@/lib/constants";
-import { LightningIcon, BarChartIcon, BoxIcon, TagIcon, ChatIcon, ClipboardIcon } from "@/components/Icons";
+import { LightningIcon, BarChartIcon, BoxIcon, UsersIcon, ClipboardIcon, ReceiptIcon } from "@/components/Icons";
 import { type ReactNode } from "react";
 
 const TAB_ICONS: Record<string, ReactNode> = {
   cashier: <LightningIcon className="w-[17px] h-[17px]" />,
   overview: <BarChartIcon className="w-[17px] h-[17px]" />,
-  products: <BoxIcon className="w-[17px] h-[17px]" />,
-  categories: <TagIcon className="w-[17px] h-[17px]" />,
-  inventory: <ChatIcon className="w-[17px] h-[17px]" />,
   orders: <ClipboardIcon className="w-[17px] h-[17px]" />,
+  purchases: <BoxIcon className="w-[17px] h-[17px]" />,
+  suppliers: <UsersIcon className="w-[17px] h-[17px]" />,
+  waiter: <ReceiptIcon className="w-[17px] h-[17px]" />,
 };
 
 const TAB_LABELS: Record<string, string> = {
   cashier: "الكاشير",
   overview: "لوحة التحكم",
-  products: "المنتجات",
-  categories: "التصنيفات",
-  inventory: "المخزون",
   orders: "سجل الطلبات",
+  purchases: "المشتريات",
+  suppliers: "الموردون",
+  waiter: "أجهزة الويتر",
 };
 
 export default function Gallery() {

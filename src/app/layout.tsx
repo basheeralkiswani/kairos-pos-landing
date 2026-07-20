@@ -67,8 +67,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/shots/cashier.png",
-        width: 1562,
-        height: 943,
+        width: 1917,
+        height: 867,
         alt: "Kairos Space POS - شاشة الكاشير",
       },
     ],

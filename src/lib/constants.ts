@@ -69,9 +69,9 @@ export const BUSINESS_TYPES = [
 
 export const GALLERY_SHOTS = [
   { key: "cashier", title: "شاشة الكاشير", desc: "إضافة المنتجات للطلب بنقرة، تطبيق الخصومات، وإتمام الدفع نقداً أو بطاقة أو محفظة بسرعة.", src: "/images/shots/cashier.png", alt: "شاشة الكاشير في Kairos Space POS" },
-  { key: "overview", title: "لوحة التحكم", desc: "إيرادات ومصاريف وصافي ربح وعدد الطلبات، مع منحنى مبيعات وقائمة المنتجات الأكثر طلباً — تتحدّث تلقائياً.", src: "/images/shots/overview.png", alt: "لوحة التحكم" },
-  { key: "products", title: "إدارة المنتجات", desc: "أضف وعدّل منتجاتك وأسعارها وصورها وتصنيفاتها من مكان واحد.", src: "/images/shots/products.png", alt: "إدارة المنتجات" },
-  { key: "categories", title: "إدارة التصنيفات", desc: "نظّم قائمتك بتصنيفات مخصصة، وانقل المنتجات بينها بسهولة.", src: "/images/shots/categories.png", alt: "إدارة التصنيفات" },
-  { key: "inventory", title: "إدارة المخزون", desc: "سجّل فواتير الموردين بدقة، وتتبّع الكميات الفعلية لحظياً مع حساب المصاريف.", src: "/images/shots/inventory.png", alt: "إدارة المخزون" },
-  { key: "orders", title: "سجل الطلبات", desc: "تصفّح وأعد طباعة أي طلب سابق، وفلتر حسب التاريخ، وصدّر إلى Excel.", src: "/images/shots/orders.png", alt: "سجل الطلبات" },
+  { key: "overview", title: "لوحة التحكم", desc: "إيرادات ومصاريف وصافي ربح وعدد الطلبات، مع منحنى مبيعات وقائمة المنتجات الأكثر طلباً — تتحدّث تلقائياً.", src: "/images/shots/overview.png", alt: "لوحة التحكم في Kairos Space POS" },
+  { key: "orders", title: "سجل الطلبات", desc: "تصفّح وأعد طباعة أي طلب سابق، وفلتر حسب التاريخ أو الكاشير أو قناة البيع، وصدّر إلى Excel.", src: "/images/shots/orders.png", alt: "سجل الطلبات في Kairos Space POS" },
+  { key: "purchases", title: "المشتريات والمخزون", desc: "سجّل فواتير الموردين ومدخلات المخزون بدقة، وتتبّع إجمالي المشتريات وعدد الفواتير في أي فترة.", src: "/images/shots/purchases.png", alt: "المشتريات وإدارة المخزون" },
+  { key: "suppliers", title: "حسابات الموردين", desc: "تابع الذمم الدائنة لكل مورّد، سجّل الدفعات لتسويتها، واعرف إجمالي المستحق عليك بضغطة.", src: "/images/shots/suppliers.png", alt: "حسابات الموردين والذمم الدائنة" },
+  { key: "waiter", title: "أجهزة الويتر", desc: "خلّي الويترية يدخلوا طلبات الطاولات من تابلت عبر شبكة الواي فاي — تصل للمطبخ فوراً.", src: "/images/shots/waiter.png", alt: "تطبيق الويتر على التابلت" },
 ] as const;

@@ -141,7 +141,7 @@ body::before {
 
 .laptop-screen {
   position: relative;
-  aspect-ratio: 1562 / 943;
+  aspect-ratio: 1917 / 867; /* يطابق لقطات النظام المقصوصة بالضبط — بلا قصّ جوانب */
   border-radius: 6px;
   overflow: hidden;
   background: #fffcf4;
