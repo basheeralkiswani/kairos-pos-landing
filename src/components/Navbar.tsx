@@ -52,6 +52,9 @@ export default function Navbar() {
           <a href="/#pricing" className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors">
             الأسعار
           </a>
+          <Link href="/jofotara" className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors">
+            جوفوترة
+          </Link>
           <Link href="/download" className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors">
             تحميل
           </Link>

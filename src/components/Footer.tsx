@@ -33,6 +33,15 @@ export default function Footer() {
             <Link href="/support" className="text-muted no-underline text-[14.5px] hover:text-primary transition-colors">
               الدعم الفني
             </Link>
+            <Link href="/jofotara" className="text-muted no-underline text-[14.5px] hover:text-primary transition-colors">
+              جوفوترة
+            </Link>
+            <Link href="/sales-channels" className="text-muted no-underline text-[14.5px] hover:text-primary transition-colors">
+              قنوات البيع
+            </Link>
+            <Link href="/foodics-alternative" className="text-muted no-underline text-[14.5px] hover:text-primary transition-colors">
+              بديل فودكس
+            </Link>
             <a href="/#contact" className="text-muted no-underline text-[14.5px] hover:text-primary transition-colors">
               تواصل معنا
             </a>
