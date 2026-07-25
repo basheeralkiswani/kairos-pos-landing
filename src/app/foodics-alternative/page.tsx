@@ -107,7 +107,7 @@ export default function FoodicsAlternativePage() {
         {/* ── لماذا تبحث عن بديل ─────────────────────────────────────── */}
         <section className="mt-14 reveal">
           <h2 className="text-[26px] font-extrabold">لماذا يبحث أصحاب المحلات عن بديل لفودكس؟</h2>
-          <p className="text-muted text-[15.5px] mt-3 leading-[1.95]">
+          <p className="text-muted text-[16px] mt-3 leading-[1.95]">
             الأنظمة العالمية قوية، لكنها غالباً مصمّمة للسلاسل الكبيرة وبأسعار
             بالدولار وعقود إقليمية. صاحب الكافيه أو المطعم أو السوبرماركت في الأردن
             يحتاج شيئاً أبسط وأقرب: سعراً بالدينار يفهمه، نظاماً يشتغل حتى لو انقطع
@@ -137,19 +137,19 @@ export default function FoodicsAlternativePage() {
                     i % 2 ? "bg-surface" : "bg-transparent"
                   } border-t border-secondary`}
                 >
-                  <div className="px-5 py-4 font-bold text-[13.5px] text-text">{row.k}</div>
-                  <div className="px-5 py-4 text-[13.5px] text-text leading-[1.7] border-r border-secondary flex gap-2">
+                  <div className="px-5 py-4 font-bold text-[14px] text-text">{row.k}</div>
+                  <div className="px-5 py-4 text-[14px] text-text leading-[1.7] border-r border-secondary flex gap-2">
                     <span className="text-green shrink-0">✓</span>
                     <span>{row.kairos}</span>
                   </div>
-                  <div className="px-5 py-4 text-[13.5px] text-muted leading-[1.7] border-r border-secondary">
+                  <div className="px-5 py-4 text-[14px] text-muted leading-[1.7] border-r border-secondary">
                     {row.other}
                   </div>
                 </div>
               ))}
             </div>
           </div>
-          <p className="text-[12.5px] text-muted mt-3 leading-[1.7]">
+          <p className="text-[13px] text-muted mt-3 leading-[1.7]">
             المقارنة عامة بناءً على تموضع كل نظام وقد تختلف حسب الباقة. «Foodics /
             فودكس» علامة تجارية تعود لأصحابها، ولا يوجد ارتباط بيننا وبينهم.
           </p>
@@ -166,7 +166,7 @@ export default function FoodicsAlternativePage() {
               { t: "دعم عربي مباشر", d: "نردّ عليك عبر واتساب بسرعة، وندرّب فريقك وقت التركيب حتى يبدأ في نفس اليوم." },
             ].map((c) => (
               <div key={c.t} className="bg-surface border border-secondary rounded-2xl px-6 py-5">
-                <h3 className="font-bold text-[16.5px] text-text">{c.t}</h3>
+                <h3 className="font-bold text-[16px] text-text">{c.t}</h3>
                 <p className="text-muted text-[14px] mt-2 leading-[1.85]">{c.d}</p>
               </div>
             ))}
@@ -213,7 +213,7 @@ export default function FoodicsAlternativePage() {
                     +
                   </span>
                 </summary>
-                <p className="text-muted text-[14.5px] mt-4 leading-[1.9]">{item.a}</p>
+                <p className="text-muted text-[15px] mt-4 leading-[1.9]">{item.a}</p>
               </details>
             ))}
           </div>

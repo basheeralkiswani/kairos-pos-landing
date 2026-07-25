@@ -59,7 +59,7 @@ export default function SignupPage() {
             <div key={s.n} className="bg-surface border border-secondary rounded-2xl p-7 reveal">
               <div className="num text-primary text-[28px] font-black">{s.n}</div>
               <h2 className="text-[19px] font-extrabold mt-2">{s.t}</h2>
-              <p className="text-muted text-[14.5px] mt-2.5 leading-[1.75]">{s.d}</p>
+              <p className="text-muted text-[15px] mt-2.5 leading-[1.75]">{s.d}</p>
             </div>
           ))}
         </div>

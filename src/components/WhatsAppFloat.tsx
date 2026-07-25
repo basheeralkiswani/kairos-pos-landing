@@ -5,15 +5,19 @@ import { goUrl } from "@/lib/constants";
 import { trackWhatsAppClick } from "@/components/Analytics";
 import { WhatsAppIcon } from "@/components/Icons";
 
+// واتساب مسار ثانوي بعد إعادة ترتيب المسارات — الزر العائم يبقى لأنه دعم
+// حقيقي مفيد، لكن بوزن أخف: لا يتمدّد من تلقاء نفسه بعد ثانيتين ونصف ليسحب
+// الانتباه من زر التجربة المجانية، بل عند المرور أو التركيز فقط. وحلقة النبض
+// تتوقف لمن يفضّل تقليل الحركة.
 export default function WhatsAppFloat() {
-  const [poke, setPoke] = useState(false);
+  const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setPoke(true);
-      setTimeout(() => setPoke(false), 3200);
-    }, 2400);
-    return () => clearTimeout(timer);
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => setReduced(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
   }, []);
 
   return (
@@ -26,18 +30,14 @@ export default function WhatsAppFloat() {
       onClick={() => trackWhatsAppClick("float")}
       aria-label="تواصل معنا على واتساب"
     >
-      <span
-        className={`bg-white text-[#0a0a0c] font-bold text-[14px] py-[11px] px-[17px] rounded-full whitespace-nowrap shadow-[0_8px_24px_-6px_rgba(0,0,0,0.4)] transition-all duration-350 order-first overflow-hidden ${
-          poke
-            ? "max-w-[240px] opacity-100 -mr-6 pr-[30px]"
-            : "max-w-0 opacity-0 -mr-2 pr-6 group-hover:max-w-[240px] group-hover:opacity-100 group-hover:-mr-6 group-hover:pr-[30px]"
-        }`}
-      >
+      <span className="bg-white text-[#0a0a0c] font-bold text-[14px] py-[11px] px-[17px] rounded-full whitespace-nowrap shadow-[0_8px_24px_-6px_rgba(0,0,0,0.4)] transition-all duration-350 order-first overflow-hidden max-w-0 opacity-0 -mr-2 pr-6 group-hover:max-w-[240px] group-hover:opacity-100 group-hover:-mr-6 group-hover:pr-[30px] group-focus-visible:max-w-[240px] group-focus-visible:opacity-100 group-focus-visible:-mr-6 group-focus-visible:pr-[30px]">
         تواصل معنا على واتساب
       </span>
-      <span className="w-[62px] h-[62px] rounded-full bg-[#25D366] flex items-center justify-center shrink-0 shadow-[0_10px_30px_-6px_rgba(37,211,102,0.55)] relative group-hover:scale-108 transition-transform duration-250 max-[560px]:w-14 max-[560px]:h-14">
-        <WhatsAppIcon className="w-[34px] h-[34px] text-white" />
-        <span className="absolute inset-0 rounded-full bg-[#25D366] -z-1 animate-[wa-ring_2s_cubic-bezier(0.215,0.61,0.355,1)_infinite]" />
+      <span className="w-14 h-14 rounded-full bg-[#1faa55] flex items-center justify-center shrink-0 shadow-[0_10px_30px_-8px_rgba(31,170,85,0.5)] relative group-hover:scale-108 transition-transform duration-250">
+        <WhatsAppIcon className="w-[30px] h-[30px] text-white" />
+        {!reduced && (
+          <span className="absolute inset-0 rounded-full bg-[#1faa55] -z-1 animate-[wa-ring_2s_cubic-bezier(0.215,0.61,0.355,1)_infinite]" />
+        )}
       </span>
     </a>
   );

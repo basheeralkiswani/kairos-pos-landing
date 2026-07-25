@@ -6,7 +6,7 @@ import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
 import Gallery from "@/components/Gallery";
 import Testimonials from "@/components/Testimonials";
-import LeadForm from "@/components/LeadForm";
+import HomeSignup from "@/components/HomeSignup";
 import Pricing from "@/components/Pricing";
 import Faq from "@/components/Faq";
 import CtaBand from "@/components/CtaBand";
@@ -24,18 +24,29 @@ export default function Home() {
         <div className="glow w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(212,175,55,0.14),transparent_70%)] -bottom-[120px] left-[30%] absolute" />
       </div>
 
+      {/* رابط التخطّي — أول ما يصله مستخدم الكيبورد، ويظل مخفياً حتى يُركَّز عليه */}
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:right-4 focus:z-[400] focus:bg-surface focus:text-text focus:font-bold focus:py-3 focus:px-5 focus:rounded-xl focus:border focus:border-primary focus:shadow-lg"
+      >
+        تخطَّ إلى المحتوى
+      </a>
+
       <Navbar />
-      <Hero />
-      <Trust />
-      <FotaraBadge />
-      <HowItWorks />
-      <Features />
-      <Gallery />
-      <Testimonials />
-      <Pricing />
-      <LeadForm />
-      <Faq />
-      <CtaBand />
+      {/* الصفحة الرئيسية كانت الوحيدة بلا معلَم <main> — صفحة /signup فيها واحد */}
+      <main id="main">
+        <Hero />
+        <Trust />
+        <FotaraBadge />
+        <HowItWorks />
+        <Features />
+        <Gallery />
+        <Testimonials />
+        <Pricing />
+        <HomeSignup />
+        <Faq />
+        <CtaBand />
+      </main>
       <Footer />
       <WhatsAppFloat />
       <RevealObserver />

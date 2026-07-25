@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   BUSINESS_TYPES,
   SIGNUP_ENDPOINT,
@@ -34,6 +34,15 @@ export default function SignupForm() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [done, setDone] = useState(false);
+  const errorRef = useRef<HTMLDivElement>(null);
+
+  // بعد فشل الإرسال ينتقل التركيز إلى رسالة الخطأ: مستخدم قارئ الشاشة كان
+  // يبقى على الزر بلا أي إشعار بأن شيئاً حدث.
+  const failWith = (msg: string) => {
+    setError(msg);
+    setBusy(false);
+    requestAnimationFrame(() => errorRef.current?.focus());
+  };
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,16 +66,14 @@ export default function SignupForm() {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setError(ERR_AR[data?.error] ?? "تعذّر إرسال الطلب — حاول مجدداً أو راسلنا على واتساب");
-        setBusy(false);
+        failWith(ERR_AR[data?.error] ?? "تعذّر إرسال الطلب — حاول مجدداً أو راسلنا على واتساب");
         return;
       }
       trackSignupSubmit({ business: businessName.trim() });
       setDone(true);
     } catch {
       // فشل الشبكة: لا نترك الزائر بلا مخرج — نوجّهه لواتساب.
-      setError("لا يوجد اتصال بالإنترنت أو تعذّر الوصول للخادم — راسلنا على واتساب ونكمل معك");
-      setBusy(false);
+      failWith("لا يوجد اتصال بالإنترنت أو تعذّر الوصول للخادم — راسلنا على واتساب ونكمل معك");
     }
   };
 
@@ -108,6 +115,7 @@ export default function SignupForm() {
             id="su-business" type="text" required value={businessName}
             onChange={(e) => setBusinessName(e.target.value)}
             placeholder="مثال: سوبرماركت النور"
+            autoComplete="organization"
             className={inputCls}
           />
         </div>
@@ -135,6 +143,7 @@ export default function SignupForm() {
             id="su-name" type="text" required value={ownerName}
             onChange={(e) => setOwnerName(e.target.value)}
             placeholder="أدخل اسمك الكامل"
+            autoComplete="name"
             className={inputCls}
           />
         </div>
@@ -147,6 +156,7 @@ export default function SignupForm() {
             id="su-email" type="email" required dir="ltr" value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
+            autoComplete="email" inputMode="email"
             className={`${inputCls} text-left`}
           />
           <p className="text-[12px] text-muted mt-1.5">
@@ -162,6 +172,7 @@ export default function SignupForm() {
             id="su-phone" type="tel" required dir="ltr" value={phone}
             onChange={(e) => setPhone(e.target.value)}
             placeholder="07XXXXXXXX"
+            autoComplete="tel" inputMode="tel"
             className={`${inputCls} text-left`}
           />
         </div>
@@ -188,7 +199,13 @@ export default function SignupForm() {
         </div>
 
         {error && (
-          <div className="rounded-xl border border-red-700/30 bg-red-100 text-red-800 text-[14px] py-3 px-4">
+          <div
+            ref={errorRef}
+            tabIndex={-1}
+            role="alert"
+            aria-live="assertive"
+            className="rounded-xl border border-red-800/40 bg-red-50 text-red-900 text-[15px] py-3 px-4"
+          >
             {error}
           </div>
         )}

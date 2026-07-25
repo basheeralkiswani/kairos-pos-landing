@@ -68,7 +68,7 @@ export default function Faq() {
   };
 
   return (
-    <section id="faq" className="max-w-[1240px] mx-auto px-7 relative z-1 py-20">
+    <section id="faq" className="max-w-[1240px] mx-auto px-7 relative z-1 py-20 scroll-mt-[104px]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -90,15 +90,25 @@ export default function Faq() {
         {FAQ.map((item) => (
           <details
             key={item.q}
-            className="group bg-surface border border-secondary rounded-2xl px-6 py-5 transition-colors hover:border-primary/30 reveal"
+            className="group bg-surface border border-secondary rounded-2xl px-6 max-sm:px-5 transition-colors hover:border-primary/30 reveal"
           >
-            <summary className="font-bold text-[16.5px] cursor-pointer list-none flex items-center justify-between gap-4">
+            {/* min-h 56px: كان ارتفاع منطقة النقر 27px فقط — نصف الحدّ الأدنى */}
+            <summary className="font-bold text-[16px] max-sm:text-[16px] cursor-pointer list-none flex items-center justify-between gap-4 min-h-[56px] py-4">
               {item.q}
-              <span className="text-primary text-[22px] leading-none shrink-0 transition-transform duration-250 group-open:rotate-45">
-                +
-              </span>
+              {/* علامة + كانت نصاً يعتمد على الخط — الآن SVG بسمك ثابت */}
+              <svg
+                viewBox="0 0 24 24"
+                className="w-[18px] h-[18px] shrink-0 text-primary transition-transform duration-250 group-open:rotate-45"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                aria-hidden="true"
+              >
+                <path d="M12 5v14M5 12h14" />
+              </svg>
             </summary>
-            <p className="text-muted text-[15px] mt-4 leading-[1.9]">{item.a}</p>
+            <p className="text-muted text-[16px] pb-5 leading-[1.9]">{item.a}</p>
           </details>
         ))}
       </div>

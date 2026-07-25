@@ -292,7 +292,7 @@ export default function DocsPage() {
               <section key={s.id} id={s.id} className="scroll-mt-[110px] reveal">
                 <h2 className="text-[25px] font-extrabold">{s.title}</h2>
                 {s.intro && (
-                  <p className="text-muted text-[15.5px] mt-3 leading-[1.9]">{s.intro}</p>
+                  <p className="text-muted text-[16px] mt-3 leading-[1.9]">{s.intro}</p>
                 )}
 
                 {s.steps && (
@@ -302,8 +302,8 @@ export default function DocsPage() {
                         key={step.t}
                         className="bg-surface border border-secondary rounded-2xl px-6 py-5"
                       >
-                        <h3 className="font-bold text-[16.5px] text-text">{step.t}</h3>
-                        <p className="text-muted text-[14.5px] mt-2 leading-[1.85]">{step.d}</p>
+                        <h3 className="font-bold text-[16px] text-text">{step.t}</h3>
+                        <p className="text-muted text-[15px] mt-2 leading-[1.85]">{step.d}</p>
                       </div>
                     ))}
                   </div>
@@ -314,7 +314,7 @@ export default function DocsPage() {
                     {s.notes.map((n) => (
                       <li
                         key={n}
-                        className="flex gap-3 items-start text-[14.5px] text-[#c4c4cb] leading-[1.85]"
+                        className="flex gap-3 items-start text-[15px] text-[#c4c4cb] leading-[1.85]"
                       >
                         <span className="text-primary shrink-0 mt-0.5">◂</span>
                         <span>{n}</span>

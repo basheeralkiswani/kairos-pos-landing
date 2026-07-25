@@ -36,14 +36,15 @@ export default function HowItWorks() {
                 {s.icon}
               </div>
               <h3 className="text-[18px] font-extrabold mb-2">{s.t}</h3>
-              <p className="text-[14.5px] text-muted leading-[1.7]">{s.d}</p>
+              <p className="text-[15px] text-muted leading-[1.7]">{s.d}</p>
             </div>
           ))}
         </div>
 
         <div className="text-center mt-9 reveal">
-          <Link href="/signup" className="btn-gold">
-            سجّل الآن — مجاناً
+          {/* نص موحّد عبر الصفحة كلها — كانت خمس صياغات لنفس الوجهة */}
+          <Link href="/signup" className="btn-gold max-sm:w-full">
+            ابدأ التجربة المجانية
           </Link>
         </div>
       </div>

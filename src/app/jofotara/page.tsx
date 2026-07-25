@@ -149,14 +149,14 @@ export default function JofotaraPage() {
           <div className="space-y-12 min-w-0">
             <section id="what" className="scroll-mt-[110px] reveal">
               <h2 className="text-[26px] font-extrabold">ما هي جوفوترة؟</h2>
-              <p className="text-muted text-[15.5px] mt-3 leading-[1.95]">
+              <p className="text-muted text-[16px] mt-3 leading-[1.95]">
                 جوفوترة هي منظومة الفوترة الوطنية التابعة لدائرة ضريبة الدخل
                 والمبيعات في الأردن. الفكرة ببساطة: بدل الفاتورة الورقية غير
                 الموثّقة، تُصدِر كل منشأة فواتيرها إلكترونياً وتُرسَل نسخة منها إلى
                 المنظومة الحكومية لحظة البيع. هذا يوثّق مبيعاتك رسمياً ويوحّد شكل
                 الفاتورة الضريبية عبر السوق.
               </p>
-              <p className="text-muted text-[15.5px] mt-3 leading-[1.95]">
+              <p className="text-muted text-[16px] mt-3 leading-[1.95]">
                 عملياً، يعني هذا أن نظام نقاط البيع (الكاشير) الذي تستخدمه يجب أن
                 يكون قادراً على إصدار الفاتورة بالصيغة المعتمدة وإرسالها إلى جوفوترة
                 — وهنا يأتي دور نظام متوافق مثل كايروس سبيس.
@@ -165,15 +165,15 @@ export default function JofotaraPage() {
 
             <section id="mandatory" className="scroll-mt-[110px] reveal">
               <h2 className="text-[26px] font-extrabold">هل جوفوترة إلزامية؟ ومن يجب أن يسجّل؟</h2>
-              <p className="text-muted text-[15.5px] mt-3 leading-[1.95]">
+              <p className="text-muted text-[16px] mt-3 leading-[1.95]">
                 نعم. أصبح التسجيل في منظومة الفوترة الوطنية إلزامياً على المنشآت في
                 الأردن بشكل تدريجي، ويشمل ذلك المطاعم والكافيهات والسوبرماركتات
                 والمتاجر. الالتزام لا يقتصر على التسجيل فحسب، بل يشمل إصدار كل فاتورة
                 بيع بالصيغة المعتمدة وإرسالها للمنظومة.
               </p>
               <div className="bg-surface border border-secondary rounded-2xl px-6 py-5 mt-5">
-                <h3 className="font-bold text-[16.5px] text-text">كيف تعرف موعد إلزامك؟</h3>
-                <p className="text-muted text-[14.5px] mt-2 leading-[1.9]">
+                <h3 className="font-bold text-[16px] text-text">كيف تعرف موعد إلزامك؟</h3>
+                <p className="text-muted text-[15px] mt-2 leading-[1.9]">
                   يُطبَّق الإلزام على مراحل بحسب نوع المنشأة وحجمها. للتأكد من موعدك
                   تحديداً، راجع دائرة ضريبة الدخل والمبيعات، أو راسلنا ونوجّهك للخطوة
                   الصحيحة حسب حالتك.
@@ -183,7 +183,7 @@ export default function JofotaraPage() {
 
             <section id="register" className="scroll-mt-[110px] reveal">
               <h2 className="text-[26px] font-extrabold">كيف تسجّل في جوفوترة؟</h2>
-              <p className="text-muted text-[15.5px] mt-3 leading-[1.95]">
+              <p className="text-muted text-[16px] mt-3 leading-[1.95]">
                 التسجيل يتم عبر البوابة الرسمية لدائرة ضريبة الدخل والمبيعات. الخطوات
                 العامة:
               </p>
@@ -206,8 +206,8 @@ export default function JofotaraPage() {
                     key={step.t}
                     className="bg-surface border border-secondary rounded-2xl px-6 py-5"
                   >
-                    <h3 className="font-bold text-[16.5px] text-text">{step.t}</h3>
-                    <p className="text-muted text-[14.5px] mt-2 leading-[1.85]">{step.d}</p>
+                    <h3 className="font-bold text-[16px] text-text">{step.t}</h3>
+                    <p className="text-muted text-[15px] mt-2 leading-[1.85]">{step.d}</p>
                   </div>
                 ))}
               </div>
@@ -215,7 +215,7 @@ export default function JofotaraPage() {
 
             <section id="connect" className="scroll-mt-[110px] reveal">
               <h2 className="text-[26px] font-extrabold">كيف تربط نقطة البيع (الكاشير) بجوفوترة؟</h2>
-              <p className="text-muted text-[15.5px] mt-3 leading-[1.95]">
+              <p className="text-muted text-[16px] mt-3 leading-[1.95]">
                 الربط لا يحتاج برنامجاً منفصلاً إن كان نظام نقاط البيع لديك متوافقاً
                 مع جوفوترة. بعد إدخال بيانات الربط مرة واحدة، يتولّى النظام كل شيء
                 خلف الكواليس: تكوين الفاتورة بالصيغة المطلوبة، إرسالها للمنظومة،
@@ -225,7 +225,7 @@ export default function JofotaraPage() {
 
             <section id="kairos" className="scroll-mt-[110px] reveal">
               <h2 className="text-[26px] font-extrabold">كايروس سبيس وجوفوترة: التوافق تلقائي</h2>
-              <p className="text-muted text-[15.5px] mt-3 leading-[1.95]">
+              <p className="text-muted text-[16px] mt-3 leading-[1.95]">
                 كايروس سبيس مبنيّ أصلاً للسوق الأردني ومربوط مباشرة مع منظومة الفوترة
                 الوطنية. ما الذي يعنيه هذا لك عملياً:
               </p>
@@ -239,7 +239,7 @@ export default function JofotaraPage() {
                 ].map((n) => (
                   <li
                     key={n}
-                    className="flex gap-3 items-start text-[14.5px] text-text leading-[1.85]"
+                    className="flex gap-3 items-start text-[15px] text-text leading-[1.85]"
                   >
                     <span className="text-green shrink-0 mt-0.5">✓</span>
                     <span>{n}</span>
@@ -264,7 +264,7 @@ export default function JofotaraPage() {
 
             <section id="offline" className="scroll-mt-[110px] reveal">
               <h2 className="text-[26px] font-extrabold">ماذا لو انقطع الإنترنت؟</h2>
-              <p className="text-muted text-[15.5px] mt-3 leading-[1.95]">
+              <p className="text-muted text-[16px] mt-3 leading-[1.95]">
                 هذا سؤال جوهري في الأردن حيث لا يخلو يوم من تذبذب الشبكة. في كايروس
                 سبيس، البيع والفوترة يستمران بالكامل دون إنترنت: تُحفَظ الفاتورة على
                 جهازك، وتدخل قائمة انتظار إرسال إلى جوفوترة، وتُرسَل تلقائياً أول ما
@@ -287,7 +287,7 @@ export default function JofotaraPage() {
                         +
                       </span>
                     </summary>
-                    <p className="text-muted text-[14.5px] mt-4 leading-[1.9]">{item.a}</p>
+                    <p className="text-muted text-[15px] mt-4 leading-[1.9]">{item.a}</p>
                   </details>
                 ))}
               </div>

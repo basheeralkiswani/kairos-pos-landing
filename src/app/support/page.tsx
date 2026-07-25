@@ -77,7 +77,7 @@ export default function SupportPage() {
           >
             <div className="text-green text-[13px] font-bold">الأسرع</div>
             <h2 className="text-[20px] font-extrabold mt-2 text-text">واتساب</h2>
-            <p className="text-muted text-[14.5px] mt-2.5 leading-[1.75]">
+            <p className="text-muted text-[15px] mt-2.5 leading-[1.75]">
               اشرح مشكلتك وأرفق صورة للشاشة إن أمكن — نردّ خلال دقائق في أوقات العمل.
             </p>
             <div className="num text-primary font-bold text-[16px] mt-4 dir-ltr">
@@ -88,8 +88,8 @@ export default function SupportPage() {
           <div className="bg-surface border border-secondary rounded-2xl p-7 reveal">
             <div className="text-primary text-[13px] font-bold">أوقات العمل</div>
             <h2 className="text-[20px] font-extrabold mt-2">متى نردّ</h2>
-            <p className="text-muted text-[14.5px] mt-2.5 leading-[1.75]">{SUPPORT_HOURS}</p>
-            <p className="text-[13.5px] text-[#71717a] mt-4 leading-[1.8]">
+            <p className="text-muted text-[15px] mt-2.5 leading-[1.75]">{SUPPORT_HOURS}</p>
+            <p className="text-[14px] text-[#71717a] mt-4 leading-[1.8]">
               الأعطال التي توقف البيع نتعامل معها خارج هذه الأوقات أيضاً — راسلنا واكتب
               «عاجل» في بداية الرسالة.
             </p>
@@ -101,7 +101,7 @@ export default function SupportPage() {
           >
             <div className="text-blue text-[13px] font-bold">اقرأ بنفسك</div>
             <h2 className="text-[20px] font-extrabold mt-2 text-text">دليل الاستخدام</h2>
-            <p className="text-muted text-[14.5px] mt-2.5 leading-[1.75]">
+            <p className="text-muted text-[15px] mt-2.5 leading-[1.75]">
               شرح عربي مصوّر لكل شاشة: من التثبيت والتفعيل حتى إغلاق اليومية والتقارير.
             </p>
             <div className="text-primary font-bold text-[15px] mt-4">افتح الدليل ←</div>
@@ -117,7 +117,7 @@ export default function SupportPage() {
                 key={item.q}
                 className="group bg-surface border border-secondary rounded-2xl px-6 py-5 transition-colors hover:border-primary/30"
               >
-                <summary className="font-bold text-[16.5px] cursor-pointer list-none flex items-center justify-between gap-4">
+                <summary className="font-bold text-[16px] cursor-pointer list-none flex items-center justify-between gap-4">
                   {item.q}
                   <span className="text-primary text-[22px] leading-none shrink-0 transition-transform duration-250 group-open:rotate-45">
                     +

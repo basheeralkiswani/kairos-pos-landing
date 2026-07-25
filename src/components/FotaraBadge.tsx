@@ -18,12 +18,12 @@ export default function FotaraBadge() {
             <div className="text-[16px] font-extrabold text-text mb-1">
               متكامل ومعتمد مع نظام الفوترة الوطني
             </div>
-            <div className="text-[13.5px] text-muted leading-[1.6]">
+            <div className="text-[14px] text-muted leading-[1.6]">
               فواتيرك تُرفع مباشرةً إلى دائرة ضريبة الدخل والمبيعات — التزام ضريبي كامل من داخل النظام.
             </div>
             <Link
               href="/jofotara"
-              className="inline-block text-primary font-bold text-[13.5px] mt-2 no-underline hover:underline"
+              className="hit-44 inline-flex items-center text-primary font-bold text-[15px] mt-2 no-underline hover:underline"
             >
               كل ما تريد معرفته عن جوفوترة ←
             </Link>

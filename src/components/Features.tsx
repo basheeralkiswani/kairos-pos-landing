@@ -13,7 +13,7 @@ const FEATURES: { icon: ReactNode; title: string; desc: string; delay: string; b
 
 export default function Features() {
   return (
-    <section className="py-[90px] relative" id="features">
+    <section className="py-[90px] relative scroll-mt-[104px]" id="features">
       <div className="max-w-[1240px] mx-auto px-7 relative z-1">
         <div className="text-center max-w-[680px] mx-auto mb-[50px] reveal">
           <span className="inline-block text-[13px] font-bold text-primary tracking-[1px] uppercase mb-3.5">
@@ -36,7 +36,7 @@ export default function Features() {
               }`}
             >
               {f.badge && (
-                <span className="absolute top-[18px] left-[18px] bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10] text-[11.5px] font-extrabold py-1 px-2.5 rounded-full">
+                <span className="absolute top-[18px] left-[18px] bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10] text-[12px] font-extrabold py-1 px-2.5 rounded-full">
                   {f.badge}
                 </span>
               )}
@@ -44,7 +44,7 @@ export default function Features() {
                 {f.icon}
               </div>
               <h3 className="text-[19px] font-extrabold mb-[9px]">{f.title}</h3>
-              <p className="text-[14.5px] text-muted leading-[1.65]">{f.desc}</p>
+              <p className="text-[15px] text-muted leading-[1.65]">{f.desc}</p>
             </div>
           ))}
         </div>

@@ -8,18 +8,34 @@
   --color-bg: #f7f2e7;
   --color-surface: #fffcf4;
   --color-surface-2: #efe7d3;
-  --color-primary: #a8801a;        /* ذهبي غامق للنصوص والروابط — تباين ≥4.5 على العاجي */
-  --color-primary-soft: #c39a25;
+  /* الذهبي النصّي: مُقاس لا مُقدَّر — 4.86:1 على العاجي و5.30:1 على السطح.
+     القيمة السابقة (#a8801a) كانت 3.26:1 وترسب في WCAG AA رغم ما ادّعاه
+     التعليق القديم. لا تفتّحه دون إعادة القياس. */
+  --color-primary: #856512;
+  --color-primary-soft: #c39a25;   /* للحدود والتوهج فقط — لا للنص */
   --color-gold: #d4af37;           /* ذهب العلامة — للتعبئة والتدرجات */
   --color-secondary: #e5dbc3;      /* حدود */
   --color-text: #241f15;
   --color-muted: #6e6552;
-  --color-green: #178a58;
-  --color-wa: #128c4a;             /* أخضر واتساب معمّق ليحمل نصاً أبيض بتباين كافٍ */
+  --color-green: #13744a;          /* 5.19:1 على العاجي */
+  --color-wa: #0f7a40;             /* أبيض عليه = 5.41:1 */
   --color-dark: #221b10;           /* لحظات داكنة (شريط الدعوة) */
   --color-dark-2: #322817;
   --font-ar: 'Alexandria', sans-serif;
   --font-en: 'Manrope', sans-serif;
+
+  /* سلّم الخطوط — كان في الموقع 19 حجماً مختلفاً بينها أنصاف عشوائية
+     (13.5 / 14.5 / 15.5). هذه هي الدرجات المسموحة فقط. */
+  --text-2xs: 0.75rem;    /* 12 — شارات ودقائق فقط */
+  --text-xs: 0.8125rem;   /* 13 — تسميات ثانوية */
+  --text-sm: 0.875rem;    /* 14 — نص مساعد */
+  --text-base: 1rem;      /* 16 — النص الأساسي (الحد الأدنى للموبايل) */
+  --text-lg: 1.125rem;    /* 18 */
+  --text-xl: 1.25rem;     /* 20 */
+  --text-2xl: 1.5rem;     /* 24 */
+  --text-3xl: 2rem;       /* 32 */
+  --text-4xl: 2.5rem;     /* 40 */
+  --text-5xl: 3.25rem;    /* 52 */
 }
 
 ::selection {
@@ -32,6 +48,9 @@ html {
   /* body وحدها لا تكفي: عناصر مثل .laptop-base تمتد يساراً (RTL) وتوسّع
      scrollWidth على جذر المستند نفسه — clip يمنع شريط التمرير الأفقي نهائياً. */
   overflow-x: clip;
+  /* الناف بار ثابت بارتفاع 72–83px. بدون هذا يهبط الرابط الداخلي فيلتصق
+     عنوان القسم بحافة الناف بار (قياس: 8px فراغ فقط عند #contact). */
+  scroll-padding-top: 104px;
 }
 
 body {
@@ -41,6 +60,33 @@ body {
   line-height: 1.65;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+/* يلغي تأخير 300ms على اللمس دون تعطيل التكبير بالإصبعين */
+a, button, summary, [role="button"], input, select, textarea {
+  touch-action: manipulation;
+}
+
+/* ─── حلقة التركيز ──────────────────────────────────────────────────────────
+   لم تكن هناك أي قاعدة :focus في الموقع كله عدا .field — كل زر ورابط وتبويب
+   كان يُحسب عليه outline: none. هذا يجعل التنقّل بالكيبورد مستحيلاً بصرياً
+   (فشل WCAG 2.4.7). القاعدة عامة عمداً حتى لا يُنسى أي عنصر جديد. */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* على الخلفيات الداكنة (الشريط الختامي) الذهبي الغامق لا يُرى — نستخدم
+   الذهب الفاتح هناك. */
+.on-dark :focus-visible {
+  outline-color: #e3c14f;
+}
+
+/* الحقول تحتفظ بحلقتها الخاصة (إطار + هالة) فلا نضاعف الحلقتين */
+.field:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
 }
 
 /* نسيج ورقي خفيف — عمق بلا ضجيج */
@@ -110,14 +156,29 @@ body::before {
 .reveal.d3 { transition-delay: 0.24s; }
 .reveal.d4 { transition-delay: 0.32s; }
 
+/* ⚠️ كانت هذه القاعدة تستهدف .wa-btn-ring و .pulse-dot و .laptop-float و
+   .float-tag-anim — ولا وجود لأيٍّ منها في المكوّنات: كل الحركات مكتوبة بصيغة
+   Tailwind العشوائية (animate-[floaty_6s_...]) التي تولّد أصنافاً مختلفة.
+   أي أن دعم «تقليل الحركة» كان معطّلاً بالكامل رغم وجود الكتلة. القاعدة الآن
+   شاملة فلا تفوتها أي حركة تُضاف مستقبلاً. */
 @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
   .reveal {
     opacity: 1;
     transform: none;
-    transition: none;
   }
-  .glow, .wa-btn-ring, .pulse-dot, .laptop-float, .float-tag-anim {
-    animation: none !important;
+
+  /* الأشكال المتحرّكة تعود إلى وضع سكونها الصحيح بدل التجمّد على أول إطار */
+  .laptop-3d {
+    transform: rotateX(6deg) rotateY(-5deg) !important;
   }
 }
 
@@ -168,6 +229,15 @@ body::before {
   height: 9px;
   background: #171208;
   border-radius: 0 0 9px 9px;
+}
+
+/* على الموبايل الحاوية تلامس حافة الشاشة، فتوسّعة الـ118% تخرج عن العرض
+   وتُقصّ بـoverflow-x:clip — تظهر القاعدة مبتورة. نُلغي التوسّع هناك. */
+@media (max-width: 640px) {
+  .laptop-base {
+    width: 104%;
+    margin-left: -2%;
+  }
 }
 
 /* بطاقة السعر المميّزة — إطار ذهبي متدرج */
@@ -315,10 +385,38 @@ body::before {
 }
 
 .field::placeholder {
-  color: #a89d85;
+  color: #7d7462; /* 4.62:1 على الأبيض — كان #a89d85 بنسبة 2.68:1 */
 }
 
 .field:focus {
   border-color: var(--color-primary-soft);
   box-shadow: 0 0 0 3px rgba(196, 155, 37, 0.18);
+}
+
+/* ─── هدف لمس 44×44 دون تغيير الشكل ─────────────────────────────────────────
+   الروابط النصية الصغيرة (فوتر، «أو اشترك عبر واتساب»، رقم الهاتف) كانت
+   بارتفاع 23–24px. نوسّع منطقة النقر بعنصر زائف بدل تكبير النص أو إضافة
+   حشوة تكسر التنسيق. */
+.hit-44 {
+  position: relative;
+}
+
+.hit-44::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  min-height: 44px;
+  height: 100%;
+}
+
+/* الحد الأدنى لحجم النص الأساسي على الموبايل (16px يمنع أيضاً التكبير
+   التلقائي في iOS Safari عند التركيز على الحقول) */
+@media (max-width: 640px) {
+  .field {
+    font-size: 16px;
+    padding: 14px 16px; /* ارتفاع ≥48px */
+  }
 }

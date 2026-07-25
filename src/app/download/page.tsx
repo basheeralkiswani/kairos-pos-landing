@@ -195,7 +195,7 @@ export default async function DownloadPage() {
                 </li>
               ))}
             </ol>
-            <p className="text-[13.5px] text-[#71717a] mt-6 pt-5 border-t border-white/6 leading-[1.8]">
+            <p className="text-[14px] text-[#71717a] mt-6 pt-5 border-t border-white/6 leading-[1.8]">
               نعمل حالياً على استخراج شهادة توقيع رقمية تُزيل هذه الرسالة نهائياً. إن كنت
               تفضّل التأكد قبل التثبيت، راسلنا على واتساب ونثبّته معك خطوة بخطوة.
             </p>
@@ -228,7 +228,7 @@ export default async function DownloadPage() {
                   {s.n}
                 </span>
                 <h3 className="font-bold text-[18px] mt-4">{s.t}</h3>
-                <p className="text-muted text-[14.5px] mt-2.5 leading-[1.8]">{s.d}</p>
+                <p className="text-muted text-[15px] mt-2.5 leading-[1.8]">{s.d}</p>
               </div>
             ))}
           </div>

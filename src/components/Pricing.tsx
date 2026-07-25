@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { goUrl, TRIAL_DAYS, PLANS } from "@/lib/constants";
 import { trackWhatsAppClick } from "@/components/Analytics";
-import { CheckBoldIcon, WhatsAppIcon } from "@/components/Icons";
+import { CheckBoldIcon, WhatsAppIcon, ClockIcon } from "@/components/Icons";
 
 // ثلاث باقات متدرّجة (نظام الباقات 2026-07-25): ستارتر 9/80 · بزنس 14/120 ·
 // إنتربرايز 18/160 — بلا رسوم تفعيل. مفتاح شهري/سنوي يبدّل الأسعار فوراً بلا
@@ -43,7 +43,7 @@ function Cell({ v }: { v: string | boolean }) {
       </span>
     );
   if (v === false) return <span className="text-muted/45 text-[17px] leading-none">—</span>;
-  return <span className="text-[13.5px] font-bold text-text num">{v}</span>;
+  return <span className="text-[14px] font-bold text-text num">{v}</span>;
 }
 
 export default function Pricing() {
@@ -56,7 +56,7 @@ export default function Pricing() {
   );
 
   return (
-    <section className="py-[90px] relative" id="pricing">
+    <section className="py-[90px] relative scroll-mt-[104px]" id="pricing">
       <div className="max-w-[1240px] mx-auto px-7 relative z-1">
         <div className="text-center max-w-[680px] mx-auto mb-[38px] reveal">
           <span className="inline-block text-[13px] font-bold text-primary tracking-[1px] uppercase mb-3.5">
@@ -81,7 +81,7 @@ export default function Pricing() {
               type="button"
               onClick={() => setCycle("monthly")}
               aria-pressed={!yearly}
-              className={`px-6 py-2 text-[14.5px] font-bold rounded-full transition-all duration-200 ${
+              className={`px-7 min-h-[44px] text-[15px] font-bold rounded-full transition-all duration-200 ${
                 !yearly ? "bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10]" : "text-muted hover:text-text"
               }`}
             >
@@ -91,7 +91,7 @@ export default function Pricing() {
               type="button"
               onClick={() => setCycle("yearly")}
               aria-pressed={yearly}
-              className={`px-6 py-2 text-[14.5px] font-bold rounded-full transition-all duration-200 ${
+              className={`px-7 min-h-[44px] text-[15px] font-bold rounded-full transition-all duration-200 ${
                 yearly ? "bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10]" : "text-muted hover:text-text"
               }`}
             >
@@ -104,7 +104,7 @@ export default function Pricing() {
             }`}
             aria-hidden={!yearly}
           >
-            💚 وفّر أكثر من <span className="num">{bestSave}</span>% مع الاشتراك السنوي
+            وفّر أكثر من <span className="num">{bestSave}</span>% مع الاشتراك السنوي
           </p>
         </div>
 
@@ -124,13 +124,13 @@ export default function Pricing() {
                 }`}
               >
                 {featured && (
-                  <span className="absolute top-[-14px] right-7 bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10] text-[12.5px] font-extrabold py-1.5 px-4 rounded-full shadow-[0_8px_20px_-6px_rgba(168,128,26,0.6)]">
+                  <span className="absolute top-[-14px] right-7 bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10] text-[13px] font-extrabold py-1.5 px-4 rounded-full shadow-[0_8px_20px_-6px_rgba(168,128,26,0.6)]">
                     الأكثر طلباً
                   </span>
                 )}
 
                 <div className="text-[15px] font-bold text-primary tracking-[0.5px] mb-1">{p.title}</div>
-                <div className="text-[13.5px] text-muted mb-4 min-h-[38px]">{p.tagline}</div>
+                <div className="text-[14px] text-muted mb-4 min-h-[38px]">{p.tagline}</div>
 
                 <div className="flex items-end gap-2 mb-1.5">
                   <span className="text-[52px] font-extrabold font-[var(--font-en)] leading-none text-text num">
@@ -150,14 +150,14 @@ export default function Pricing() {
                   </span>
                 )}
 
-                <div className="flex gap-2 flex-wrap mb-4 text-[12.5px] text-muted">
+                <div className="flex gap-2 flex-wrap mb-4 text-[13px] text-muted">
                   <span className="rounded-lg border border-secondary bg-surface-2 py-1 px-2.5">{p.devices}</span>
                   <span className="rounded-lg border border-secondary bg-surface-2 py-1 px-2.5">{p.branches}</span>
                 </div>
 
                 <ul className="list-none flex flex-col gap-[11px] mb-6 flex-1">
                   {p.features.map((f, k) => (
-                    <li key={k} className="flex items-start gap-[11px] text-[14.5px] text-text">
+                    <li key={k} className="flex items-start gap-[11px] text-[15px] text-text">
                       <span className="shrink-0 w-[21px] h-[21px] rounded-full bg-[rgba(168,128,26,0.12)] text-primary flex items-center justify-center mt-0.5">
                         <CheckBoldIcon />
                       </span>
@@ -166,11 +166,13 @@ export default function Pricing() {
                   ))}
                   {p.soon.map((f, k) => (
                     <li key={`s${k}`} className="flex items-start gap-[11px] text-[14px] text-muted">
-                      <span className="shrink-0 w-[21px] h-[21px] rounded-full bg-surface-2 border border-secondary text-muted flex items-center justify-center mt-0.5 text-[11px] font-bold">
-                        ⏳
+                      {/* كان ⏳ — إيموجي كأيقونة بنيوية: شكله يتغيّر بين
+                          ويندوز وأندرويد وiOS ولا يرث لون التوكن. */}
+                      <span className="shrink-0 w-[21px] h-[21px] rounded-full bg-surface-2 border border-secondary text-muted flex items-center justify-center mt-0.5">
+                        <ClockIcon className="w-3 h-3" />
                       </span>
                       <span>
-                        {f} <span className="text-[11.5px] font-bold text-primary/80">— قريباً</span>
+                        {f} <span className="text-[12px] font-bold text-primary/80">— قريباً</span>
                       </span>
                     </li>
                   ))}
@@ -181,7 +183,7 @@ export default function Pricing() {
                 </Link>
                 <a
                   id={`${p.key}Wa`}
-                  className="inline-flex items-center justify-center gap-2 mt-3 text-[14px] font-bold text-wa no-underline hover:underline"
+                  className="inline-flex items-center justify-center gap-2 mt-3 min-h-[44px] text-[15px] font-bold text-wa no-underline hover:underline"
                   href={goUrl(p.key)}
                   target="_blank"
                   rel="noopener"
@@ -197,8 +199,18 @@ export default function Pricing() {
 
         {/* جدول المقارنة المختصر */}
         <div className="max-w-[1080px] mx-auto mt-[54px] reveal">
-          <h3 className="text-center text-[19px] font-extrabold mb-5">مقارنة سريعة بين الباقات</h3>
-          <div className="rounded-[18px] border border-secondary bg-surface overflow-x-auto">
+          <h3 className="text-center text-[19px] font-extrabold mb-2">مقارنة سريعة بين الباقات</h3>
+          {/* الجدول أعرض من شاشة الموبايل (560px مقابل 375px) ويتمرّر أفقياً،
+              لكن لم تكن هناك أي إشارة لذلك — عمودان يختفيان بلا علم الزائر. */}
+          <p className="lg:hidden text-center text-[13px] text-muted mb-4">
+            ← اسحب الجدول يميناً ويساراً لرؤية كل الباقات
+          </p>
+          <div
+            className="rounded-[18px] border border-secondary bg-surface overflow-x-auto"
+            tabIndex={0}
+            role="region"
+            aria-label="جدول مقارنة الباقات"
+          >
             <table className="w-full text-[14px] min-w-[560px] border-collapse">
               <thead>
                 <tr className="border-b border-secondary">
@@ -227,7 +239,7 @@ export default function Pricing() {
           </div>
         </div>
 
-        <p className="text-center text-[13.5px] text-muted mt-7 reveal">
+        <p className="text-center text-[14px] text-muted mt-7 reveal">
           تقدر ترقّي باقتك في أي وقت — المزايا الجديدة تنزل على جهازك تلقائياً بلا إعادة تثبيت.
         </p>
       </div>

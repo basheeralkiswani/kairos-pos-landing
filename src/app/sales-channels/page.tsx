@@ -125,7 +125,7 @@ export default function SalesChannelsPage() {
           <div className="space-y-12 min-w-0">
             <section id="what" className="scroll-mt-[110px] reveal">
               <h2 className="text-[26px] font-extrabold">ما هي قنوات البيع؟</h2>
-              <p className="text-muted text-[15.5px] mt-3 leading-[1.95]">
+              <p className="text-muted text-[16px] mt-3 leading-[1.95]">
                 قناة البيع هي الطريقة التي يصل بها الطلب إليك: بيع داخل الصالة،
                 استلام من المحل (تيك أواي)، أو طلب عبر منصة توصيل مثل طلبات وكريم.
                 كل قناة تختلف في سعرها، وطريقة تحصيل نقودها، وما يُطبع لها. كايروس
@@ -136,14 +136,14 @@ export default function SalesChannelsPage() {
 
             <section id="pricing" className="scroll-mt-[110px] reveal">
               <h2 className="text-[26px] font-extrabold">تسعير مستقل لكل قناة</h2>
-              <p className="text-muted text-[15.5px] mt-3 leading-[1.95]">
+              <p className="text-muted text-[16px] mt-3 leading-[1.95]">
                 لكل منتج سعر مستقل في كل قناة. تضع سعر الصالة، وسعراً أعلى قليلاً
                 للتوصيل يغطّي عمولة المنصة، وسعراً للتيك أواي — وكلها لنفس المنتج.
                 ولتوفير الوقت، تنسخ أسعار قناة كاملة إلى أخرى ثم تعدّل ما تحتاجه فقط.
               </p>
               <div className="bg-surface border border-secondary rounded-2xl px-6 py-5 mt-5">
-                <h3 className="font-bold text-[16.5px] text-text">مثال عملي</h3>
-                <p className="text-muted text-[14.5px] mt-2 leading-[1.9]">
+                <h3 className="font-bold text-[16px] text-text">مثال عملي</h3>
+                <p className="text-muted text-[15px] mt-2 leading-[1.9]">
                   قهوة تبيعها بـ1.50 دينار في الصالة، 1.75 عبر التوصيل لتغطية العمولة،
                   و1.50 تيك أواي. الكاشير يختار القناة، والنظام يطبّق السعر الصحيح
                   تلقائياً دون حساب يدوي.
@@ -153,7 +153,7 @@ export default function SalesChannelsPage() {
 
             <section id="receivable" className="scroll-mt-[110px] reveal">
               <h2 className="text-[26px] font-extrabold">قنوات فورية مقابل قنوات ذمم</h2>
-              <p className="text-muted text-[15.5px] mt-3 leading-[1.95]">
+              <p className="text-muted text-[16px] mt-3 leading-[1.95]">
                 بعض القنوات تُحصّل نقدها فوراً (الصالة والتيك أواي)، وبعضها يُسوّى
                 لاحقاً (منصات التوصيل التي تحوّل لك المبالغ كل فترة). في كايروس سبيس
                 تحدّد لكل قناة نوعها:
@@ -161,7 +161,7 @@ export default function SalesChannelsPage() {
               <div className="mt-6 grid sm:grid-cols-2 gap-4">
                 <div className="bg-surface border border-secondary rounded-2xl px-6 py-5">
                   <div className="text-green text-[13px] font-bold">فورية</div>
-                  <h3 className="font-bold text-[16.5px] text-text mt-1">نقد الآن</h3>
+                  <h3 className="font-bold text-[16px] text-text mt-1">نقد الآن</h3>
                   <p className="text-muted text-[14px] mt-2 leading-[1.85]">
                     الطلب يُدفع لحظة البيع ويدخل درج النقد مباشرة — الصالة، التيك أواي،
                     الاستلام.
@@ -169,7 +169,7 @@ export default function SalesChannelsPage() {
                 </div>
                 <div className="bg-surface border border-secondary rounded-2xl px-6 py-5">
                   <div className="text-primary text-[13px] font-bold">ذمم</div>
-                  <h3 className="font-bold text-[16.5px] text-text mt-1">يُسوّى لاحقاً</h3>
+                  <h3 className="font-bold text-[16px] text-text mt-1">يُسوّى لاحقاً</h3>
                   <p className="text-muted text-[14px] mt-2 leading-[1.85]">
                     الطلب يُسجّل كغير مدفوع على حساب المنصة، وتحصّله عند التسوية عبر
                     حساب تسوية مخصص.
@@ -180,7 +180,7 @@ export default function SalesChannelsPage() {
 
             <section id="printing" className="scroll-mt-[110px] reveal">
               <h2 className="text-[26px] font-extrabold">إعدادات طباعة لكل قناة</h2>
-              <p className="text-muted text-[15.5px] mt-3 leading-[1.95]">
+              <p className="text-muted text-[16px] mt-3 leading-[1.95]">
                 لكل قناة إعدادات طباعتها: تفعّل أو توقف تذكرة المطبخ وفاتورة الزبون
                 لكل قناة على حدة. مثلاً، توصيل بلا فاتورة زبون مطبوعة، أو قناة سريعة
                 بلا تذكرة مطبخ — كلٌّ حسب سير عملك، دون إعدادات متضاربة.
@@ -189,7 +189,7 @@ export default function SalesChannelsPage() {
 
             <section id="reports" className="scroll-mt-[110px] reveal">
               <h2 className="text-[26px] font-extrabold">الذمم حسب القناة</h2>
-              <p className="text-muted text-[15.5px] mt-3 leading-[1.95]">
+              <p className="text-muted text-[16px] mt-3 leading-[1.95]">
                 بدل أن تحسب مستحقاتك عند منصات التوصيل يدوياً، يريك تقرير «الذمم حسب
                 القناة» كم لك عند كل منصة في أي فترة. تسجّل الدفعات لتسويتها، فتعرف
                 بدقة ما حُصِّل وما بقي — وهذا يقفل ثغرة يخسر فيها كثير من المطاعم مبالغ
@@ -211,7 +211,7 @@ export default function SalesChannelsPage() {
                         +
                       </span>
                     </summary>
-                    <p className="text-muted text-[14.5px] mt-4 leading-[1.9]">{item.a}</p>
+                    <p className="text-muted text-[15px] mt-4 leading-[1.9]">{item.a}</p>
                   </details>
                 ))}
               </div>
@@ -237,7 +237,7 @@ export default function SalesChannelsPage() {
                   ابدأ تجربة مجانية {TRIAL_DAYS} يوماً
                 </Link>
               </div>
-              <ul className="mt-6 space-y-2 text-[14.5px] border-t border-primary/15 pt-5">
+              <ul className="mt-6 space-y-2 text-[15px] border-t border-primary/15 pt-5">
                 <li>
                   <Link href="/foodics-alternative" className="text-primary font-bold no-underline hover:underline">
                     كايروس سبيس بديلاً لفودكس ←
