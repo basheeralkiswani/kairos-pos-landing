@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { goUrl, TRIAL_DAYS, PRICES } from "@/lib/constants";
+import { goUrl, TRIAL_DAYS, PRICE_FROM } from "@/lib/constants";
 import { trackWhatsAppClick } from "@/components/Analytics";
 import { WhatsAppIcon, CheckIcon, ChartIcon, ReceiptIcon } from "@/components/Icons";
 
@@ -38,7 +38,7 @@ export default function Hero() {
           {/* السعر فوق الطية — وضوح كامل قبل أي زر */}
           <div className="reveal d2 flex items-center gap-2.5 mb-5 text-[15px] flex-wrap">
             <span className="inline-flex items-center gap-1.5 py-[6px] px-3.5 rounded-full bg-surface border border-[rgba(168,128,26,0.35)] font-bold text-primary shadow-[0_6px_16px_-10px_rgba(168,128,26,0.5)]">
-              ابدأ من <span className="num">{PRICES.monthly}</span> د.أ / شهر
+              ابدأ من <span className="num">{PRICE_FROM}</span> د.أ / شهر
             </span>
             <span className="text-muted">
               وجرّبه قبلها مجاناً <span className="num font-bold text-text">{TRIAL_DAYS}</span> يوماً — بلا بطاقة ائتمان

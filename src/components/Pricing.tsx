@@ -1,151 +1,234 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { goUrl, TRIAL_DAYS, PRICES } from "@/lib/constants";
+import { goUrl, TRIAL_DAYS, PLANS } from "@/lib/constants";
 import { trackWhatsAppClick } from "@/components/Analytics";
 import { CheckBoldIcon, WhatsAppIcon } from "@/components/Icons";
 
-// ثلاث باقات (قرار المالك 2026-07-20): 15 شهري · 70 نصف سنوي · 140 سنوي —
-// بلا رسوم تفعيل. كل بطاقة: زر أساسي واحد → /signup (التجربة المجانية أولاً)
-// وزر واتساب ثانوي يحافظ على مسار إعلانات جوجل كما هو (goUrl → /thank-you،
-// بنفس الـ ids القديمة annualWa/monthlyWa + الجديد semiannualWa).
-const COMMON_FEATURES = [
-  "جميع مميزات النظام بالكامل",
-  "بدون رسوم تفعيل أو رسوم خفية",
-  "تحديثات مجانية مستمرة",
-  "دعم فني عبر واتساب والهاتف",
+// ثلاث باقات متدرّجة (نظام الباقات 2026-07-25): ستارتر 9/80 · بزنس 14/120 ·
+// إنتربرايز 18/160 — بلا رسوم تفعيل. مفتاح شهري/سنوي يبدّل الأسعار فوراً بلا
+// إعادة تحميل. كل بطاقة: زر أساسي → /signup (التجربة أولاً) وزر واتساب ثانوي
+// يحافظ على مسار إعلانات جوجل (goUrl → /thank-you) بمعرّفات لكل باقة.
+//
+// جدول المقارنة مختصر عمداً — الفروق التي تُقرّر الشراء فقط. الميزات غير
+// المُطلقة بعد تُوسَم «قريباً» ولا تُعدّ ضمن المتاح.
+
+type Cycle = "monthly" | "yearly";
+
+// صفوف المقارنة: قيمة نصية أو true/false. مختصرة (لا تسرد كل شيء).
+const COMPARE: { label: string; values: [string | boolean, string | boolean, string | boolean] }[] = [
+  { label: "عدد الأجهزة", values: ["1", "3", "10"] },
+  { label: "عدد الفروع", values: ["1", "1", "حتى 10"] },
+  { label: "الكاشير والمخزون والتقارير الأساسية", values: [true, true, true] },
+  { label: "ربط جوفوترة والعمل بدون إنترنت", values: [true, true, true] },
+  { label: "شاشة العميل", values: [true, true, true] },
+  { label: "المزامنة السحابية", values: [false, true, true] },
+  { label: "لوحة المالك وتطبيق المدير", values: [false, true, true] },
+  { label: "مستخدمون وصلاحيات", values: [false, true, true] },
+  { label: "إدارة الطاولات", values: [false, true, true] },
+  { label: "تصدير Excel و PDF", values: [false, true, true] },
+  { label: "تعدد الفروع", values: [false, false, true] },
+  { label: "تطبيق الويتر", values: [false, false, true] },
+  { label: "التقارير المتقدمة", values: [false, false, true] },
+  { label: "شاشة المطبخ KDS و QR Menu", values: [false, false, "قريباً"] },
+  { label: "الدعم الفني", values: ["عادي", "بالأولوية", "بالأولوية"] },
 ];
 
-type Plan = {
-  key: "monthly" | "semiannual" | "annual";
-  waId: string;
-  title: string;
-  price: number;
-  per: string;
-  note: string;
-  save?: string;
-  featured?: boolean;
-  delay: string;
-};
-
-const PLANS: Plan[] = [
-  {
-    key: "monthly",
-    waId: "monthlyWa",
-    title: "شهري",
-    price: PRICES.monthly,
-    per: "/ الشهر",
-    note: "مرونة كاملة — إلغاء في أي وقت.",
-    delay: "",
-  },
-  {
-    key: "semiannual",
-    waId: "semiannualWa",
-    title: "6 أشهر",
-    price: PRICES.semiannual,
-    per: "/ 6 أشهر",
-    note: "دفعة واحدة تغطي نصف سنة.",
-    save: `وفّر ${PRICES.monthly * 6 - PRICES.semiannual} دنانير مقارنة بالشهري`,
-    delay: "d1",
-  },
-  {
-    key: "annual",
-    waId: "annualWa",
-    title: "سنوي",
-    price: PRICES.annual,
-    per: "/ السنة",
-    note: "سنة كاملة من الاستخدام بلا انقطاع.",
-    save: `وفّر ${PRICES.monthly * 12 - PRICES.annual} ديناراً — يعادل شهرين وأكثر مجاناً`,
-    featured: true,
-    delay: "d2",
-  },
-];
+function Cell({ v }: { v: string | boolean }) {
+  if (v === true)
+    return (
+      <span className="inline-flex w-[22px] h-[22px] rounded-full bg-[rgba(23,138,88,0.12)] text-green items-center justify-center">
+        <CheckBoldIcon />
+      </span>
+    );
+  if (v === false) return <span className="text-muted/45 text-[17px] leading-none">—</span>;
+  return <span className="text-[13.5px] font-bold text-text num">{v}</span>;
+}
 
 export default function Pricing() {
+  const [cycle, setCycle] = useState<Cycle>("monthly");
+  const yearly = cycle === "yearly";
+
+  // أعلى نسبة توفير بين الباقات — رقم العنوان في وضع السنوي.
+  const bestSave = Math.max(
+    ...PLANS.map((p) => Math.round(((p.monthly * 12 - p.yearly) / (p.monthly * 12)) * 100)),
+  );
+
   return (
     <section className="py-[90px] relative" id="pricing">
       <div className="max-w-[1240px] mx-auto px-7 relative z-1">
-        <div className="text-center max-w-[680px] mx-auto mb-[50px] reveal">
+        <div className="text-center max-w-[680px] mx-auto mb-[38px] reveal">
           <span className="inline-block text-[13px] font-bold text-primary tracking-[1px] uppercase mb-3.5">
             الأسعار
           </span>
           <h2 className="text-[clamp(28px,4vw,44px)] font-black tracking-[-0.5px] leading-[1.18] mb-4">
-            أسعار واضحة — كل المميزات في كل باقة
+            اختر الباقة المناسبة لمحلّك
           </h2>
           <p className="text-[17px] text-muted">
-            لا رسوم تفعيل ولا رسوم خفية. جرّب النظام مجاناً <span className="num">{TRIAL_DAYS}</span> يوماً — وبعدها اختر مدة الاشتراك فقط.
+            لا رسوم تفعيل ولا رسوم خفية. جرّب النظام مجاناً <span className="num">{TRIAL_DAYS}</span> يوماً — وبعدها اختر باقتك.
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-6 max-w-[1080px] mx-auto items-stretch max-[980px]:grid-cols-1 max-[980px]:max-w-[480px]">
-          {PLANS.map((p) => (
-            <div
-              key={p.key}
-              className={`reveal ${p.delay} relative rounded-[22px] p-[34px_28px] flex flex-col ${
-                p.featured
-                  ? "price-card-featured bg-gradient-to-b from-[rgba(212,175,55,0.14)] to-surface shadow-[0_30px_60px_-30px_rgba(168,128,26,0.45)]"
-                  : "bg-surface border border-secondary shadow-[0_18px_40px_-30px_rgba(60,45,12,0.35)]"
+        {/* مفتاح شهري / سنوي */}
+        <div className="flex flex-col items-center gap-3 mb-[42px] reveal">
+          <div
+            className="inline-flex rounded-full border border-secondary bg-surface p-1"
+            role="group"
+            aria-label="دورة الاشتراك"
+          >
+            <button
+              type="button"
+              onClick={() => setCycle("monthly")}
+              aria-pressed={!yearly}
+              className={`px-6 py-2 text-[14.5px] font-bold rounded-full transition-all duration-200 ${
+                !yearly ? "bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10]" : "text-muted hover:text-text"
               }`}
             >
-              {p.featured && (
-                <span className="absolute top-[-14px] right-7 bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10] text-[12.5px] font-extrabold py-1.5 px-4 rounded-full shadow-[0_8px_20px_-6px_rgba(168,128,26,0.6)]">
-                  الأكثر توفيراً
-                </span>
-              )}
-
-              <div className="text-[15px] font-bold text-primary tracking-[0.5px] mb-4">
-                {p.title}
-              </div>
-
-              <div className="flex items-end gap-2 mb-1.5">
-                <span className="text-[52px] font-extrabold font-[var(--font-en)] leading-none text-text num">{p.price}</span>
-                <span className="text-[17px] font-bold text-muted mb-1.5">دينار</span>
-                <span className="text-[14px] text-muted mb-[8px]">{p.per}</span>
-              </div>
-
-              <div className="text-[13.5px] text-muted mb-2.5 min-h-5">{p.note}</div>
-
-              {p.save ? (
-                <span className="inline-block text-[13px] font-bold text-green bg-[rgba(23,138,88,0.09)] border border-[rgba(23,138,88,0.28)] rounded-lg py-[5px] px-[11px] mb-[20px] w-fit">
-                  {p.save}
-                </span>
-              ) : (
-                <span className="inline-block text-[13px] font-bold text-muted bg-surface-2 border border-secondary rounded-lg py-[5px] px-[11px] mb-[20px] w-fit">
-                  بدون التزام طويل
-                </span>
-              )}
-
-              <ul className="list-none flex flex-col gap-[12px] mb-7 flex-1">
-                {COMMON_FEATURES.map((f, i) => (
-                  <li key={i} className="flex items-start gap-[11px] text-[14.5px] text-text">
-                    <span className="shrink-0 w-[21px] h-[21px] rounded-full bg-[rgba(168,128,26,0.12)] text-primary flex items-center justify-center mt-0.5">
-                      <CheckBoldIcon />
-                    </span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-
-              <Link href="/signup" className={`${p.featured ? "btn-gold" : "btn-outline"} w-full`}>
-                ابدأ التجربة المجانية
-              </Link>
-              <a
-                id={p.waId}
-                className="inline-flex items-center justify-center gap-2 mt-3 text-[14px] font-bold text-wa no-underline hover:underline"
-                href={goUrl(p.key)}
-                target="_blank"
-                rel="noopener"
-                onClick={() => trackWhatsAppClick(p.key)}
-              >
-                <WhatsAppIcon className="w-[17px] h-[17px]" />
-                أو اشترك مباشرة عبر واتساب
-              </a>
-            </div>
-          ))}
+              شهري
+            </button>
+            <button
+              type="button"
+              onClick={() => setCycle("yearly")}
+              aria-pressed={yearly}
+              className={`px-6 py-2 text-[14.5px] font-bold rounded-full transition-all duration-200 ${
+                yearly ? "bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10]" : "text-muted hover:text-text"
+              }`}
+            >
+              سنوي
+            </button>
+          </div>
+          <p
+            className={`text-[14px] font-bold text-green transition-opacity duration-200 ${
+              yearly ? "opacity-100" : "opacity-0"
+            }`}
+            aria-hidden={!yearly}
+          >
+            💚 وفّر أكثر من <span className="num">{bestSave}</span>% مع الاشتراك السنوي
+          </p>
         </div>
 
-        <p className="text-center text-[13.5px] text-muted mt-8 reveal">
-          كل الباقات تشمل نفس المميزات — الفرق فقط في مدة الاشتراك وقيمة التوفير.
+        {/* البطاقات */}
+        <div className="grid grid-cols-3 gap-6 max-w-[1080px] mx-auto items-stretch max-[980px]:grid-cols-1 max-[980px]:max-w-[480px]">
+          {PLANS.map((p, i) => {
+            const price = yearly ? p.yearly : p.monthly;
+            const featured = "popular" in p && p.popular;
+            const saved = p.monthly * 12 - p.yearly;
+            return (
+              <div
+                key={p.key}
+                className={`reveal ${i === 1 ? "d1" : i === 2 ? "d2" : ""} relative rounded-[22px] p-[34px_28px] flex flex-col ${
+                  featured
+                    ? "price-card-featured bg-gradient-to-b from-[rgba(212,175,55,0.14)] to-surface shadow-[0_30px_60px_-30px_rgba(168,128,26,0.45)]"
+                    : "bg-surface border border-secondary shadow-[0_18px_40px_-30px_rgba(60,45,12,0.35)]"
+                }`}
+              >
+                {featured && (
+                  <span className="absolute top-[-14px] right-7 bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10] text-[12.5px] font-extrabold py-1.5 px-4 rounded-full shadow-[0_8px_20px_-6px_rgba(168,128,26,0.6)]">
+                    الأكثر طلباً
+                  </span>
+                )}
+
+                <div className="text-[15px] font-bold text-primary tracking-[0.5px] mb-1">{p.title}</div>
+                <div className="text-[13.5px] text-muted mb-4 min-h-[38px]">{p.tagline}</div>
+
+                <div className="flex items-end gap-2 mb-1.5">
+                  <span className="text-[52px] font-extrabold font-[var(--font-en)] leading-none text-text num">
+                    {price}
+                  </span>
+                  <span className="text-[17px] font-bold text-muted mb-1.5">دينار</span>
+                  <span className="text-[14px] text-muted mb-[8px]">{yearly ? "/ السنة" : "/ الشهر"}</span>
+                </div>
+
+                {yearly ? (
+                  <span className="inline-block text-[13px] font-bold text-green bg-[rgba(23,138,88,0.09)] border border-[rgba(23,138,88,0.28)] rounded-lg py-[5px] px-[11px] mt-2 mb-[18px] w-fit">
+                    وفّر <span className="num">{saved}</span> ديناراً مقارنة بالشهري
+                  </span>
+                ) : (
+                  <span className="inline-block text-[13px] font-bold text-muted bg-surface-2 border border-secondary rounded-lg py-[5px] px-[11px] mt-2 mb-[18px] w-fit">
+                    بدون التزام طويل
+                  </span>
+                )}
+
+                <div className="flex gap-2 flex-wrap mb-4 text-[12.5px] text-muted">
+                  <span className="rounded-lg border border-secondary bg-surface-2 py-1 px-2.5">{p.devices}</span>
+                  <span className="rounded-lg border border-secondary bg-surface-2 py-1 px-2.5">{p.branches}</span>
+                </div>
+
+                <ul className="list-none flex flex-col gap-[11px] mb-6 flex-1">
+                  {p.features.map((f, k) => (
+                    <li key={k} className="flex items-start gap-[11px] text-[14.5px] text-text">
+                      <span className="shrink-0 w-[21px] h-[21px] rounded-full bg-[rgba(168,128,26,0.12)] text-primary flex items-center justify-center mt-0.5">
+                        <CheckBoldIcon />
+                      </span>
+                      {f}
+                    </li>
+                  ))}
+                  {p.soon.map((f, k) => (
+                    <li key={`s${k}`} className="flex items-start gap-[11px] text-[14px] text-muted">
+                      <span className="shrink-0 w-[21px] h-[21px] rounded-full bg-surface-2 border border-secondary text-muted flex items-center justify-center mt-0.5 text-[11px] font-bold">
+                        ⏳
+                      </span>
+                      <span>
+                        {f} <span className="text-[11.5px] font-bold text-primary/80">— قريباً</span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Link href="/signup" className={`${featured ? "btn-gold" : "btn-outline"} w-full`}>
+                  ابدأ التجربة المجانية
+                </Link>
+                <a
+                  id={`${p.key}Wa`}
+                  className="inline-flex items-center justify-center gap-2 mt-3 text-[14px] font-bold text-wa no-underline hover:underline"
+                  href={goUrl(p.key)}
+                  target="_blank"
+                  rel="noopener"
+                  onClick={() => trackWhatsAppClick(`${p.key}_${cycle}`)}
+                >
+                  <WhatsAppIcon className="w-[17px] h-[17px]" />
+                  أو اشترك مباشرة عبر واتساب
+                </a>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* جدول المقارنة المختصر */}
+        <div className="max-w-[1080px] mx-auto mt-[54px] reveal">
+          <h3 className="text-center text-[19px] font-extrabold mb-5">مقارنة سريعة بين الباقات</h3>
+          <div className="rounded-[18px] border border-secondary bg-surface overflow-x-auto">
+            <table className="w-full text-[14px] min-w-[560px] border-collapse">
+              <thead>
+                <tr className="border-b border-secondary">
+                  <th className="p-3.5 text-right font-bold text-muted text-[13px]">الميزة</th>
+                  {PLANS.map((p) => (
+                    <th key={p.key} className="p-3.5 text-center font-extrabold text-text whitespace-nowrap">
+                      {p.title}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARE.map((row) => (
+                  <tr key={row.label} className="border-b border-secondary/40 last:border-0">
+                    {/* وسم «قريباً» يظهر في خانة الباقة نفسها، فلا نكرّره هنا. */}
+                    <td className="p-3.5 text-right text-text">{row.label}</td>
+                    {row.values.map((v, i) => (
+                      <td key={i} className="p-3.5 text-center">
+                        <Cell v={v} />
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p className="text-center text-[13.5px] text-muted mt-7 reveal">
+          تقدر ترقّي باقتك في أي وقت — المزايا الجديدة تنزل على جهازك تلقائياً بلا إعادة تثبيت.
         </p>
       </div>
     </section>
