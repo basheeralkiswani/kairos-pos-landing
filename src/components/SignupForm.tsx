@@ -10,16 +10,26 @@ import {
 } from "@/lib/constants";
 import { trackSignupSubmit } from "@/components/Analytics";
 
-// نموذج التسجيل الذاتي (Phase 6 §5). لا ينشئ حساباً مباشرة — يسجّل طلباً
-// يراجعه الفريق ثم يُفعَّل الحساب وتصل بيانات الدخول بالبريد. هذا مقصود:
-// النقطة الوحيدة المكشوفة على السحابة لا يجوز أن تنشئ مستأجرين بلا مراجعة.
+// نموذج التسجيل الذاتي. لا ينشئ حساباً مباشرة — يسجّل طلباً يراجعه الفريق ثم
+// يُفعَّل الحساب وتصل بيانات الدخول بالبريد. هذا مقصود: النقطة الوحيدة المكشوفة
+// على السحابة لا يجوز أن تنشئ مستأجرين بلا مراجعة.
+//
+// ⚠️ الوجهة تغيّرت (2026-08-20) من دالة Edge على مشروع Supabase القديم إلى
+// `app.kairos-pos.com/api/web/signup-request`. حقل `website` أدناه مصيدة بوتات
+// يفهمها الخادم الجديد كما فهمها القديم.
 
 const inputCls = "field";
 
 const ERR_AR: Record<string, string> = {
+  // رموز نقطة Kairos Web الجديدة (/api/web/signup-request).
+  email_invalid: "البريد الإلكتروني غير صحيح",
+  store_name_required: "اكتب اسم النشاط",
+  phone_required: "اكتب رقم هاتف نتواصل عليه",
+  too_many_requests: "وصلتنا عدة طلبات من هذا الجهاز — انتظر قليلاً ثم أعد المحاولة",
+  could_not_save: "تعذّر إرسال الطلب الآن — راسلنا على واتساب ونكمل معك",
+  // رموز الدالة القديمة، مُبقاة حتى تنتهي أي نسخة مخبّأة من الصفحة عند الزوّار.
   invalid_email: "البريد الإلكتروني غير صحيح",
   business_name_required: "اكتب اسم النشاط",
-  too_many_requests: "وصلتنا عدة طلبات من هذا الجهاز — انتظر قليلاً ثم أعد المحاولة",
   server_error: "تعذّر إرسال الطلب الآن — راسلنا على واتساب ونكمل معك",
 };
 
@@ -52,15 +62,19 @@ export default function SignupForm() {
     try {
       const res = await fetch(SIGNUP_ENDPOINT, {
         method: "POST",
-        // بلا ترويسات مخصّصة: content-type وحده لا يستدعي preflight معقّداً.
+        // ⚠️ لا تظنّ أن content-type وحده يُعفي من الـpreflight — جسم JSON ليس
+        // طلباً «بسيطاً»، فالمتصفّح يرسل OPTIONS أولاً دائماً. الخادم يسمح لأصل
+        // هذا الموقع صراحةً؛ ولا يُرسَل أي مفتاح أو كوكي من هنا.
         headers: { "content-type": "application/json" },
+        // أسماء الحقول هي عقد نقطة Kairos Web، لا أسماء الدالة القديمة.
         body: JSON.stringify({
-          business_name: businessName.trim(),
-          owner_email: email.trim(),
+          store_name: businessName.trim(),
           owner_name: ownerName.trim(),
+          owner_email: email.trim(),
           phone: phone.trim(),
           business_type: businessType,
-          notes: notes.trim(),
+          note: notes.trim(),
+          source: "landing",
           website,
         }),
       });

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { APP_URL } from "@/lib/constants";
 
 // روابط التنقّل — مصدر واحد يغذّي سطح المكتب والموبايل معاً حتى لا تنحرف
 // القائمتان عن بعضهما.
@@ -109,6 +110,13 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
+          <a
+            href={APP_URL}
+            className="hidden lg:inline-flex items-center min-h-[44px] px-4 text-[15px] font-semibold text-text no-underline hover:text-primary transition-colors whitespace-nowrap"
+          >
+            تسجيل الدخول
+          </a>
+
           <Link
             href="/signup"
             className="btn-gold !py-[11px] !px-[22px] !text-[15px] max-sm:!px-4 max-sm:!text-[14px] whitespace-nowrap"
@@ -175,6 +183,15 @@ export default function Navbar() {
               )}
             </li>
           ))}
+          <li className="border-t border-secondary/50">
+            <a
+              href={APP_URL}
+              onClick={() => setOpen(false)}
+              className="flex items-center min-h-[52px] text-[16px] font-semibold text-primary no-underline"
+            >
+              تسجيل الدخول للوحة التحكّم
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
