@@ -22,7 +22,7 @@ import {
 export const metadata: Metadata = {
   title: "تحميل النظام | Kairos Space POS",
   description:
-    `حمّل نظام Kairos Space POS لويندوز مجاناً وابدأ تجربة ${TRIAL_DAYS} يوماً، وحمّل تطبيقات الأندرويد: الويتر وكاشير التابلت والكاشير الخفيف — روابط مباشرة بدون تسجيل.`,
+    `حمّل كاشير كايروس لويندوز وأندرويد، وتطبيقات الويتر وكاشير التابلت — روابط مباشرة، وتجربة مجانية ${TRIAL_DAYS} يوماً على لوحة كايروس.`,
   alternates: { canonical: "/download" },
 };
 
@@ -68,25 +68,27 @@ export default async function DownloadPage() {
             حمّل <b className="text-primary">Kairos Space POS</b>
           </h1>
           <p className="text-muted text-[17px] mt-4">
-            التحميل مباشر وبدون تسجيل. ثبّت النظام وشغّله، وابدأ تجربة مجانية <span className="num">{TRIAL_DAYS}</span> يوماً —
-            وبعد التثبيت يحدّث نفسه تلقائياً، فلن تحتاج العودة لهذه الصفحة.
+            التحميل مباشر. ثبّت الكاشير واربطه بحساب متجرك على لوحة كايروس، وابدأ تجربة
+            مجانية <span className="num">{TRIAL_DAYS}</span> يوماً — وبعد التثبيت يحدّث نفسه
+            تلقائياً، فلن تحتاج العودة لهذه الصفحة.
           </p>
         </header>
 
         {/* ── بطاقتا التحميل ─────────────────────────────────────────── */}
         <div className="grid md:grid-cols-2 gap-6 mt-12">
           <Card>
-            <div className="text-primary text-[13px] font-bold">للكاشير · ويندوز</div>
-            <h2 className="text-[24px] font-extrabold mt-2">نظام نقاط البيع</h2>
+            <div className="text-primary text-[13px] font-bold">الكاشير · ويندوز</div>
+            <h2 className="text-[24px] font-extrabold mt-2">كاشير كايروس</h2>
             <p className="text-muted text-[15px] mt-3 leading-[1.75]">
-              البرنامج الكامل: الكاشير، المنتجات، المخزون، التقارير، والفوترة الوطنية.
-              يعمل بدون إنترنت، ويزامن بياناتك للوحة التحكم حين يتوفّر الاتصال.
+              شاشة البيع والطباعة على جهاز الكاشير: يبيع ويطبع بلا إنترنت، ويرفع
+              مبيعاته إلى لوحة كايروس أوّل ما يعود الاتصال. الإدارة كلّها — المنتجات
+              والأسعار والمخزون والتقارير — من اللوحة على أي متصفّح.
             </p>
             <a
               href={DOWNLOAD_EXE}
               className="mt-6 flex items-center justify-center bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10] py-4 px-6 rounded-xl font-bold text-[16px] no-underline transition-all duration-250 shadow-[0_6px_20px_-6px_rgba(212,175,55,0.5)] hover:brightness-105 hover:-translate-y-0.5"
             >
-              تحميل لويندوز · <span className="num mx-1.5">84</span> ميجابايت
+              تحميل لويندوز · <span className="num mx-1.5">85</span> ميجابايت
             </a>
             <dl className="mt-6 pt-5 border-t border-white/6 text-[14px] space-y-2.5">
               <div className="flex justify-between gap-4">
@@ -100,6 +102,10 @@ export default async function DownloadPage() {
               <div className="flex justify-between gap-4">
                 <dt className="text-muted">المساحة</dt>
                 <dd className="font-medium"><span className="num">500</span> ميجابايت</dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted">يتطلّب</dt>
+                <dd className="font-medium">حساب على لوحة كايروس</dd>
               </div>
               <div className="flex justify-between gap-4">
                 <dt className="text-muted">الإصدار</dt>
