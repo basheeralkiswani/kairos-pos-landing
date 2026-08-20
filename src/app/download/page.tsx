@@ -7,6 +7,8 @@ import RevealObserver from "@/components/RevealObserver";
 import {
   DOWNLOAD_APK,
   DOWNLOAD_CASHIER_APK,
+  DOWNLOAD_THIN_APK,
+  THIN_APK_VERSION,
   CASHIER_MIN_POS_VERSION,
   DOWNLOAD_EXE,
   FALLBACK_VERSION,
@@ -20,7 +22,7 @@ import {
 export const metadata: Metadata = {
   title: "تحميل النظام | Kairos Space POS",
   description:
-    `حمّل نظام Kairos Space POS لويندوز مجاناً وابدأ تجربة ${TRIAL_DAYS} يوماً، وحمّل تطبيقات الأندرويد: الويتر وكاشير التابلت — روابط مباشرة بدون تسجيل.`,
+    `حمّل نظام Kairos Space POS لويندوز مجاناً وابدأ تجربة ${TRIAL_DAYS} يوماً، وحمّل تطبيقات الأندرويد: الويتر وكاشير التابلت والكاشير الخفيف — روابط مباشرة بدون تسجيل.`,
   alternates: { canonical: "/download" },
 };
 
@@ -167,6 +169,53 @@ export default async function DownloadPage() {
                 <dd className="font-medium">نفس شبكة جهاز الكاشير الرئيسي</dd>
               </div>
             </dl>
+          </Card>
+
+          <Card>
+            <div className="flex items-center gap-2">
+              <span className="text-blue text-[13px] font-bold">تِلّ مستقلّ · أندرويد</span>
+              <span className="text-[11px] font-bold text-primary border border-primary/40 rounded-full px-2 py-0.5">
+                نسخة مبكّرة
+              </span>
+            </div>
+            <h2 className="text-[24px] font-extrabold mt-2">كاشير كايروس الخفيف</h2>
+            <p className="text-muted text-[15px] mt-3 leading-[1.75]">
+              تِلّ قائم بذاته لا يحتاج جهاز كاشير آخر: يبيع ويطبع بلا إنترنت، ويزامن
+              مبيعاته مع لوحة كايروس السحابية أوّل ما يعود الاتصال. الإدارة كلّها —
+              المنتجات والأسعار والتقارير — من اللوحة على المتصفّح.
+            </p>
+            <a
+              href={DOWNLOAD_THIN_APK}
+              className="mt-6 flex items-center justify-center bg-surface-2 border border-secondary text-text py-4 px-6 rounded-xl font-bold text-[16px] no-underline transition-all duration-250 hover:border-primary/50 hover:-translate-y-0.5"
+            >
+              تحميل APK · <span className="num mx-1.5">28</span> ميجابايت
+            </a>
+            <dl className="mt-6 pt-5 border-t border-white/6 text-[14px] space-y-2.5">
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted">نظام التشغيل</dt>
+                <dd className="font-medium">أندرويد <span className="num">7</span> فأحدث</dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted">المعالج</dt>
+                <dd className="font-medium">
+                  <span className="num">64</span>-بت (arm64) فقط
+                </dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted">يتطلّب</dt>
+                <dd className="font-medium">حساب على لوحة كايروس</dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted">الإصدار</dt>
+                <dd className="font-medium"><span className="num">{THIN_APK_VERSION}</span></dd>
+              </div>
+            </dl>
+            {/* تثبيت يدوي: يقال صراحةً لأن المستخدم سيرى تحذير أندرويد للمصادر
+                غير المعروفة، ولأن التحديث لن يصله تلقائياً قبل النزول على Play. */}
+            <p className="text-muted text-[13px] mt-5 leading-[1.7]">
+              تُثبَّت يدوياً خارج Google Play مؤقتاً، فسيطلب أندرويد السماح بالتثبيت من
+              هذا المصدر. التحديثات تصل بتحميل النسخة الأحدث من هنا.
+            </p>
           </Card>
         </div>
 

@@ -125,6 +125,13 @@ export const DOWNLOAD_BASE = "https://download.kairos-pos.com";
 export const DOWNLOAD_EXE = `${DOWNLOAD_BASE}/Kairos-Setup.exe`;
 export const DOWNLOAD_APK = `${DOWNLOAD_BASE}/KairosWaiter.apk`;
 export const DOWNLOAD_CASHIER_APK = `${DOWNLOAD_BASE}/KairosCashier.apk`;
+// الكاشير الخفيف: تِلّ مستقلّ يزامن مع لوحة كايروس السحابية. مفتاح مختلف عن
+// KairosCashier.apk أعلاه عن قصد — ذاك تابع لجهاز كاشير على شبكة المحل، وهذا
+// تِلّ قائم بذاته، ومعرّفهما في أندرويد مختلف (com.kairos.cashier.thin) حتى لا
+// يستبدل أحدهما الآخر عند التثبيت.
+export const DOWNLOAD_THIN_APK = `${DOWNLOAD_BASE}/KairosCashierThin.apk`;
+// يُقرأ من mobile/android/app/build.gradle عند كل إصدار — لا مصدر ثانٍ.
+export const THIN_APK_VERSION = "0.1.15";
 // قناة الكاشير الخفيف — منفصلة عن قناة الديسكتوب عمداً. القناة القديمة
 // (`updates.kairos-pos.com`) حُذفت، وهذه فارغة حتى أوّل رفع؛ في الحالتين تُقرَأ
 // 404 فيُعرَض FALLBACK_VERSION أدناه. مقصود: لا رقم كاذب.
