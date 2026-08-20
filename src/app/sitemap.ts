@@ -9,6 +9,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // صفحة التحميل تتغيّر مع كل نشرة إصدار، فتُفحص يومياً.
     { url: `${BASE}/download`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
     { url: `${BASE}/signup`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    // نقطة الدخول الإنجليزية — المحتوى الإنجليزي الوحيد على الموقع، وهو ما يجعل
+    // الظهور في البحث الإنجليزي ممكناً أصلاً (جوجل تحدّد اللغة من النصّ لا الوسوم).
+    { url: `${BASE}/en`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     // صفحات محتوى تستهدف البحث العضوي (عنقود موضوعي).
     { url: `${BASE}/jofotara`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/foodics-alternative`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },

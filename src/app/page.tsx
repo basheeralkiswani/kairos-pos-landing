@@ -32,6 +32,77 @@ export default function Home() {
         تخطَّ إلى المحتوى
       </a>
 
+      {/* البيانات المهيكلة للمنتج — تخصّ هذه الصفحة وحدها (نُقلت من التخطيط الجذر). */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "Kairos Space POS",
+            applicationCategory: "BusinessApplication",
+            operatingSystem: "Windows",
+            offers: [
+              {
+                "@type": "Offer",
+                price: "9",
+                priceCurrency: "JOD",
+                name: "باقة ستارتر — شهري",
+                description: "جهاز واحد وفرع واحد: الكاشير والمخزون والتقارير الأساسية",
+              },
+              {
+                "@type": "Offer",
+                price: "80",
+                priceCurrency: "JOD",
+                name: "باقة ستارتر — سنوي",
+                description: "سنة كاملة من باقة ستارتر بسعر موفّر",
+              },
+              {
+                "@type": "Offer",
+                price: "14",
+                priceCurrency: "JOD",
+                name: "باقة بزنس — شهري",
+                description: "حتى 3 أجهزة مع المزامنة السحابية ولوحة المالك والصلاحيات",
+              },
+              {
+                "@type": "Offer",
+                price: "120",
+                priceCurrency: "JOD",
+                name: "باقة بزنس — سنوي",
+                description: "سنة كاملة من باقة بزنس بسعر موفّر",
+              },
+              {
+                "@type": "Offer",
+                price: "18",
+                priceCurrency: "JOD",
+                name: "باقة إنتربرايز — شهري",
+                description: "تعدد الفروع وتطبيق الويتر والتقارير المتقدمة",
+              },
+              {
+                "@type": "Offer",
+                price: "160",
+                priceCurrency: "JOD",
+                name: "باقة إنتربرايز — سنوي",
+                description: "سنة كاملة من باقة إنتربرايز بسعر موفّر",
+              },
+            ],
+            description:
+              "نظام نقاط بيع متكامل للمطاعم والمقاهي والمتاجر في الأردن",
+            featureList: [
+              "متكامل مع نظام الفوترة الوطني (JoFotara)",
+              "كاشير فائق السرعة",
+              "يبيع بدون إنترنت ويزامن تلقائياً",
+              "تعدد الفروع بتقارير مجمّعة",
+              "لوحة تحكّم سحابية من أي متصفّح",
+              "تقارير لحظية",
+              "إدارة المخزون",
+              "تصدير Excel",
+              "صلاحيات وموظفون",
+            ],
+          }),
+        }}
+      />
+
       <Navbar />
       {/* الصفحة الرئيسية كانت الوحيدة بلا معلَم <main> — صفحة /signup فيها واحد */}
       <main id="main">

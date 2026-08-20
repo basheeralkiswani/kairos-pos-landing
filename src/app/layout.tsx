@@ -55,6 +55,15 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   alternates: {
     canonical: "/",
+    // hreflang pair for the Arabic site and its English counterpart (/en). Without this
+    // the two read as unrelated pages competing for the same queries; with it Google
+    // treats them as one thing in two languages and serves the right one. x-default
+    // points at Arabic: this is a Jordanian product and Arabic is the primary audience.
+    languages: {
+      "ar-JO": "/",
+      en: "/en",
+      "x-default": "/",
+    },
   },
   openGraph: {
     type: "website",
@@ -136,73 +145,12 @@ gtag('config', '${ADS_ID}');`,
         )}
         {/* End Google tag */}
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              name: "Kairos Space POS",
-              applicationCategory: "BusinessApplication",
-              operatingSystem: "Windows",
-              offers: [
-                {
-                  "@type": "Offer",
-                  price: "9",
-                  priceCurrency: "JOD",
-                  name: "باقة ستارتر — شهري",
-                  description: "جهاز واحد وفرع واحد: الكاشير والمخزون والتقارير الأساسية",
-                },
-                {
-                  "@type": "Offer",
-                  price: "80",
-                  priceCurrency: "JOD",
-                  name: "باقة ستارتر — سنوي",
-                  description: "سنة كاملة من باقة ستارتر بسعر موفّر",
-                },
-                {
-                  "@type": "Offer",
-                  price: "14",
-                  priceCurrency: "JOD",
-                  name: "باقة بزنس — شهري",
-                  description: "حتى 3 أجهزة مع المزامنة السحابية ولوحة المالك والصلاحيات",
-                },
-                {
-                  "@type": "Offer",
-                  price: "120",
-                  priceCurrency: "JOD",
-                  name: "باقة بزنس — سنوي",
-                  description: "سنة كاملة من باقة بزنس بسعر موفّر",
-                },
-                {
-                  "@type": "Offer",
-                  price: "18",
-                  priceCurrency: "JOD",
-                  name: "باقة إنتربرايز — شهري",
-                  description: "تعدد الفروع وتطبيق الويتر والتقارير المتقدمة",
-                },
-                {
-                  "@type": "Offer",
-                  price: "160",
-                  priceCurrency: "JOD",
-                  name: "باقة إنتربرايز — سنوي",
-                  description: "سنة كاملة من باقة إنتربرايز بسعر موفّر",
-                },
-              ],
-              description:
-                "نظام نقاط بيع متكامل للمطاعم والمقاهي والمتاجر في الأردن",
-              featureList: [
-                "متكامل مع نظام الفوترة الوطني (JoFotara)",
-                "كاشير فائق السرعة",
-                "تقارير لحظية",
-                "إدارة المخزون",
-                "يعمل بدون إنترنت",
-                "تصدير Excel",
-                "صلاحيات وموظفون",
-              ],
-            }),
-          }}
-        />
+        {/* ⚠️ نُقلت بيانات SoftwareApplication المهيكلة من هنا إلى src/app/page.tsx
+            (2026-08-20). كانت في التخطيط الجذر فتُحقَن في **كل** صفحة: صفحة الدعم
+            وصفحة جوفوترة كانتا تُعلنان أنهما التطبيق نفسه بكامل جدول الأسعار، والصفحة
+            الإنجليزية /en صارت تحمل كيانَي SoftwareApplication متعارضَين (عربي
+            وإنجليزي) فتختار جوجل أحدهما عشوائياً. البيانات المهيكلة تصف الصفحة التي
+            هي عليها، لا الموقع كلّه. */}
       </head>
       <body className="font-[var(--font-ar)]">
         {/* Google Tag Manager (noscript) */}
