@@ -117,20 +117,24 @@ export const WA_MESSAGES = {
 // الملفات تُقدَّم من Cloudflare R2 عبر download.kairos-pos.com. الروابط ثابتة
 // وتشير دائماً إلى آخر إصدار، فلا حاجة لتحديث الموقع مع كل نشرة.
 export const DOWNLOAD_BASE = "https://download.kairos-pos.com";
-// ⚠️ الكاشير الخفيف حلّ محلّ مثبّت الديسكتوب (قرار D6). الرابط ثابت ويشير دائماً
-// إلى آخر إصدار، ويرفعه رافع الكاشير الخفيف في مستودع الـPOS.
-export const DOWNLOAD_EXE = `${DOWNLOAD_BASE}/Kairos-Cashier-Setup.exe`;
+// ⚠️ ما زال مثبّت الديسكتوب — عمداً، وإلى حين. الكاشير الخفيف هو البديل المقرّر
+// (D6) ومفتاحه الثابت جاهز `Kairos-Cashier-Setup.exe`، لكن **لم يُرفَع إصدار خفيف
+// واحد بعد**، فالمفتاح يعيد 404. زرّ تحميل ميت يخسر الزائر تماماً، فيبقى الرابط
+// على المثبّت العامل حتى تُنشَر أوّل نسخة خفيفة — عندها تُبدَّل الثوابت الثلاثة
+// (هذا و UPDATES_MANIFEST و FALLBACK_VERSION) دفعةً واحدة.
+export const DOWNLOAD_EXE = `${DOWNLOAD_BASE}/Kairos-Setup.exe`;
 export const DOWNLOAD_APK = `${DOWNLOAD_BASE}/KairosWaiter.apk`;
 export const DOWNLOAD_CASHIER_APK = `${DOWNLOAD_BASE}/KairosCashier.apk`;
-// قناة الكاشير الخفيف — منفصلة عن قناة الديسكتوب عمداً، وقناة الديسكتوب القديمة
-// (`updates.kairos-pos.com`) لم تعد قائمة أصلاً.
+// قناة الكاشير الخفيف — منفصلة عن قناة الديسكتوب عمداً. القناة القديمة
+// (`updates.kairos-pos.com`) حُذفت، وهذه فارغة حتى أوّل رفع؛ في الحالتين تُقرَأ
+// 404 فيُعرَض FALLBACK_VERSION أدناه. مقصود: لا رقم كاذب.
 export const UPDATES_MANIFEST = "https://thin-updates.kairos-pos.com/latest.yml";
 
 // احتياطي يُعرض إن تعذّر قراءة الإصدار الحيّ من قناة التحديث وقت البناء.
-// ⚠️ صار من سلسلة الكاشير الخفيف (2.x) لا الديسكتوب: القناة الجديدة قد تكون
-// فارغة قبل أوّل رفع، والاحتياطي هو ما يراه الزائر فعلاً حينها — رقم ديسكتوب
-// قديم هنا يعني صفحة تحميل تعلن إصداراً لم يعد موجوداً.
-export const FALLBACK_VERSION = "2.0.0";
+// ⚠️ يجب أن يطابق ما يُنزَّل فعلاً من DOWNLOAD_EXE أعلاه، لا ما نتمنّاه: القناة
+// الخفيفة فارغة، فهذا الرقم هو ما يراه الزائر — وإعلان 2.0.0 فوق رابط يُنزِّل
+// ديسكتوب 1.42.x وعدٌ كاذب. يُرفَع إلى 2.x مع أوّل نشرة خفيفة.
+export const FALLBACK_VERSION = "1.42.2";
 
 // أقل إصدار POS يعمل معه تطبيق الويتر (متطلبات السيرفر وصلت في 1.11.0).
 export const WAITER_MIN_POS_VERSION = "1.11.0";
