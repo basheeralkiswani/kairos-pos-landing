@@ -420,3 +420,105 @@ body::before {
     padding: 14px 16px; /* ارتفاع ≥48px */
   }
 }
+
+/* ─── إيقاع الصفحة ──────────────────────────────────────────────────────────
+   كان كل قسم يكتب حشوته بنفسه (py-[90px] · py-[70px] · py-9 · py-[18px])
+   وحاويته بنفسه (max-w-[1240px] mx-auto px-7). النتيجة إيقاع غير منتظم:
+   قسمان متلاصقان بـ36px وآخران متباعدان بـ180px — وهذا ما يُقرأ «معجوق».
+   هذه ثلاث درجات فقط، مرنة مع عرض الشاشة، تُطبَّق على كل قسم.
+   ⚠️ لا تُضِف درجة رابعة — التنوّع هنا هو المشكلة لا الحل. */
+.section {
+  position: relative;
+  padding-block: clamp(76px, 9vw, 132px);
+}
+
+/* للأقسام الرابطة (شارة جوفوترة، شريط الثقة) — حاضرة بلا أن تأخذ وزن قسم */
+.section-sm {
+  position: relative;
+  padding-block: clamp(40px, 5vw, 72px);
+}
+
+.shell {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: clamp(22px, 4vw, 36px);
+  position: relative;
+  z-index: 1;
+}
+
+/* ترويسة القسم — عرض أضيق من الشبكة عمداً: سطر النص المريح 60–70 حرفاً،
+   والعرض الكامل يجعل العين تقطع مسافة طويلة بين نهاية السطر وبدايته. */
+.section-head {
+  max-width: 620px;
+  margin-inline: auto;
+  text-align: center;
+  margin-bottom: clamp(44px, 5.5vw, 74px);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.section-head h2 {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  line-height: 1.22;
+}
+
+.section-head p {
+  font-size: var(--text-lg);
+  color: var(--color-muted);
+  margin-top: 16px;
+}
+
+/* البطاقات — حشوة داخلية واحدة عبر الصفحة. كانت 28/30/34px حسب المكوّن. */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-secondary);
+  border-radius: 22px;
+  padding: clamp(26px, 3vw, 34px);
+  box-shadow: 0 18px 40px -30px rgba(60, 45, 12, 0.35);
+}
+
+/* ─── شريط الدعوة اللاصق على الموبايل ───────────────────────────────────────
+   على الهاتف يختفي زر «ابدأ مجاناً» فور تمرير الهيرو، ولا يعود الزائر يراه إلا
+   إن وصل للأسفل. هذا الشريط يبقيه حاضراً دائماً بلا أن يزاحم المحتوى (سطر
+   واحد بارتفاع 64px، والصفحة تُفسح له مساحة في آخرها).
+   يظهر على الموبايل فقط — على سطح المكتب الناف بار الثابت يؤدي الدور. */
+.mobile-cta {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 150;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(247, 242, 231, 0.96);
+  backdrop-filter: blur(18px) saturate(140%);
+  border-top: 1px solid rgba(133, 101, 18, 0.18);
+  box-shadow: 0 -10px 30px -18px rgba(60, 45, 12, 0.4);
+}
+
+@media (max-width: 900px) {
+  .mobile-cta {
+    display: flex;
+  }
+
+  /* الزر العائم لواتساب يجلس فوق الشريط لا خلفه */
+  #waFloat {
+    bottom: 88px;
+  }
+
+  /* آخر قسم لا يختفي تحت الشريط */
+  body {
+    padding-bottom: 74px;
+  }
+}

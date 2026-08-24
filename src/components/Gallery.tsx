@@ -112,25 +112,19 @@ export default function Gallery() {
   };
 
   return (
-    <section className="py-[90px] relative scroll-mt-[104px]" id="gallery">
-      <div className="max-w-[1240px] mx-auto px-7 relative z-1">
-        <div className="text-center max-w-[680px] mx-auto mb-[50px] reveal">
-          <span className="inline-block text-[13px] font-bold text-primary tracking-[1px] uppercase mb-3.5">
-            جولة داخل النظام
-          </span>
-          <h2 className="text-[clamp(28px,4vw,44px)] font-black tracking-[-0.5px] leading-[1.3] mb-4">
-            شوف الواجهات الحقيقية
-          </h2>
-          <p className="text-[17px] max-sm:text-[16px] text-muted">
-            اضغط على أي شاشة لتتصفّح النظام كما هو فعلاً — لقطات مباشرة من Kairos Space POS.
-          </p>
+    <section className="section scroll-mt-[104px]" id="gallery">
+      <div className="shell">
+        <div className="section-head reveal">
+          <span className="eyebrow">جولة داخل النظام</span>
+          <h2>شوف الواجهات الحقيقية</h2>
+          <p>اضغط على أي شاشة لتتصفّحها — لقطات مباشرة من داخل النظام.</p>
         </div>
 
         {/* التبويبات — نمط tablist صحيح: قارئ الشاشة يعرف الآن أي شاشة معروضة */}
         <div
           role="tablist"
           aria-label="شاشات النظام"
-          className="flex flex-wrap justify-center gap-2.5 mb-6 reveal"
+          className="flex flex-wrap justify-center gap-2.5 mb-8 reveal"
         >
           {GALLERY_SHOTS.map((s) => (
             <button

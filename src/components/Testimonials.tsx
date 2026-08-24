@@ -27,22 +27,18 @@ export default function Testimonials() {
   if (TESTIMONIALS.length === 0) return null;
 
   return (
-    <section className="py-[90px] relative" id="testimonials">
-      <div className="max-w-[1240px] mx-auto px-7 relative z-1">
-        <div className="text-center max-w-[680px] mx-auto mb-[50px] reveal">
-          <span className="inline-block text-[13px] font-bold text-primary tracking-[1px] uppercase mb-3.5">
-            آراء العملاء
-          </span>
-          <h2 className="text-[clamp(28px,4vw,44px)] font-black tracking-[-0.5px] leading-[1.18] mb-4">
-            ماذا يقول أصحاب المقاهي والمطاعم
-          </h2>
+    <section className="section" id="testimonials">
+      <div className="shell">
+        <div className="section-head reveal">
+          <span className="eyebrow">آراء العملاء</span>
+          <h2>ماذا يقول أصحاب المقاهي والمطاعم</h2>
         </div>
 
-        <div className="grid grid-cols-3 gap-6 max-w-[1080px] mx-auto items-stretch max-[900px]:grid-cols-1">
+        <div className="grid grid-cols-3 gap-7 max-w-[1100px] mx-auto items-stretch max-[900px]:grid-cols-1">
           {TESTIMONIALS.map((t, i) => (
             <figure
               key={i}
-              className="reveal bg-surface border border-secondary shadow-[0_18px_40px_-30px_rgba(60,45,12,0.3)] rounded-[22px] p-[30px] flex flex-col"
+              className="reveal card flex flex-col"
             >
               <Stars count={t.rating ?? 5} />
               <blockquote className="text-[16px] leading-[1.7] text-text my-5 flex-1">

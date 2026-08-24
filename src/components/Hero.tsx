@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { goUrl, TRIAL_DAYS, PRICE_FROM } from "@/lib/constants";
+import { goUrl, TRIAL_DAYS, PRICE_FROM_YEAR, PRICE_FROM_MONTH } from "@/lib/constants";
 import { trackWhatsAppClick } from "@/components/Analytics";
 import { WhatsAppIcon, CheckIcon, ChartIcon, ReceiptIcon } from "@/components/Icons";
 
 export default function Hero() {
   return (
-    <header className="pt-[168px] pb-20 max-lg:pt-[130px] max-lg:pb-[50px]">
-      <div className="max-w-[1240px] mx-auto px-7 relative z-1 grid grid-cols-[1fr_1.08fr] gap-14 items-center max-lg:grid-cols-1 max-lg:gap-[50px]">
+    <header className="pt-[clamp(124px,13vw,176px)] pb-[clamp(52px,7vw,96px)]">
+      <div className="shell grid grid-cols-[1fr_1.08fr] gap-16 items-center max-lg:grid-cols-1 max-lg:gap-[54px]">
         {/* Text */}
         <div>
           <div className="reveal flex items-center gap-2.5 flex-wrap mb-[26px]">
@@ -37,16 +37,17 @@ export default function Hero() {
           </h1>
 
           <p className="reveal d2 text-[clamp(16px,2vw,19px)] text-muted max-w-[520px] mb-[30px]">
-            نظام <b className="text-text font-bold">Kairos Space POS</b> يجمع الكاشير، إدارة المخزون، والتقارير اللحظية في واجهة واحدة أنيقة وسريعة — وهذه لقطات حقيقية من داخل النظام، مش مجرد رسومات.
+            الكاشير والمخزون والتقارير اللحظية في نظام واحد سريع — والصور اللي بتشوفها لقطات حقيقية من داخله.
           </p>
 
           {/* السعر فوق الطية — وضوح كامل قبل أي زر */}
           <div className="reveal d2 flex items-center gap-2.5 mb-5 text-[15px] flex-wrap">
             <span className="inline-flex items-center gap-1.5 py-[6px] px-3.5 rounded-full bg-surface border border-[rgba(168,128,26,0.35)] font-bold text-primary shadow-[0_6px_16px_-10px_rgba(168,128,26,0.5)]">
-              ابدأ من <span className="num">{PRICE_FROM}</span> د.أ / شهر
+              ابدأ من <span className="num">{PRICE_FROM_YEAR}</span> د.أ / السنة
             </span>
             <span className="text-muted">
-              وجرّبه قبلها مجاناً <span className="num font-bold text-text">{TRIAL_DAYS}</span> يوماً — بلا بطاقة ائتمان
+              (≈<span className="num font-bold text-text">{PRICE_FROM_MONTH}</span> د.أ شهرياً) وجرّبه مجاناً{" "}
+              <span className="num font-bold text-text">{TRIAL_DAYS}</span> يوماً قبلها
             </span>
           </div>
 

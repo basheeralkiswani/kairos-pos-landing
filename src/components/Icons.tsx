@@ -163,3 +163,26 @@ export function MailIcon({ className = "w-[26px] h-[26px]" }: { className?: stri
     </svg>
   );
 }
+
+// شاشة المطبخ (KDS) — شاشة على قاعدة، وداخلها سطرا تذكرة.
+export function KitchenScreenIcon({ className = "w-[26px] h-[26px]" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="3" width="20" height="13" rx="2"/>
+      <path d="M8 21h8M12 16v5"/>
+      <path d="M7 8h6M7 11.5h4"/>
+    </svg>
+  );
+}
+
+// المنيو الرقمي — رمز QR مبسّط: ثلاث زوايا تحديد ونقطة بيانات.
+export function QrIcon({ className = "w-[26px] h-[26px]" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="7" height="7" rx="1"/>
+      <rect x="14" y="3" width="7" height="7" rx="1"/>
+      <rect x="3" y="14" width="7" height="7" rx="1"/>
+      <path d="M14 14h3v3h-3zM20 14v0M20 20v0M14 20h3"/>
+    </svg>
+  );
+}

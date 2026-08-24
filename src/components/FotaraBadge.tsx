@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function FotaraBadge() {
   return (
-    <section className="py-9 relative" id="fotara">
-      <div className="max-w-[1240px] mx-auto px-7 relative z-1 flex justify-center">
+    <section className="section-sm" id="fotara">
+      <div className="shell flex justify-center">
         <div className="reveal flex items-center gap-5 max-[560px]:flex-col max-[560px]:gap-4 max-[560px]:text-center bg-white rounded-[20px] py-5 px-7 shadow-[0_24px_50px_-28px_rgba(60,45,12,0.4)] border border-[rgba(168,128,26,0.3)] max-w-[680px]">
           <Image
             src="/images/fotara-logo.png"

@@ -1,50 +1,61 @@
-import { LightningIcon, BarChartIcon, BoxIcon, ClockIcon, ChatIcon, UsersIcon, ReceiptIcon } from "@/components/Icons";
+import {
+  LightningIcon,
+  BarChartIcon,
+  BoxIcon,
+  ClockIcon,
+  ChatIcon,
+  UsersIcon,
+  ReceiptIcon,
+  KitchenScreenIcon,
+  QrIcon,
+} from "@/components/Icons";
 import { type ReactNode } from "react";
 
+// تسع بطاقات في شبكة 3×3 مكتملة — كانت سبعاً فيبقى صفٌّ ناقصٌ بفراغين.
+//
+// ⚠️ الوصف سطر واحد لكل ميزة (10–16 كلمة). كان فقرة من 25–30 كلمة × 7 بطاقات
+// = جدار نصّ يقرأه الزائر مرة واحدة ثم يتوقّف. البطاقة هنا تقول ماذا تفعل
+// الميزة، والتفاصيل مكانها صفحاتها المخصّصة (/jofotara · /sales-channels).
 const FEATURES: { icon: ReactNode; title: string; desc: string; delay: string; badge?: string }[] = [
-  { icon: <ReceiptIcon />, title: "متكامل مع الفوترة الوطنية", desc: "أرسل فواتيرك مباشرةً إلى نظام الفوترة الوطني (JoFotara) التابع لدائرة ضريبة الدخل والمبيعات — التزام ضريبي كامل من داخل النظام بدون برامج منفصلة.", delay: "", badge: "جديد" },
-  { icon: <LightningIcon />, title: "كاشير فائق السرعة", desc: "أضف المنتجات بنقرة، طبّق الخصومات، وأتمم الدفع نقداً أو بالبطاقة أو المحفظة خلال ثوانٍ مع طباعة فاتورة تلقائية.", delay: "" },
-  { icon: <BarChartIcon />, title: "تقارير لحظية", desc: "لوحة تحكم تتحدّث تلقائياً كل 30 ثانية تُظهر الإيرادات، المصاريف، صافي الربح، والمنتجات الأكثر مبيعاً.", delay: "d1" },
-  { icon: <BoxIcon />, title: "إدارة المخزون", desc: "سجّل فواتير الموردين، تتبّع الكميات لحظياً، واربط كل عملية بيع بخصم تلقائي من المخزون.", delay: "d2" },
-  { icon: <ClockIcon />, title: "يعمل بدون إنترنت", desc: "النظام يعمل محلياً على جهازك دون انقطاع — لا توقف في وجه ضعف الشبكة، وبياناتك تبقى عندك.", delay: "" },
-  { icon: <ChatIcon />, title: "سجل طلبات وتصدير Excel", desc: "تصفّح وأعد طباعة أي طلب سابق، وصدّر تقاريرك إلى Excel بضغطة واحدة.", delay: "d1" },
-  { icon: <UsersIcon />, title: "صلاحيات وموظفون", desc: "حساب مدير محمي برمز سري وحسابات كاشير منفصلة — كل عملية مرتبطة باسم الموظف الذي نفّذها.", delay: "d2" },
+  { icon: <ReceiptIcon />, title: "متكامل مع الفوترة الوطنية", desc: "فواتيرك ترتفع مباشرةً إلى جوفوترة — التزام ضريبي كامل بلا برنامج منفصل.", delay: "", badge: "جديد" },
+  { icon: <LightningIcon />, title: "كاشير فائق السرعة", desc: "أضف بنقرة، طبّق الخصم، وأتمم الدفع نقداً أو بطاقة أو محفظة في ثوانٍ.", delay: "d1" },
+  { icon: <BarChartIcon />, title: "تقارير لحظية", desc: "الإيرادات والمصاريف وصافي الربح والأكثر مبيعاً — تتحدّث كل 30 ثانية.", delay: "d2" },
+  { icon: <QrIcon />, title: "منيو رقمي QR", desc: "الزبون يمسح الكود ويتصفّح منيوك ويطلب من طاولته — بلا تطبيق يحمّله.", delay: "", badge: "جديد" },
+  { icon: <KitchenScreenIcon />, title: "شاشة المطبخ KDS", desc: "الطلبات تصل شاشة المطبخ فوراً بحالتها ووقتها — بدل أكوام تذاكر الورق.", delay: "d1", badge: "جديد" },
+  { icon: <BoxIcon />, title: "إدارة المخزون", desc: "فواتير الموردين وكميات لحظية، وكل بيعة تخصم من المخزون تلقائياً.", delay: "d2" },
+  { icon: <ClockIcon />, title: "يعمل بدون إنترنت", desc: "البيع يكمل محلياً وقت انقطاع الشبكة، ويزامن وحده لمّا ترجع.", delay: "" },
+  { icon: <ChatIcon />, title: "سجل الطلبات وتصدير Excel", desc: "تصفّح أي طلب سابق وأعد طباعته، وصدّر تقاريرك بضغطة.", delay: "d1" },
+  { icon: <UsersIcon />, title: "صلاحيات وموظفون", desc: "حساب مدير محمي وحسابات كاشير منفصلة — كل عملية باسم منفّذها.", delay: "d2" },
 ];
 
 export default function Features() {
   return (
-    <section className="py-[90px] relative scroll-mt-[104px]" id="features">
-      <div className="max-w-[1240px] mx-auto px-7 relative z-1">
-        <div className="text-center max-w-[680px] mx-auto mb-[50px] reveal">
-          <span className="inline-block text-[13px] font-bold text-primary tracking-[1px] uppercase mb-3.5">
-            لماذا Kairos Space
-          </span>
-          <h2 className="text-[clamp(28px,4vw,44px)] font-black tracking-[-0.5px] leading-[1.18] mb-4">
-            كل ما يحتاجه عملك في نظام واحد
-          </h2>
-          <p className="text-[17px] text-muted">
-            من أول طلب يدخله الكاشير حتى آخر تقرير أرباح في نهاية اليوم — كل شيء مترابط وفي مكان واحد.
-          </p>
+    <section className="section scroll-mt-[104px]" id="features">
+      <div className="shell">
+        <div className="section-head reveal">
+          <span className="eyebrow">لماذا Kairos Space</span>
+          <h2>كل ما يحتاجه عملك في نظام واحد</h2>
+          <p>من أول طلب على الكاشير حتى آخر تقرير أرباح — كل شيء مترابط ومكانه واحد.</p>
         </div>
 
-        <div className="grid grid-cols-3 gap-5 max-[900px]:grid-cols-2 max-[600px]:grid-cols-1">
+        <div className="grid grid-cols-3 gap-6 max-[900px]:grid-cols-2 max-[600px]:grid-cols-1">
           {FEATURES.map((f, i) => (
             <div
               key={i}
-              className={`feat-card reveal ${f.delay} relative overflow-hidden bg-surface border rounded-[20px] p-[30px_26px] shadow-[0_18px_40px_-30px_rgba(60,45,12,0.3)] transition-all duration-350 hover:-translate-y-[5px] hover:shadow-[0_26px_50px_-28px_rgba(60,45,12,0.4)] ${
-                f.badge ? "border-[rgba(168,128,26,0.4)]" : "border-secondary"
+              className={`feat-card card reveal ${f.delay} relative overflow-hidden transition-all duration-350 hover:-translate-y-[5px] hover:shadow-[0_26px_50px_-28px_rgba(60,45,12,0.4)] ${
+                f.badge ? "!border-[rgba(168,128,26,0.4)]" : ""
               }`}
             >
               {f.badge && (
-                <span className="absolute top-[18px] left-[18px] bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10] text-[12px] font-extrabold py-1 px-2.5 rounded-full">
+                <span className="absolute top-5 left-5 bg-gradient-to-l from-[#e3c14f] to-[#c49b25] text-[#221b10] text-2xs font-extrabold py-1 px-2.5 rounded-full">
                   {f.badge}
                 </span>
               )}
-              <div className="w-[52px] h-[52px] rounded-[14px] bg-[rgba(168,128,26,0.1)] border border-[rgba(168,128,26,0.22)] flex items-center justify-center text-primary mb-5">
+              <div className="w-[52px] h-[52px] rounded-[14px] bg-[rgba(168,128,26,0.1)] border border-[rgba(168,128,26,0.22)] flex items-center justify-center text-primary mb-6">
                 {f.icon}
               </div>
-              <h3 className="text-[19px] font-extrabold mb-[9px]">{f.title}</h3>
-              <p className="text-[15px] text-muted leading-[1.65]">{f.desc}</p>
+              <h3 className="text-lg font-extrabold mb-2.5">{f.title}</h3>
+              <p className="text-[15px] text-muted leading-[1.7]">{f.desc}</p>
             </div>
           ))}
         </div>

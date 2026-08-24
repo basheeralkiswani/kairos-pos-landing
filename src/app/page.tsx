@@ -13,6 +13,8 @@ import CtaBand from "@/components/CtaBand";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import RevealObserver from "@/components/RevealObserver";
+import MobileCta from "@/components/MobileCta";
+import { PLANS } from "@/lib/constants";
 
 export default function Home() {
   return (
@@ -42,50 +44,13 @@ export default function Home() {
             name: "Kairos Space POS",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Windows",
-            offers: [
-              {
-                "@type": "Offer",
-                price: "9",
-                priceCurrency: "JOD",
-                name: "باقة ستارتر — شهري",
-                description: "جهاز واحد وفرع واحد: الكاشير والمخزون والتقارير الأساسية",
-              },
-              {
-                "@type": "Offer",
-                price: "80",
-                priceCurrency: "JOD",
-                name: "باقة ستارتر — سنوي",
-                description: "سنة كاملة من باقة ستارتر بسعر موفّر",
-              },
-              {
-                "@type": "Offer",
-                price: "14",
-                priceCurrency: "JOD",
-                name: "باقة بزنس — شهري",
-                description: "حتى 3 أجهزة مع المزامنة السحابية ولوحة المالك والصلاحيات",
-              },
-              {
-                "@type": "Offer",
-                price: "120",
-                priceCurrency: "JOD",
-                name: "باقة بزنس — سنوي",
-                description: "سنة كاملة من باقة بزنس بسعر موفّر",
-              },
-              {
-                "@type": "Offer",
-                price: "18",
-                priceCurrency: "JOD",
-                name: "باقة إنتربرايز — شهري",
-                description: "تعدد الفروع وتطبيق الويتر والتقارير المتقدمة",
-              },
-              {
-                "@type": "Offer",
-                price: "160",
-                priceCurrency: "JOD",
-                name: "باقة إنتربرايز — سنوي",
-                description: "سنة كاملة من باقة إنتربرايز بسعر موفّر",
-              },
-            ],
+            offers: PLANS.map((p) => ({
+              "@type": "Offer",
+              price: String(p.price),
+              priceCurrency: "JOD",
+              name: `باقة ${p.title} — اشتراك سنوي`,
+              description: p.tagline,
+            })),
             description:
               "نظام نقاط بيع متكامل للمطاعم والمقاهي والمتاجر في الأردن",
             featureList: [
@@ -96,6 +61,8 @@ export default function Home() {
               "لوحة تحكّم سحابية من أي متصفّح",
               "تقارير لحظية",
               "إدارة المخزون",
+              "منيو رقمي QR وطلب ذاتي",
+              "شاشة مطبخ KDS",
               "تصدير Excel",
               "صلاحيات وموظفون",
             ],
@@ -120,6 +87,7 @@ export default function Home() {
       </main>
       <Footer />
       <WhatsAppFloat />
+      <MobileCta />
       <RevealObserver />
     </>
   );

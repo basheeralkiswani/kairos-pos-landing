@@ -12,7 +12,7 @@ const FAQ = [
   },
   {
     q: "كم سعر الاشتراك في النظام؟",
-    a: `في ثلاث باقات: ستارتر ${PLANS[0].monthly} دنانير شهرياً أو ${PLANS[0].yearly} ديناراً سنوياً، وبزنس ${PLANS[1].monthly} ديناراً شهرياً أو ${PLANS[1].yearly} ديناراً سنوياً، وإنتربرايز ${PLANS[2].monthly} ديناراً شهرياً أو ${PLANS[2].yearly} ديناراً سنوياً — بلا رسوم تفعيل. الاشتراك السنوي يوفّر أكثر من 25%. وتستطيع البدء بتجربة مجانية ${TRIAL_DAYS} يوماً بلا بطاقة ائتمان وبلا التزام قبل أن تدفع.`,
+    a: `في ثلاث باقات باشتراك سنوي: ${PLANS[0].title} ${PLANS[0].price} ديناراً في السنة، و${PLANS[1].title} ${PLANS[1].price} ديناراً في السنة، و${PLANS[2].title} ${PLANS[2].price} ديناراً في السنة — بلا رسوم تفعيل ولا رسوم خفية. وتستطيع البدء بتجربة مجانية ${TRIAL_DAYS} يوماً بلا بطاقة ائتمان وبلا التزام قبل أن تدفع.`,
   },
   {
     q: "ما الفرق بين كايروس سبيس والأنظمة العالمية مثل Foodics؟",
@@ -68,25 +68,19 @@ export default function Faq() {
   };
 
   return (
-    <section id="faq" className="max-w-[1240px] mx-auto px-7 relative z-1 py-20 scroll-mt-[104px]">
+    <section id="faq" className="shell section-sm scroll-mt-[104px]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <header className="text-center max-w-[720px] mx-auto reveal">
-        <div className="text-primary text-[13px] font-bold tracking-wide">
-          قبل ما تشترك
-        </div>
-        <h2 className="text-[clamp(26px,4vw,38px)] font-extrabold leading-[1.25] mt-2">
-          أسئلة <b className="text-primary">شائعة</b>
-        </h2>
-        <p className="text-muted text-[16px] mt-3">
-          كل ما يخطر ببال صاحب الكافيه أو المطعم أو السوبرماركت قبل الاشتراك — وإجابته باختصار.
-        </p>
+      <header className="section-head reveal">
+        <span className="eyebrow">قبل ما تشترك</span>
+        <h2>أسئلة <b className="text-primary">شائعة</b></h2>
+        <p>كل ما يخطر ببال صاحب المحل قبل الاشتراك — وإجابته باختصار.</p>
       </header>
 
-      <div className="max-w-[860px] mx-auto mt-10 space-y-3">
+      <div className="max-w-[860px] mx-auto space-y-3">
         {FAQ.map((item) => (
           <details
             key={item.q}

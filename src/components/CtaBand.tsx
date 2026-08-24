@@ -9,13 +9,13 @@ import { WhatsAppIcon } from "@/components/Icons";
 // في الذاكرة وسط الهوية العاجية.
 export default function CtaBand() {
   return (
-    <section className="pt-5 pb-[90px] relative scroll-mt-[104px]" id="contact">
-      <div className="max-w-[1240px] mx-auto px-7 relative z-1">
-        <div className="on-dark cta-band-glow bg-gradient-to-br from-dark to-dark-2 border border-[rgba(212,175,55,0.35)] rounded-[28px] py-[60px] px-10 max-sm:px-6 text-center relative overflow-hidden reveal shadow-[0_40px_80px_-40px_rgba(34,27,16,0.7)]">
+    <section className="pt-6 pb-[clamp(72px,9vw,120px)] scroll-mt-[104px]" id="contact">
+      <div className="shell">
+        <div className="on-dark cta-band-glow bg-gradient-to-br from-dark to-dark-2 border border-[rgba(212,175,55,0.35)] rounded-[28px] py-[clamp(52px,7vw,76px)] px-10 max-sm:px-6 text-center relative overflow-hidden reveal shadow-[0_40px_80px_-40px_rgba(34,27,16,0.7)]">
           <h2 className="text-[clamp(28px,4.2vw,46px)] font-black tracking-[-0.5px] mb-4 relative text-[#f7f2e7]">
             جاهز تنقل عملك للمستوى التالي؟
           </h2>
-          <p className="text-[18px] text-[#cfc4a8] mx-auto mb-7 max-w-[540px] relative">
+          <p className="text-lg text-[#cfc4a8] mx-auto mb-9 max-w-[520px] relative">
             ابدأ تجربتك المجانية لمدة <span className="num text-[#e3c14f] font-bold">{TRIAL_DAYS}</span> يوماً الآن — بدون التزام وبدون بطاقة ائتمان.
           </p>
           {/* زر أساسي واحد. النص موحّد مع بقية الصفحة («ابدأ التجربة المجانية»)

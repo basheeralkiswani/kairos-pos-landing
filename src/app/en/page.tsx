@@ -17,7 +17,7 @@
 // only the ROOT layout render <html>, so the override has to live here).
 import type { Metadata } from "next";
 import Link from "next/link";
-import { APP_URL, WA_NUMBER, PRICE_FROM, TRIAL_DAYS, CLIENT_COUNT } from "@/lib/constants";
+import { APP_URL, WA_NUMBER, PRICE_FROM_YEAR, PRICE_FROM_MONTH, TRIAL_DAYS, CLIENT_COUNT } from "@/lib/constants";
 
 const SITE = "https://www.kairos-pos.com";
 
@@ -80,7 +80,7 @@ const FAQ = [
   },
   {
     q: "How is it priced?",
-    a: `Plans start from ${PRICE_FROM} JOD per month, with a ${TRIAL_DAYS}-day free trial and no card required. Extra branches and extra tills are priced per unit on top of the base plan.`,
+    a: `Plans are billed annually and start from ${PRICE_FROM_YEAR} JOD per year (about ${PRICE_FROM_MONTH} JOD a month), with a ${TRIAL_DAYS}-day free trial and no card required. Extra branches and extra tills are priced per unit on top of the base plan.`,
   },
 ];
 
@@ -137,9 +137,9 @@ export default function EnglishPage() {
                   "Cloud point-of-sale for restaurants, cafés and shops in Jordan, integrated with JoFotara e-invoicing and tolerant of internet outages.",
                 offers: {
                   "@type": "Offer",
-                  price: String(PRICE_FROM),
+                  price: String(PRICE_FROM_YEAR),
                   priceCurrency: "JOD",
-                  description: `Plans from ${PRICE_FROM} JOD/month with a ${TRIAL_DAYS}-day free trial`,
+                  description: `Plans from ${PRICE_FROM_YEAR} JOD/year with a ${TRIAL_DAYS}-day free trial`,
                 },
                 areaServed: { "@type": "Country", name: "Jordan" },
               },
@@ -207,7 +207,7 @@ export default function EnglishPage() {
             </a>
           </div>
           <p className="text-[13px] text-muted mt-4">
-            No credit card. Plans from <span className="num">{PRICE_FROM}</span> JOD/month.
+            No credit card. Plans from <span className="num">{PRICE_FROM_YEAR}</span> JOD/year.
           </p>
         </section>
 

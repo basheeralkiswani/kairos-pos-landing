@@ -9,8 +9,8 @@ import { CLIENT_COUNT } from "@/lib/constants";
 // جوفوترة، وأن البرنامج أردني الصنع. الرقم الصغير المحدَّد أصدق من المبهم.
 export default function Trust() {
   return (
-    <div className="py-[18px] pb-1.5">
-      <div className="max-w-[1240px] mx-auto px-7 relative z-1 reveal">
+    <div className="pt-4 pb-2">
+      <div className="shell reveal">
         <div className="flex items-center justify-center gap-x-8 gap-y-4 flex-wrap">
           {/* الدليل الرقمي */}
           <span className="inline-flex items-center gap-2.5 rounded-full bg-surface border border-[rgba(133,101,18,0.3)] py-2 px-4 shadow-[0_8px_20px_-14px_rgba(60,45,12,0.5)]">
