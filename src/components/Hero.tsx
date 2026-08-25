@@ -1,10 +1,25 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { goUrl, TRIAL_DAYS, PRICE_FROM_YEAR, PRICE_FROM_MONTH } from "@/lib/constants";
 import { trackWhatsAppClick } from "@/components/Analytics";
 import { WhatsAppIcon, CheckIcon, ChartIcon, ReceiptIcon } from "@/components/Icons";
+
+// الفيلم الترويجي: حزمة منفصلة تُجلب بعد التفاعل الأول، ولا تُصيَّر على الخادم.
+// لو دخل في حزمة الهيرو لأخّر أثقلَ ما فوق الطية (العنوان + زر التجربة) خلف
+// شيء لا يراه الزائر إلا بعد التمرير. الهيكل العظمي يحجز نفس النسبة 16:9
+// فلا تقفز الصفحة عند وصوله (CLS = 0).
+const HeroPromo = dynamic(() => import("@/components/promo/HeroPromo"), {
+  ssr: false,
+  loading: () => (
+    <div
+      className="w-full rounded-[clamp(16px,2vw,26px)] border border-[rgba(168,128,26,0.28)] bg-[#f5ead8]"
+      style={{ aspectRatio: "1920 / 1080" }}
+    />
+  ),
+});
 
 export default function Hero() {
   return (
@@ -154,6 +169,25 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* الفيلم بعرض الصفحة، لا داخل عمود اللابتوب: نصوصه مؤلَّفة على مسرح
+          1920 عريض، وفي العمود (≈570px) يهبط مقياسه إلى 0.30 فيصير السطر
+          الإنجليزي 7px — مقروء نظرياً فقط. بعرض الحاوية يصير المقياس ≈0.62.
+
+          العنوان والوصف هنا لا داخل HeroPromo: المكوّن يُحمَّل ديناميكياً بلا
+          تصيير على الخادم، فلو كان النص بداخله لغاب عن HTML الأولي — يقفز
+          للزائر بعد الترطيب، ولا تراه محرّكات البحث. */}
+      <section className="shell reveal d4 mt-[clamp(46px,6vw,74px)]" aria-labelledby="promoHeading">
+        <div className="mb-3.5">
+          <h2 id="promoHeading" className="text-[clamp(18px,2.4vw,22px)] font-extrabold leading-tight">
+            شوف النظام وهو يشتغل
+          </h2>
+          <p className="text-[14px] text-muted mt-1">
+            عرض من داخل Kairos — كل شاشة هنا هي واجهة النظام الفعلية، لا رسم توضيحي.
+          </p>
+        </div>
+        <HeroPromo />
+      </section>
     </header>
   );
 }
