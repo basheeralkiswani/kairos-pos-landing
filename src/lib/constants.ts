@@ -168,11 +168,11 @@ export const APP_URL = "https://app.kairos-pos.com";
 export const SIGNUP_ENDPOINT = `${APP_URL}/api/web/signup-request`;
 
 
+// ⚠️ توحيد 2026-08-25: نوعان تجاريان فقط — يطابقان كونسول المشغّل وشاشة التزويد.
+// المحرّك الداخلي ما يزال يفهم القيم القديمة للمتاجر القائمة؛ الجديد يبدأ بهذين.
 export const BUSINESS_TYPES = [
-  { value: "supermarket", label: "سوبرماركت / بقالة" },
-  { value: "coffee", label: "كوفي شوب" },
-  { value: "restaurant", label: "مطعم" },
-  { value: "fastfood", label: "وجبات سريعة" },
+  { value: "restaurant", label: "مطاعم وكافيهات" },
+  { value: "supermarket", label: "سوبرماركت وبيع تجزئة" },
 ] as const;
 
 export const GALLERY_SHOTS = [
