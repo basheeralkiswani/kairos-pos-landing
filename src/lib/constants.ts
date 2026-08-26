@@ -129,7 +129,7 @@ export const DOWNLOAD_CASHIER_APK = `${DOWNLOAD_BASE}/KairosCashier.apk`;
 // يستبدل أحدهما الآخر عند التثبيت.
 export const DOWNLOAD_THIN_APK = `${DOWNLOAD_BASE}/KairosCashierThin.apk`;
 // يُقرأ من mobile/android/app/build.gradle عند كل إصدار — لا مصدر ثانٍ.
-export const THIN_APK_VERSION = "0.1.15";
+export const THIN_APK_VERSION = "0.2.3";
 // قناة الكاشير الخفيف — منفصلة عن قناة الديسكتوب عمداً. القناة القديمة
 // (`updates.kairos-pos.com`) حُذفت، وهذه حيّة منذ 2.0.0؛ فالرقم المعروض على
 // الصفحة يُقرأ من نفس المانيفست الذي تقرأه أجهزة العملاء.
