@@ -522,3 +522,171 @@ body::before {
     padding-bottom: 74px;
   }
 }
+
+/* ─── وضع التوافق — متصفحات قديمة (كروم < 111) ──────────────────────────────
+   Tailwind v4 يلفّ كل مخرجاته داخل @layer، وكروم الأقدم من 99 يُسقط الطبقات
+   بالكامل: تظهر الصفحة HTML عارياً (روابط زرقاء مكدّسة — شوهد فعلاً على تابلت
+   أندرويد قديم، 2026-09-02). كل CSS هذا الملف غير مُطبَّق (unlayered) فيبقى
+   حيّاً هناك — الناقص هو متغيرات @theme (تُصرَّف داخل طبقة) وكل الـutilities.
+
+   هذه الكتلة تعيد الحد الأدنى: المتغيرات + عمود واحد مقروء + ناف بار وأزرار
+   وصور مضبوطة + لافتة «حدّث متصفحك». الحارس oklch = عتبة دعم Tailwind v4
+   (كروم 111)؛ المتصفحات الحديثة لا تدخل الكتلة إطلاقاً. النطاق 99–110 يدخلها
+   فتغلب قواعدها (غير المُطبَّقة) على الـutilities — مقبول عمداً: شريحة شبه
+   معدومة، والبديل صفحة نصف مكسورة.
+
+   ⚠️ لا تنقل شيئاً من هنا خارج @supports: أي قاعدة غير مُطبَّقة خارج الحارس
+   تغلب utilities على المتصفحات الحديثة وتكسر التصميم الفعلي. */
+@supports not (color: oklch(0% 0 0)) {
+  /* متغيرات @theme أعلاه — انسخ أي قيمة تتغيّر هناك إلى هنا */
+  :root {
+    --color-bg: #f7f2e7;
+    --color-surface: #fffcf4;
+    --color-surface-2: #efe7d3;
+    --color-primary: #856512;
+    --color-primary-soft: #c39a25;
+    --color-gold: #d4af37;
+    --color-secondary: #e5dbc3;
+    --color-text: #241f15;
+    --color-muted: #6e6552;
+    --color-green: #13744a;
+    --color-wa: #0f7a40;
+    --color-dark: #221b10;
+    --color-dark-2: #322817;
+    --text-2xs: 0.75rem;
+    --text-xs: 0.8125rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 2rem;
+    --text-4xl: 2.5rem;
+    --text-5xl: 3.25rem;
+    --font-ar: 'Alexandria', sans-serif;
+    --font-en: 'Manrope', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  img { max-width: 100%; height: auto; }
+
+  /* SVG بلا width/height يفرد 300×150 افتراضياً — كل أيقوناتنا viewBox فقط */
+  svg { width: 1.1em; height: 1.1em; vertical-align: -0.15em; }
+
+  ul, ol { list-style: none; padding: 0; margin: 0; }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .hidden { display: none; }
+  .glow { display: none; }
+
+  /* حركة الكشف تعتمد على JS (RevealObserver) — الغالب أنه لا يعمل هنا،
+     فتبقى أقسام كاملة شفافة. بدونها ظهرت مساحة فارغة بطول شاشتين (المحاكاة). */
+  .reveal { opacity: 1; transform: none; transition: none; }
+
+  /* عمود واحد مقروء بدل الشبكات المنهارة */
+  main, footer {
+    display: block;
+    max-width: 720px;
+    margin-inline: auto;
+    padding: 16px;
+  }
+
+  /* لافتة الترقية — CSS فقط، لا تعتمد على JS (الذي غالباً لا يعمل هنا أصلاً) */
+  main::before {
+    content: '⚠ متصفّحك قديم فبعض التنسيقات لا تظهر — حدّث Google Chrome لتصفّح الموقع بكامل شكله.';
+    display: block;
+    background: #fff3cd;
+    color: #6b5200;
+    border: 1px solid #e2c766;
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* الناف بار: ثابت التدفق، شعار + روابط في صف يلتف */
+  #nav {
+    position: static;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-secondary);
+    padding: 12px 16px;
+  }
+  #nav > div { max-width: 720px; margin: 0 auto; }
+  #nav img { height: 38px; width: auto; display: inline-block; vertical-align: middle; }
+  #nav a {
+    display: inline-block;
+    padding: 6px 0;
+    margin-inline-end: 16px;
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  /* صف روابط سطح المكتب (hidden lg:flex) ورابط الدخول — نظهرهما بدل
+     الهامبرغر لأن قائمته تحتاج JS */
+  #nav .hidden { display: inline; }
+  #nav button { display: none; }
+
+  .btn-gold, .btn-outline, .btn-wa { margin: 6px 3px; }
+  button.btn-gold, button.btn-wa { border: 0; }
+  .card { margin-bottom: 16px; }
+
+  /* شاشة اللابتوب: بديل aspect-ratio بحيلة الحشوة (يعمل حتى كروم 88−) */
+  .laptop-screen { height: 0; padding-bottom: 45.22%; }
+
+  /* المعرض: قواعد .gallery-img الأصلية (أعلاه) غير مُطبَّقة فتعمل هنا كما هي —
+     المكسور هو الزر الحاوي (block w-full utilities ساقطة): inline-block
+     ينكمش لعرض المحتوى فيهبط المعرض كله إلى ~36px. زر داخل main = عنصر
+     تفاعلي بعرض كامل؛ .btn-gold وأخواتها تغلبه بالتخصيص فلا تتأثر. */
+  main button {
+    display: block;
+    width: 100%;
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    text-align: inherit;
+  }
+
+  /* زر واتساب العائم: فقاعة صغيرة بدل رابط عملاق في آخر الصفحة */
+  #waFloat {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 200;
+    text-decoration: none;
+  }
+  #waFloat > span:first-child { display: none; } /* الفقاعة النصية (تحتاج hover بعرض متحرك) */
+  #waFloat > span:last-child {
+    display: flex;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #1faa55;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px -8px rgba(31, 170, 85, 0.5);
+  }
+  #waFloat svg { width: 26px; height: 26px; color: #fff; }
+
+  footer {
+    border-top: 1px solid var(--color-secondary);
+    color: var(--color-muted);
+    font-size: 14px;
+  }
+  footer a { color: var(--color-muted); }
+}
