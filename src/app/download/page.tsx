@@ -7,6 +7,7 @@ import RevealObserver from "@/components/RevealObserver";
 import {
   DOWNLOAD_APK,
   DOWNLOAD_CASHIER_APK,
+  DOWNLOAD_KDS_APK,
   DOWNLOAD_THIN_APK,
   THIN_APK_VERSION,
   CASHIER_MIN_POS_VERSION,
@@ -136,6 +137,38 @@ export default async function DownloadPage() {
                 <dt className="text-muted">يتطلّب</dt>
                 <dd className="font-medium">
                   الكاشير على <span className="num">{WAITER_MIN_POS_VERSION}</span> فأحدث
+                </dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted">الشبكة</dt>
+                <dd className="font-medium">نفس شبكة جهاز الكاشير</dd>
+              </div>
+            </dl>
+          </Card>
+
+          <Card>
+            <div className="text-blue text-[13px] font-bold">للمطبخ · أندرويد</div>
+            <h2 className="text-[24px] font-extrabold mt-2">شاشة المطبخ (KDS)</h2>
+            <p className="text-muted text-[15px] mt-3 leading-[1.75]">
+              تابلت في المطبخ يعرض الطلبات لحظة وصولها من الكاشير أو الويتر مع ملاحظات كل صنف،
+              والطبّاخ يضغط «ابدأ» ثم «جاهز» فيُنبَّه الكاشير. يتصل بجهاز الكاشير على نفس شبكة
+              الواي فاي — لا يحتاج إنترنت.
+            </p>
+            <a
+              href={DOWNLOAD_KDS_APK}
+              className="mt-6 flex items-center justify-center bg-surface-2 border border-secondary text-text py-4 px-6 rounded-xl font-bold text-[16px] no-underline transition-all duration-250 hover:border-primary/50 hover:-translate-y-0.5"
+            >
+              تحميل APK · <span className="num mx-1.5">3</span> ميجابايت
+            </a>
+            <dl className="mt-6 pt-5 border-t border-white/6 text-[14px] space-y-2.5">
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted">نظام التشغيل</dt>
+                <dd className="font-medium">أندرويد <span className="num">7</span> فأحدث</dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted">يتطلّب</dt>
+                <dd className="font-medium">
+                  الكاشير الخفيف <span className="num">2.2.0</span> / أندرويد <span className="num">0.3.3</span> فأحدث، وتفعيل «شاشة المطبخ» من الإدارة
                 </dd>
               </div>
               <div className="flex justify-between gap-4">

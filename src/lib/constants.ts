@@ -123,13 +123,16 @@ export const DOWNLOAD_BASE = "https://download.kairos-pos.com";
 export const DOWNLOAD_EXE = `${DOWNLOAD_BASE}/Kairos-Cashier-Setup.exe`;
 export const DOWNLOAD_APK = `${DOWNLOAD_BASE}/KairosWaiter.apk`;
 export const DOWNLOAD_CASHIER_APK = `${DOWNLOAD_BASE}/KairosCashier.apk`;
+// شاشة المطبخ (KDS): قشرة أندرويد تكتشف الكاشير على شبكة المحل وتفتح /kds المخدومة
+// من الكاشير نفسه — نفس نمط تطبيق الويتر (معرّف com.kairos.kds).
+export const DOWNLOAD_KDS_APK = `${DOWNLOAD_BASE}/KairosKds.apk`;
 // الكاشير الخفيف: تِلّ مستقلّ يزامن مع لوحة كايروس السحابية. مفتاح مختلف عن
 // KairosCashier.apk أعلاه عن قصد — ذاك تابع لجهاز كاشير على شبكة المحل، وهذا
 // تِلّ قائم بذاته، ومعرّفهما في أندرويد مختلف (com.kairos.cashier.thin) حتى لا
 // يستبدل أحدهما الآخر عند التثبيت.
 export const DOWNLOAD_THIN_APK = `${DOWNLOAD_BASE}/KairosCashierThin.apk`;
 // يُقرأ من mobile/android/app/build.gradle عند كل إصدار — لا مصدر ثانٍ.
-export const THIN_APK_VERSION = "0.3.2";
+export const THIN_APK_VERSION = "0.3.3";
 // قناة الكاشير الخفيف — منفصلة عن قناة الديسكتوب عمداً. القناة القديمة
 // (`updates.kairos-pos.com`) حُذفت، وهذه حيّة منذ 2.0.0؛ فالرقم المعروض على
 // الصفحة يُقرأ من نفس المانيفست الذي تقرأه أجهزة العملاء.
