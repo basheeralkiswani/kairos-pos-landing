@@ -245,6 +245,10 @@ export default async function DownloadPage() {
                 <dd className="font-medium">حساب على لوحة كايروس</dd>
               </div>
               <div className="flex justify-between gap-4">
+                <dt className="text-muted">الطابعة</dt>
+                <dd className="font-medium">حرارية عبر واي فاي أو بلوتوث</dd>
+              </div>
+              <div className="flex justify-between gap-4">
                 <dt className="text-muted">الإصدار</dt>
                 <dd className="font-medium"><span className="num">{THIN_APK_VERSION}</span></dd>
               </div>
