@@ -8,6 +8,8 @@ import {
   ReceiptIcon,
   KitchenScreenIcon,
   QrIcon,
+  BellIcon,
+  ShieldCheckIcon,
 } from "@/components/Icons";
 import { type ReactNode } from "react";
 
@@ -26,6 +28,9 @@ const FEATURES: { icon: ReactNode; title: string; desc: string; delay: string; b
   { icon: <ClockIcon />, title: "يعمل بدون إنترنت", desc: "البيع يكمل محلياً وقت انقطاع الشبكة، ويزامن وحده لمّا ترجع.", delay: "" },
   { icon: <ChatIcon />, title: "سجل الطلبات وتصدير Excel", desc: "تصفّح أي طلب سابق وأعد طباعته، وصدّر تقاريرك بضغطة.", delay: "d1" },
   { icon: <UsersIcon />, title: "صلاحيات وموظفون", desc: "حساب مدير محمي وحسابات كاشير منفصلة — كل عملية باسم منفّذها.", delay: "d2" },
+  // 2026-09-05 — المرحلة الأولى: ما يبرّر باقة البزنس أمام صاحب المحل الغائب.
+  { icon: <BellIcon />, title: "تنبيهات على تلغرام", desc: "ملخص اليوم كل مساء، وتنبيه فوري لعجز الوردية والمخزون المنخفض وقفزات الإلغاء.", delay: "", badge: "جديد" },
+  { icon: <ShieldCheckIcon />, title: "سجل التدقيق", desc: "من ألغى، من خصم، من حذف، من غيّر سعراً — من أي جهاز ومتى. يكتبه النظام ولا يعدّله أحد.", delay: "d1", badge: "جديد" },
 ];
 
 export default function Features() {
