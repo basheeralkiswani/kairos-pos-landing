@@ -67,7 +67,7 @@ export default function Pricing() {
         {/* على الموبايل تنزل الشارات الأربع سطراً لكل واحدة (أربعة أسطر
             لأربع كلمات) — فتصير هي نفسها الازدحام الذي جاءت لتزيله.
             حشوة وخط أصغر تحت 640px يُدخلان اثنتين في السطر. */}
-        <div className="flex items-center justify-center gap-x-2.5 gap-y-2.5 flex-wrap mb-[46px] reveal">
+        <div className="flex items-center justify-center gap-x-2.5 gap-y-2.5 flex-wrap mb-4 reveal">
           {REASSURANCE.map((t) => (
             <span
               key={t}
@@ -80,6 +80,18 @@ export default function Pricing() {
             </span>
           ))}
         </div>
+        {/* ما قبل الشراء (المرحلة 0، 2026-09-06): التجهيز والتدريب مشمولان في كل
+            باقة، والتزام الخدمة مكتوب — سطر واحد يربطهما بالسعر بدل أن يبحث الزائر. */}
+        <p className="text-center text-[14px] text-muted mb-[46px] leading-[1.8] reveal">
+          التجهيز والتدريب مشمولان مع كل باقة —{" "}
+          <Link href="/onboarding" className="text-primary font-bold no-underline hover:underline">
+            كيف يتم
+          </Link>
+          {" "}·{" "}
+          <Link href="/sla" className="text-primary font-bold no-underline hover:underline">
+            التزامنا بالخدمة
+          </Link>
+        </p>
 
         {/* البطاقات — الفجوة 28px والحشوة من .card: كانت البطاقات تتلاصق
             بـ24px وحشوتها 28px، فالحدّ بين بطاقة وأخرى أضيق من الحدّ بين

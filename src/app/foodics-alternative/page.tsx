@@ -225,6 +225,16 @@ export default function FoodicsAlternativePage() {
             <h2 className="text-[18px] font-extrabold">اقرأ أيضاً</h2>
             <ul className="mt-4 space-y-2.5 text-[15px]">
               <li>
+                <Link href="/esal-alternative" className="text-primary font-bold no-underline hover:underline">
+                  بديل إيصال (Esal) في الأردن ←
+                </Link>
+              </li>
+              <li>
+                <Link href="/posrocket-alternative" className="text-primary font-bold no-underline hover:underline">
+                  بديل POSRocket في الأردن ←
+                </Link>
+              </li>
+              <li>
                 <Link href="/jofotara" className="text-primary font-bold no-underline hover:underline">
                   جوفوترة: دليل نظام الفوترة الوطني ←
                 </Link>

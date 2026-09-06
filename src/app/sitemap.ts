@@ -15,6 +15,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // صفحات محتوى تستهدف البحث العضوي (عنقود موضوعي).
     { url: `${BASE}/jofotara`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/foodics-alternative`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/esal-alternative`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/posrocket-alternative`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    // صفحتا ما قبل الشراء (المرحلة 0 من دراسة المنافسين، 2026-09-06).
+    { url: `${BASE}/onboarding`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/sla`, lastModified: now, changeFrequency: "yearly", priority: 0.6 },
     { url: `${BASE}/sales-channels`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/docs`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/support`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },

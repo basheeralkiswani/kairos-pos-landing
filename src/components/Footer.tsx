@@ -28,6 +28,10 @@ export default function Footer() {
                 { href: "/jofotara", label: "جوفوترة", hash: false },
                 { href: "/sales-channels", label: "قنوات البيع", hash: false },
                 { href: "/foodics-alternative", label: "بديل فودكس", hash: false },
+                { href: "/esal-alternative", label: "بديل إيصال", hash: false },
+                { href: "/posrocket-alternative", label: "بديل POSRocket", hash: false },
+                { href: "/onboarding", label: "التجهيز والتدريب", hash: false },
+                { href: "/sla", label: "التزامنا بالخدمة", hash: false },
                 { href: "/#contact", label: "تواصل معنا", hash: true },
               ].map((l) => (
                 <li key={l.href}>
