@@ -260,6 +260,52 @@ export default async function DownloadPage() {
               هذا المصدر. التحديثات تصل بتحميل النسخة الأحدث من هنا.
             </p>
           </Card>
+
+          <Card>
+            <div className="flex items-center gap-2">
+              <span className="text-blue text-[13px] font-bold">تِلّ أونلاين · ويندوز وأندرويد</span>
+              <span className="text-[11px] font-bold text-primary border border-primary/40 rounded-full px-2 py-0.5">
+                بالطلب
+              </span>
+            </div>
+            <h2 className="text-[24px] font-extrabold mt-2">كاشير كايروس الأونلاين</h2>
+            <p className="text-muted text-[15px] mt-3 leading-[1.75]">
+              نفس شاشة الكاشير، بلا أي قاعدة بيانات على الجهاز: يبيع مباشرةً على لوحة
+              كايروس السحابية. لأنه لا يحتفظ بنسخة ثانية من البيانات، لا توجد فيه مزامنة
+              من الأساس — لا تأخير ولا تعارض ولا فاتورة تنتظر الرفع. مقابل ذلك: يحتاج
+              اتصالاً مستقرّاً، وزرّ الدفع يتعطّل عند انقطاعه.
+            </p>
+            <a
+              href={waUrl(WA_MESSAGES.online)}
+              className="mt-6 flex items-center justify-center bg-primary text-background py-4 px-6 rounded-xl font-bold text-[16px] no-underline transition-all duration-250 hover:-translate-y-0.5"
+            >
+              اطلب التفعيل
+            </a>
+            <dl className="mt-6 pt-5 border-t border-white/6 text-[14px] space-y-2.5">
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted">الأجهزة</dt>
+                <dd className="font-medium">ويندوز <span className="num">10</span> فأحدث · أندرويد <span className="num">7</span> فأحدث</dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted">الاتصال</dt>
+                <dd className="font-medium">إنترنت دائم (لا يبيع بلا اتصال)</dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted">الطابعة</dt>
+                <dd className="font-medium">حرارية عبر واي فاي أو بلوتوث</dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted">يتطلّب</dt>
+                <dd className="font-medium">حساب على لوحة كايروس + تفعيل الميزة</dd>
+              </div>
+            </dl>
+            {/* لا رابط مباشر عن قصد: الميزة تُفعَّل لكل محلّ على حدة، فزرّ تنزيل
+                عامّ يَعِد بشيء لا يعمل قبل التفعيل. */}
+            <p className="text-muted text-[13px] mt-5 leading-[1.7]">
+              يُفعَّل لكل محلّ على حدة، فنرسل لك رابط التثبيت بعد تجهيز حسابك. إن كان
+              خطّك ينقطع أحياناً، الكاشير الخفيف أعلاه هو الخيار الأنسب.
+            </p>
+          </Card>
         </div>
 
         {/* ── تحذير ويندوز عند التثبيت ───────────────────────────────── */}
