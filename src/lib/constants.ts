@@ -164,7 +164,7 @@ export const DOWNLOAD_THIN_APK = `${DOWNLOAD_BASE}/KairosCashierThin.apk`;
 export const DOWNLOAD_ONLINE_EXE = `${DOWNLOAD_BASE}/Kairos-Cashier-Online-Setup.exe`;
 export const DOWNLOAD_ONLINE_APK = `${DOWNLOAD_BASE}/KairosCashierOnline.apk`;
 // يُقرأ من mobile/android/app/build.gradle عند كل إصدار — لا مصدر ثانٍ.
-export const THIN_APK_VERSION = "0.3.21";
+export const THIN_APK_VERSION = "0.3.23";
 // قناة الكاشير الخفيف — منفصلة عن قناة الديسكتوب عمداً. القناة القديمة
 // (`updates.kairos-pos.com`) حُذفت، وهذه حيّة منذ 2.0.0؛ فالرقم المعروض على
 // الصفحة يُقرأ من نفس المانيفست الذي تقرأه أجهزة العملاء.
@@ -172,7 +172,7 @@ export const UPDATES_MANIFEST = "https://thin-updates.kairos-pos.com/latest.yml"
 
 // احتياطي يُعرض إن تعذّر قراءة الإصدار الحيّ من قناة التحديث وقت البناء.
 // ⚠️ يجب أن يطابق ما يُنزَّل فعلاً من DOWNLOAD_EXE أعلاه، لا ما نتمنّاه.
-export const FALLBACK_VERSION = "2.11.0";
+export const FALLBACK_VERSION = "2.13.0";
 
 // أقل إصدار POS يعمل معه تطبيق الويتر (متطلبات السيرفر وصلت في 1.11.0).
 export const WAITER_MIN_POS_VERSION = "1.11.0";
