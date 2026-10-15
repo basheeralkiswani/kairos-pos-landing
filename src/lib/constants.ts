@@ -172,7 +172,7 @@ export const UPDATES_MANIFEST = "https://thin-updates.kairos-pos.com/latest.yml"
 
 // احتياطي يُعرض إن تعذّر قراءة الإصدار الحيّ من قناة التحديث وقت البناء.
 // ⚠️ يجب أن يطابق ما يُنزَّل فعلاً من DOWNLOAD_EXE أعلاه، لا ما نتمنّاه.
-export const FALLBACK_VERSION = "2.16.5";
+export const FALLBACK_VERSION = "2.22.0";
 
 // أقل إصدار POS يعمل معه تطبيق الويتر (متطلبات السيرفر وصلت في 1.11.0).
 export const WAITER_MIN_POS_VERSION = "1.11.0";
