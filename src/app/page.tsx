@@ -4,6 +4,7 @@ import Trust from "@/components/Trust";
 import FotaraBadge from "@/components/FotaraBadge";
 import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
+import AiAssistant from "@/components/AiAssistant";
 import Gallery from "@/components/Gallery";
 import Testimonials from "@/components/Testimonials";
 import HomeSignup from "@/components/HomeSignup";
@@ -60,6 +61,7 @@ export default function Home() {
               "تعدد الفروع بتقارير مجمّعة",
               "لوحة تحكّم سحابية من أي متصفّح",
               "تقارير لحظية",
+              "مساعد ذكاء اصطناعي (Claude) يجيب عن المبيعات والأرباح ويسجّل فواتير الموردين",
               "إدارة المخزون",
               "منيو رقمي QR وطلب ذاتي",
               "شاشة مطبخ KDS",
@@ -77,6 +79,7 @@ export default function Home() {
         <Trust />
         <FotaraBadge />
         <HowItWorks />
+        <AiAssistant />
         <Features />
         <Gallery />
         <Testimonials />

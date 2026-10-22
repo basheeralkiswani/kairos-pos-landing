@@ -180,6 +180,74 @@ body::before {
   .laptop-3d {
     transform: rotateX(6deg) rotateY(-5deg) !important;
   }
+
+  /* رسائل المحادثة تظهر كلها دفعة واحدة بلا تأخير متتابع */
+  .ai-chat .ai-msg {
+    opacity: 1 !important;
+    transform: none;
+    animation: none !important;
+  }
+}
+
+/* ─── محادثة المساعد الذكي (AiAssistant.tsx) ──────────────────────────────
+   الرسائل تظهر واحدة تلو الأخرى حين يصل القسم إلى الشاشة (RevealObserver يضيف
+   .in للـ figure). مخفية فقط قبل .in — وكتلة التوافق ووضع تقليل الحركة
+   يظهرانها كلها. */
+.ai-chat:not(.in) .ai-msg {
+  opacity: 0;
+}
+
+.ai-chat.in .ai-msg {
+  animation: ai-pop 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.ai-chat.in .ai-thread > .ai-msg:nth-child(1) { animation-delay: 0.45s; }
+.ai-chat.in .ai-thread > .ai-msg:nth-child(2) { animation-delay: 1.35s; }
+.ai-chat.in .ai-thread > .ai-msg:nth-child(3) { animation-delay: 2.5s; }
+.ai-chat.in .ai-thread > .ai-msg:nth-child(4) { animation-delay: 3.4s; }
+/* شريط الكتابة خارج قائمة الرسائل — يظهر أخيراً */
+.ai-chat.in > .ai-msg { animation-delay: 4.1s; }
+
+@keyframes ai-pop {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+.ai-caret {
+  width: 2px;
+  height: 18px;
+  background: var(--color-primary);
+  animation: ai-blink 1.1s steps(1) infinite;
+}
+
+@keyframes ai-blink {
+  50% { opacity: 0; }
+}
+
+/* توهّج القسم الداكن — ذهبي من الزاوية وأخضر خافت من المقابلة */
+.ai-band::before,
+.ai-band::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.ai-band::before {
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.24), transparent 70%);
+  top: -200px;
+  right: -140px;
+}
+
+.ai-band::after {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(127, 227, 171, 0.1), transparent 70%);
+  bottom: -160px;
+  left: -100px;
 }
 
 /* Laptop Mockup — الإطار يبقى داكناً (جهاز حقيقي) والشاشة الفاتحة تتوهج داخله */
@@ -594,6 +662,7 @@ body::before {
   /* حركة الكشف تعتمد على JS (RevealObserver) — الغالب أنه لا يعمل هنا،
      فتبقى أقسام كاملة شفافة. بدونها ظهرت مساحة فارغة بطول شاشتين (المحاكاة). */
   .reveal { opacity: 1; transform: none; transition: none; }
+  .ai-chat .ai-msg { opacity: 1 !important; animation: none !important; }
 
   /* عمود واحد مقروء بدل الشبكات المنهارة */
   main, footer {

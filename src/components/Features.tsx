@@ -10,6 +10,7 @@ import {
   QrIcon,
   BellIcon,
   ShieldCheckIcon,
+  SparkleIcon,
 } from "@/components/Icons";
 import { type ReactNode } from "react";
 
@@ -31,6 +32,8 @@ const FEATURES: { icon: ReactNode; title: string; desc: string; delay: string; b
   // 2026-09-05 — المرحلة الأولى: ما يبرّر باقة البزنس أمام صاحب المحل الغائب.
   { icon: <BellIcon />, title: "تنبيهات على تلغرام", desc: "ملخص اليوم كل مساء، وتنبيه فوري لعجز الوردية والمخزون المنخفض وقفزات الإلغاء.", delay: "", badge: "جديد" },
   { icon: <ShieldCheckIcon />, title: "سجل التدقيق", desc: "من ألغى، من خصم، من حذف، من غيّر سعراً — من أي جهاز ومتى. يكتبه النظام ولا يعدّله أحد.", delay: "d1", badge: "جديد" },
+  // 2026-10-22 — البطاقة الثانية عشرة تكمل الصف الرابع؛ تفاصيلها في قسم #ai و/ai-assistant.
+  { icon: <SparkleIcon />, title: "مساعد ذكاء اصطناعي", desc: "اسأل Claude عن أرقامك بالعربي، وصوّر فاتورة المورد ليسجّلها بعد موافقتك.", delay: "d2", badge: "جديد" },
 ];
 
 export default function Features() {

@@ -15,6 +15,7 @@ const NAV_LINKS: { href: string; label: string; hash: boolean }[] = [
   { href: "/#features", label: "المميزات", hash: true },
   { href: "/#gallery", label: "واجهات النظام", hash: true },
   { href: "/#pricing", label: "الأسعار", hash: true },
+  { href: "/ai-assistant", label: "المساعد الذكي", hash: false },
   { href: "/jofotara", label: "جوفوترة", hash: false },
   { href: "/download", label: "تحميل", hash: false },
   { href: "/support", label: "الدعم", hash: false },
@@ -86,14 +87,15 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* روابط سطح المكتب */}
-        <div className="hidden lg:flex items-center gap-[30px]">
+        {/* روابط سطح المكتب — من xl (1280) لا lg: بسبعة روابط (أُضيف «المساعد
+            الذكي» 2026-10-22) دفعت على 1024 زرَّ «ابدأ مجاناً» خارج الشاشة. */}
+        <div className="hidden xl:flex items-center gap-[26px]">
           {NAV_LINKS.map((l) =>
             l.hash ? (
               <a
                 key={l.href}
                 href={l.href}
-                className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors"
+                className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors whitespace-nowrap"
               >
                 {l.label}
               </a>
@@ -101,7 +103,7 @@ export default function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors"
+                className="text-muted no-underline text-[15px] font-medium hover:text-text transition-colors whitespace-nowrap"
               >
                 {l.label}
               </Link>
@@ -112,7 +114,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <a
             href={APP_URL}
-            className="hidden lg:inline-flex items-center min-h-[44px] px-4 text-[15px] font-semibold text-text no-underline hover:text-primary transition-colors whitespace-nowrap"
+            className="hidden xl:inline-flex items-center min-h-[44px] px-4 text-[15px] font-semibold text-text no-underline hover:text-primary transition-colors whitespace-nowrap"
           >
             تسجيل الدخول
           </a>
@@ -133,7 +135,7 @@ export default function Navbar() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? "إغلاق القائمة" : "فتح القائمة"}
-            className="lg:hidden w-11 h-11 shrink-0 flex flex-col items-center justify-center gap-[5px] rounded-xl border border-secondary bg-surface hover:border-[rgba(133,101,18,0.45)] transition-colors"
+            className="xl:hidden w-11 h-11 shrink-0 flex flex-col items-center justify-center gap-[5px] rounded-xl border border-secondary bg-surface hover:border-[rgba(133,101,18,0.45)] transition-colors"
           >
             <span
               className={`block w-[19px] h-[2px] bg-text rounded-full transition-transform duration-250 ${
@@ -159,7 +161,7 @@ export default function Navbar() {
         id="mobile-menu"
         ref={panelRef}
         hidden={!open}
-        className="lg:hidden border-t border-secondary bg-[rgba(247,242,231,0.98)] backdrop-blur-[18px] mt-3"
+        className="xl:hidden border-t border-secondary bg-[rgba(247,242,231,0.98)] backdrop-blur-[18px] mt-3"
       >
         <ul className="max-w-[1240px] mx-auto px-5 py-2 list-none">
           {NAV_LINKS.map((l) => (

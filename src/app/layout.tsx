@@ -47,6 +47,7 @@ export const metadata: Metadata = {
     "الفوترة الإلكترونية",
     "فاتورة إلكترونية الأردن",
     "JoFotara",
+    "نظام كاشير بالذكاء الاصطناعي",
     "Kairos Space",
   ],
   authors: [{ name: "Kairos Space" }],

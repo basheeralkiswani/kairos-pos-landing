@@ -27,6 +27,7 @@ export default function Footer() {
                 { href: "/support", label: "الدعم الفني", hash: false },
                 { href: "/jofotara", label: "جوفوترة", hash: false },
                 { href: "/sales-channels", label: "قنوات البيع", hash: false },
+                { href: "/ai-assistant", label: "المساعد الذكي", hash: false },
                 { href: "/foodics-alternative", label: "بديل فودكس", hash: false },
                 { href: "/esal-alternative", label: "بديل إيصال", hash: false },
                 { href: "/posrocket-alternative", label: "بديل POSRocket", hash: false },
