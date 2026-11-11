@@ -1,14 +1,22 @@
 import Link from "next/link";
 import { ArrowIcon, CheckIcon, SparkleIcon } from "@/components/Icons";
 
-// مساعد Claude (موصل MCP على app.kairos-pos.com/mcp — ميزة ai_assistant،
+// المساعد الذكي (موصل MCP على app.kairos-pos.com/mcp — ميزة ai_assistant،
 // البزنس والشاملة). كل سطر هنا يقابل أداة تعمل اليوم: القراءة تحت reports:read،
 // فاتورة المورد عبر kairos_record_purchase_invoice (اقتراح ثم تأكيد)، والتنبؤ
 // بالطلب عبر kairos_reorder_forecast. ما لا يستطيعه أبداً (بيع، حذف، إبطال)
 // مكتوب في docs/kairos-cloud/AI-ASSISTANT.md في مستودع الـ POS — لا نعد بغيره.
 //
+// 2026-11-11 — الموصل نفسه صار يقبل ChatGPT بجانب Claude (قسم «ChatGPT عميل
+// ثانٍ» في الوثيقة نفسها): الرابط واحد والصلاحيات واحدة والقواعد واحدة. لذلك
+// النص هنا يتكلّم عن «المساعد» والأسماء تأتي من AI_CLIENTS وحدها — عميل ثالث
+// يُضاف هناك فقط.
+//
 // المحادثة نصّ حقيقي في HTML لا صورة: تُقرأ لمحرّكات البحث ولقارئ الشاشة.
 // الحركة CSS فقط (.ai-chat.in .ai-msg في globals.css) — لا JS إضافي.
+
+// المساعدات التي يقبلها الموصل اليوم — بالاسم كما يكتبه صاحبه (لاتيني، LTR).
+export const AI_CLIENTS = ["Claude", "ChatGPT"] as const;
 
 export const AI_POINTS = [
   "يقرأ أرقامك كلها: المبيعات، صافي الربح، الورديات، الضريبة، والمخزون",
@@ -122,7 +130,7 @@ export default function AiAssistant() {
             <div className="reveal">
               <span className="inline-flex items-center gap-2 py-1.5 px-3.5 rounded-full border border-[rgba(227,193,79,0.45)] text-[#e3c14f] text-[13px] font-bold">
                 <SparkleIcon className="w-4 h-4" />
-                جديد · مساعد ذكاء اصطناعي
+                جديد · صار يعمل مع ChatGPT أيضاً
               </span>
 
               <h2
@@ -137,10 +145,24 @@ export default function AiAssistant() {
               </h2>
 
               <p className="text-[clamp(16px,1.9vw,18px)] text-[#cfc4a8] mt-5 leading-[1.9] max-w-[540px]">
-                اربط Kairos بـ <b className="text-[#f7f2e7]">Claude</b> — مساعد الذكاء الاصطناعي
-                من Anthropic — واسأله عن مبيعاتك وأرباحك ومخزونك كأنك تحكي مع محاسبك.
-                صوّر فاتورة المورد وقله «سجّلها»: يطابق الأصناف ويعرضها عليك قبل أن يكتب أي شيء.
+                اربط Kairos بمساعد الذكاء الاصطناعي الذي تستخدمه أصلاً، واسأله عن مبيعاتك
+                وأرباحك ومخزونك كأنك تحكي مع محاسبك. صوّر فاتورة المورد وقله «سجّلها»:
+                يطابق الأصناف ويعرضها عليك قبل أن يكتب أي شيء.
               </p>
+
+              {/* الأسماء نصّ لا شعارات: تُقرأ لمحرّكات البحث، ولا نستعمل علامة غيرنا رسماً. */}
+              <div className="mt-5 flex items-center gap-2 flex-wrap text-[13px]">
+                <span className="text-[#a89d85]">يعمل مع</span>
+                {AI_CLIENTS.map((c) => (
+                  <span
+                    key={c}
+                    dir="ltr"
+                    className="inline-flex items-center rounded-full border border-[rgba(227,193,79,0.35)] bg-[rgba(247,242,231,0.07)] px-3 py-1 font-bold text-[#f7f2e7]"
+                  >
+                    {c}
+                  </span>
+                ))}
+              </div>
 
               <ul className="mt-7 space-y-3">
                 {AI_POINTS.map((p) => (

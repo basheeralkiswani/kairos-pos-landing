@@ -5,6 +5,7 @@ import FotaraBadge from "@/components/FotaraBadge";
 import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
 import AiAssistant from "@/components/AiAssistant";
+import WhatsNew from "@/components/WhatsNew";
 import Gallery from "@/components/Gallery";
 import Testimonials from "@/components/Testimonials";
 import HomeSignup from "@/components/HomeSignup";
@@ -61,8 +62,9 @@ export default function Home() {
               "تعدد الفروع بتقارير مجمّعة",
               "لوحة تحكّم سحابية من أي متصفّح",
               "تقارير لحظية",
-              "مساعد ذكاء اصطناعي (Claude) يجيب عن المبيعات والأرباح ويسجّل فواتير الموردين",
+              "مساعد ذكاء اصطناعي (Claude أو ChatGPT) يجيب عن المبيعات والأرباح ويسجّل فواتير الموردين",
               "إدارة المخزون",
+              "عروض بشروط وكوبونات خصم ووجبات كومبو",
               "منيو رقمي QR وطلب ذاتي",
               "شاشة مطبخ KDS",
               "تصدير Excel",
@@ -81,6 +83,7 @@ export default function Home() {
         <HowItWorks />
         <AiAssistant />
         <Features />
+        <WhatsNew />
         <Gallery />
         <Testimonials />
         <Pricing />

@@ -8,18 +8,31 @@ import { AiChatDemo } from "@/components/AiAssistant";
 import { APP_URL, PLANS, TRIAL_DAYS, waUrl } from "@/lib/constants";
 
 // صفحة محتوى للبحث العضوي: «نظام كاشير بالذكاء الاصطناعي» وأخواتها.
-// ⚠️ كل قدرة مذكورة هنا أداة تعمل اليوم في موصل Claude (apps/web/mcp في مستودع
+// ⚠️ كل قدرة مذكورة هنا أداة تعمل اليوم في موصل المساعد (apps/web/mcp في مستودع
 // الـ POS، والمرجع docs/kairos-cloud/AI-ASSISTANT.md). قائمة «ما لا يفعله أبداً»
 // منقولة من قسم «ما لا يستطيعه Claude أبداً» هناك — إن فُتحت صلاحية جديدة
 // (scope) فحدّث القائمتين معاً، ولا تَعِد بشيء قبل أن يُشحن.
+//
+// 2026-11-11 — ChatGPT عميل ثانٍ لنفس الموصل (قسم «ChatGPT عميل ثانٍ» في الوثيقة):
+// الرابط واحد والصلاحيات واحدة والقواعد واحدة، فكل ما في الصفحة يصدق على الاثنين
+// إلا ما يخصّ تطبيق كل مساعد (خطوات الربط، الجوال، خطة الحساب) — وهذا في SETUP.
 
 const MCP_URL = `${APP_URL}/mcp`;
 const PLAN_NAMES = `${PLANS[1].title} و${PLANS[2].title}`;
 
+// شروط الربط من جهة OpenAI تتغيّر ولا نملكها، فهي جملة واحدة مؤرَّخة هنا لا عبارات
+// مبعثرة في الصفحة — نفس قاعدة أسعار المنافسين في صفحات «بديل …».
+// المصدر: «Connecting custom MCP servers in ChatGPT» في مركز مساعدة OpenAI كما
+// قُرئت في CHATGPT_SEEN: الربط الكامل (قراءة وكتابة) لخطط Business و Enterprise/Edu،
+// خطة Pro للقراءة فقط، ومن موقع ChatGPT لا من تطبيق الجوال.
+// ⚠️ عند كل مراجعة للصفحة أعد قراءة المقالة وحدّث التاريخ والجملة معاً.
+const CHATGPT_SEEN = "تشرين الثاني 2026";
+const CHATGPT_PLAN_NOTE = `إضافة موصل مخصّص في ChatGPT تتبع خطة حسابك هناك. حسب ما تنشره OpenAI (${CHATGPT_SEEN}): الربط الكامل لخطط Business و Enterprise و Edu، وخطة Pro للقراءة فقط، ومن موقع ChatGPT على المتصفّح لا من تطبيق الجوال.`;
+
 export const metadata: Metadata = {
   title: "نظام كاشير بالذكاء الاصطناعي: اسأل محلّك بالعربي | Kairos Space",
   description:
-    "مساعد ذكاء اصطناعي (Claude) مربوط بنظام نقاط البيع Kairos: اسأله عن المبيعات والأرباح والمخزون بالعربي، وصوّر فاتورة المورد ليسجّلها — ولا يكتب شيئاً قبل موافقتك.",
+    "مساعد ذكاء اصطناعي مربوط بنظام نقاط البيع Kairos، يعمل مع Claude و ChatGPT: اسأله عن المبيعات والأرباح والمخزون بالعربي، وصوّر فاتورة المورد ليسجّلها — ولا يكتب شيئاً قبل موافقتك.",
   keywords: [
     "نظام كاشير بالذكاء الاصطناعي",
     "نظام نقاط بيع ذكي",
@@ -28,6 +41,8 @@ export const metadata: Metadata = {
     "مساعد ذكي لصاحب المحل",
     "تحليل المبيعات بالذكاء الاصطناعي",
     "إدخال فواتير الموردين من صورة",
+    "ربط ChatGPT بنظام الكاشير",
+    "ChatGPT",
     "Claude",
     "AI POS",
     "الأردن",
@@ -39,7 +54,7 @@ export const metadata: Metadata = {
     url: "/ai-assistant",
     title: "اسأل محلّك بالعربي… ويجاوبك بالأرقام — مساعد Kairos الذكي",
     description:
-      "مساعد ذكاء اصطناعي يقرأ مبيعاتك وأرباحك ومخزونك، ويسجّل فواتير الموردين من صورة — بعد موافقتك فقط.",
+      "مساعد ذكاء اصطناعي يعمل مع Claude و ChatGPT: يقرأ مبيعاتك وأرباحك ومخزونك، ويسجّل فواتير الموردين من صورة — بعد موافقتك فقط.",
   },
 };
 
@@ -73,10 +88,38 @@ const NEVER = [
   "يغيّر إعدادات المحل أو الموظفين وصلاحياتهم",
 ];
 
+// خطوات الربط لكل مساعد. الخطوة الأخيرة واحدة عند الاثنين لأنها صفحة Kairos نفسها
+// (تسجيل الدخول + صناديق الصلاحيات). مسار Claude من قسم «النشر» في AI-ASSISTANT.md،
+// ومسار ChatGPT من قسم «ChatGPT عميل ثانٍ» — وهو نفسه المكتوب للمالك في لوحة التحكّم.
+const LAST_STEP = "سجّل دخولك بحساب Kairos نفسه، واختر الصلاحيات التي تمنحها — ثم اسأل.";
+const SETUP: { name: string; steps: string[]; note?: string }[] = [
+  {
+    name: "Claude",
+    steps: [
+      "افتح Claude على الجوال أو المتصفّح، ومن الإعدادات ادخل Connectors واختر Add custom connector.",
+      "الصق رابط Kairos واضغط Connect.",
+      LAST_STEP,
+    ],
+  },
+  {
+    name: "ChatGPT",
+    steps: [
+      "افتح chatgpt.com/plugins من المتصفّح، اضغط + ثم Add custom MCP server.",
+      "سمِّه Kairos، الصق الرابط نفسه، واختر OAuth طريقةً للمصادقة.",
+      LAST_STEP,
+    ],
+    note: CHATGPT_PLAN_NOTE,
+  },
+];
+
 const FAQ = [
   {
     q: "ما هو المساعد الذكي في كايروس سبيس؟",
-    a: "هو ربط بين نظام نقاط البيع Kairos ومساعد الذكاء الاصطناعي Claude من شركة Anthropic. بعد الربط تسأل Claude بالعربي عن مبيعاتك وأرباحك ومخزونك فيجيبك من أرقام محلّك الفعلية، وتستطيع أن تطلب منه تسجيل فواتير الموردين والمصاريف وتعديل الأسعار — بعد موافقتك على كل تغيير.",
+    a: "هو ربط بين نظام نقاط البيع Kairos ومساعد الذكاء الاصطناعي الذي تستخدمه: Claude من شركة Anthropic أو ChatGPT من شركة OpenAI. بعد الربط تسأله بالعربي عن مبيعاتك وأرباحك ومخزونك فيجيبك من أرقام محلّك الفعلية، وتستطيع أن تطلب منه تسجيل فواتير الموردين والمصاريف وتعديل الأسعار — بعد موافقتك على كل تغيير.",
+  },
+  {
+    q: "أستخدم Claude أم ChatGPT؟ وهل أستطيع ربط الاثنين؟",
+    a: "استخدم الذي اعتدت عليه. الاثنان يصلان إلى الأرقام نفسها ويخضعان للقواعد نفسها: الصلاحيات التي تمنحها أنت، وعرض كل تغيير عليك قبل تنفيذه، وسجل التدقيق. وتستطيع ربط الاثنين معاً — كل اتصال يظهر باسم مساعده في لوحة التحكّم وفي سجل التدقيق، وتلغي أيّاً منهما وحده.",
   },
   {
     q: "هل يستطيع الذكاء الاصطناعي أن يغيّر شيئاً في محلّي دون علمي؟",
@@ -84,15 +127,15 @@ const FAQ = [
   },
   {
     q: "هل أحتاج خبرة تقنية لاستخدامه؟",
-    a: "لا. تكتب له كما تكتب لمحاسبك على واتساب، باللهجة التي تتكلّمها. الربط نفسه يتم مرة واحدة: تضيف رابط Kairos في تطبيق Claude، تسجّل دخولك بحساب Kairos، وتوافق على الصلاحيات.",
+    a: "لا. تكتب له كما تكتب لمحاسبك على واتساب، باللهجة التي تتكلّمها. الربط نفسه يتم مرة واحدة: تضيف رابط Kairos في Claude أو ChatGPT، تسجّل دخولك بحساب Kairos، وتوافق على الصلاحيات.",
   },
   {
     q: "هل يعمل من الجوال؟",
-    a: "نعم. يعمل من تطبيق Claude على الجوال ومن المتصفّح، فتسأل عن أرقام محلّك وأنت خارجه، وتصوّر فاتورة المورد لحظة استلامها.",
+    a: `مع Claude نعم: يعمل من تطبيق الجوال ومن المتصفّح، فتسأل عن أرقام محلّك وأنت خارجه، وتصوّر فاتورة المورد لحظة استلامها. أما ChatGPT فالموصلات المخصّصة فيه تعمل من موقعه على المتصفّح لا من تطبيق الجوال، حسب ما تنشره OpenAI (${CHATGPT_SEEN}).`,
   },
   {
     q: "في أي باقة يتوفّر المساعد الذكي؟",
-    a: `المساعد الذكي متاح في باقتَي ${PLAN_NAMES}. وتحتاج أيضاً حساباً على Claude لتتحدّث معه.`,
+    a: `المساعد الذكي متاح في باقتَي ${PLAN_NAMES}. وتحتاج أيضاً حساباً على Claude أو ChatGPT لتتحدّث معه. ${CHATGPT_PLAN_NOTE}`,
   },
   {
     q: "هل يمكن إيقاف المساعد بعد ربطه؟",
@@ -100,7 +143,7 @@ const FAQ = [
   },
 ];
 
-const CTA_MSG = "مرحباً 👋 بدي أعرف أكثر عن المساعد الذكي (Claude) في Kairos.";
+const CTA_MSG = "مرحباً 👋 بدي أعرف أكثر عن المساعد الذكي (Claude / ChatGPT) في Kairos.";
 
 export default function AiAssistantPage() {
   const faqLd = {
@@ -137,10 +180,11 @@ export default function AiAssistantPage() {
               نظام كاشير <b className="text-primary">بالذكاء الاصطناعي</b>: اسأل محلّك بالعربي
             </h1>
             <p className="text-muted text-[17px] mt-5 leading-[1.9]">
-              اربط Kairos بـ <b className="text-text">Claude</b>، مساعد الذكاء الاصطناعي من
-              Anthropic، واسأله عن مبيعاتك وأرباحك ومخزونك كأنك تحكي مع محاسبك — من
-              الجوال أو الكمبيوتر، وفي أي وقت. وحين تطلب منه أن يسجّل أو يعدّل، يعرض
-              عليك ما سيفعله أولاً ولا يكتب شيئاً قبل موافقتك.
+              اربط Kairos بمساعد الذكاء الاصطناعي الذي تستخدمه —{" "}
+              <b className="text-text">Claude</b> أو <b className="text-text">ChatGPT</b> —
+              واسأله عن مبيعاتك وأرباحك ومخزونك كأنك تحكي مع محاسبك، في أي وقت. وحين
+              تطلب منه أن يسجّل أو يعدّل، يعرض عليك ما سيفعله أولاً ولا يكتب شيئاً قبل
+              موافقتك.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="/signup" className="btn-gold max-sm:w-full">
@@ -186,6 +230,11 @@ export default function AiAssistantPage() {
                 إلى أرقام محلّك في Kairos ويرجع لك بالجواب — مبيعات، ربح صافٍ بعد ضريبة
                 المبيعات، تكلفة أصناف، مخزون، ورديات، ذمم. الأرقام نفسها التي تراها في
                 لوحة التحكّم، من نفس المحرّك، لا تقديرات.
+              </p>
+              <p className="text-muted text-[16px] mt-3 leading-[1.95]">
+                ولا تحتاج تطبيقاً جديداً تتعلّمه: المساعد يعمل داخل{" "}
+                <b className="text-text">Claude</b> و<b className="text-text">ChatGPT</b> — أيّهما
+                تستخدمه اليوم. الرابط واحد، والصلاحيات واحدة، والقواعد واحدة.
               </p>
             </section>
 
@@ -241,6 +290,10 @@ export default function AiAssistantPage() {
                   { t: "الوصفات والتكلفة", d: "يبني وصفة المنتج من موادك، فيصير لكل صنف تكلفة وهامش ربح حقيقي." },
                   { t: "الخيارات والإضافات", d: "الأحجام والإضافات وربطها بالمخزون، فيُخصم ما يُختار فعلاً." },
                   { t: "الجرد والهدر", d: "يفتح جلسة جرد، يسجّل ما عددته، ويعرض الفروقات قبل تطبيقها." },
+                  // channels:write (2026-10-27) — إنشاء قناة وضبط أسعارها باقتراح ثم تأكيد؛ لا حذف قناة ولا تغيير الافتراضية.
+                  { t: "قنوات البيع وأسعارها", d: "ينشئ قناة لتطبيق توصيل ويضبط أسعار أصنافك عليها — ويعرض الجدول قبل وبعد لتوافق." },
+                  // options:write + product_id على الخيار (2026-11-04) — خيار مربوط بمنتج = مكوّن كومبو.
+                  { t: "وجبات الكومبو", d: "يبني الوجبة من منتجاتك الحقيقية، فيُخصم مخزون كل مكوّن ويصل قسمه في المطبخ." },
                 ].map((c) => (
                   <div key={c.t} className="bg-surface border border-secondary rounded-2xl px-6 py-5">
                     <h3 className="font-bold text-[16px] text-text">{c.t}</h3>
@@ -274,7 +327,8 @@ export default function AiAssistantPage() {
                 <div className="bg-surface border border-secondary rounded-2xl px-6 py-5">
                   <div className="text-green text-[13px] font-bold">مسجّل في سجل التدقيق</div>
                   <p className="text-muted text-[14px] mt-2 leading-[1.85]">
-                    كل خطوة يقوم بها تُكتب باسمه ووقتها في سجل التدقيق، بجانب خطوات موظفيك.
+                    كل خطوة تُكتب في سجل التدقيق باسم المساعد الذي نفّذها — Claude أو
+                    ChatGPT — والعضو الذي ربطه ووقتها، بجانب خطوات موظفيك.
                   </p>
                 </div>
                 <div className="bg-surface border border-secondary rounded-2xl px-6 py-5">
@@ -300,25 +354,36 @@ export default function AiAssistantPage() {
 
             <section id="setup" className="scroll-mt-[110px] reveal">
               <h2 className="text-[26px] font-extrabold">التشغيل في دقيقتين</h2>
-              <ol className="mt-6 space-y-3">
-                {[
-                  <>افتح <b className="text-text">Claude</b> على الجوال أو المتصفّح، ومن الإعدادات أضف موصلاً مخصّصاً (Connector).</>,
-                  <>
-                    الصق رابط Kairos:{" "}
-                    <code dir="ltr" className="num bg-surface-2 rounded-md px-2 py-0.5 text-[14px] text-text">
-                      {MCP_URL}
-                    </code>
-                  </>,
-                  <>سجّل دخولك بحساب Kairos نفسه، واختر الصلاحيات التي تمنحها — ثم اسأل.</>,
-                ].map((step, i) => (
-                  <li key={i} className="flex gap-4 bg-surface border border-secondary rounded-2xl px-5 py-4">
-                    <span className="num w-8 h-8 shrink-0 rounded-full bg-primary/10 text-primary font-extrabold flex items-center justify-center">
-                      {i + 1}
-                    </span>
-                    <span className="text-[15px] leading-[1.85] pt-0.5 text-muted min-w-0 break-words">{step}</span>
-                  </li>
+              <p className="text-muted text-[16px] mt-3 leading-[1.95]">
+                الرابط واحد أيّاً كان المساعد:{" "}
+                <code dir="ltr" className="num bg-surface-2 rounded-md px-2 py-0.5 text-[14px] text-text break-all">
+                  {MCP_URL}
+                </code>
+              </p>
+              <div className="mt-6 grid md:grid-cols-2 gap-4">
+                {SETUP.map((s) => (
+                  <div key={s.name} className="bg-surface border border-secondary rounded-2xl px-5 py-5 flex flex-col">
+                    <h3 className="font-extrabold text-[17px] text-text">
+                      من <span dir="ltr">{s.name}</span>
+                    </h3>
+                    <ol className="mt-4 space-y-3.5">
+                      {s.steps.map((step, i) => (
+                        <li key={i} className="flex gap-3">
+                          <span className="num w-7 h-7 shrink-0 rounded-full bg-primary/10 text-primary text-[13px] font-extrabold flex items-center justify-center">
+                            {i + 1}
+                          </span>
+                          <span className="text-[15px] leading-[1.85] text-muted min-w-0 break-words">{step}</span>
+                        </li>
+                      ))}
+                    </ol>
+                    {s.note && (
+                      <p className="text-[13px] text-muted mt-4 pt-3.5 border-t border-secondary leading-[1.85]">
+                        {s.note}
+                      </p>
+                    )}
+                  </div>
                 ))}
-              </ol>
+              </div>
               <p className="text-muted text-[15px] mt-4 leading-[1.9]">
                 متاح في باقتَي <b className="text-text">{PLAN_NAMES}</b> —{" "}
                 <Link href="/#pricing" className="text-primary font-bold no-underline hover:underline">
@@ -388,6 +453,12 @@ export default function AiAssistantPage() {
             </div>
           </div>
         </div>
+
+        {/* تنويه العلامات — نفس عادة صفحات «بديل …»: نسمّي منتج غيرنا ولا ندّعي صلة به. */}
+        <p className="text-muted text-[13px] leading-[1.85] mt-10 lg:ms-[280px]">
+          Claude علامة تجارية لشركة Anthropic، و ChatGPT علامة تجارية لشركة OpenAI. كايروس
+          سبيس منتج مستقل يعمل معهما، ولا ارتباط تجارياً بيننا وبين أيٍّ منهما.
+        </p>
 
         <div className="h-16" />
       </main>
