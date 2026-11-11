@@ -37,22 +37,25 @@ export default function Hero() {
             </div>
             <div className="inline-flex items-center gap-2 py-2 px-4 bg-surface border border-[rgba(19,116,74,0.35)] rounded-full text-[14px] font-semibold text-text">
               <ReceiptIcon className="w-4 h-4 text-green" />
-              <span className="text-green font-bold">جديد:</span> متكامل مع نظام الفوترة الوطني
+              للمطاعم والمقاهي والسوبرماركت
             </div>
           </div>
 
-          {/* leading 1.13 كان يقصّ العربية المشكولة (الكسرة في «أدِر») — قياس
-              scrollHeight أظهر تجاوزاً فعلياً. 1.25 هو الحد الآمن للعربية. */}
+          {/* 2026-11-12 — العنوان كان «أدِر مقهاك ومطعمك بضغطة زر واحدة»: يصلح لأي
+              نظام كاشير ويُسقط السوبرماركت. الآن يحمل الفارقَين اللذين لا يملكهما
+              المنافس العالمي (يبيع بلا إنترنت + جوفوترة)، والقطاعات الثلاثة في
+              الشارة فوقه والفقرة تحته. عنوان الصفحة في <title> لم يتغيّر (كلمات بحث).
+              leading 1.25 هو الحد الآمن للعربية المشكولة — 1.13 كان يقصّها. */}
           <h1 className="reveal d1 text-[clamp(36px,5.2vw,62px)] font-black leading-[1.25] tracking-[-0.5px] mb-[22px]">
-            أدِر مقهاك ومطعمك
+            يبيع بلا إنترنت،
             <br />
             <span className="bg-gradient-to-l from-[#8a6a14] via-[#c49b25] to-[#8a6a14] bg-clip-text text-transparent">
-              بضغطة زر واحدة.
+              ومربوط بجوفوترة.
             </span>
           </h1>
 
           <p className="reveal d2 text-[clamp(16px,2vw,19px)] text-muted max-w-[520px] mb-[30px]">
-            الكاشير والمخزون والتقارير اللحظية في نظام واحد سريع — والصور اللي بتشوفها لقطات حقيقية من داخله.
+            لمطعمك أو مقهاك أو سوبرماركتك: الكاشير والمخزون والتقارير في نظام واحد، باشتراك سنوي بالدينار — والصور اللي بتشوفها لقطات حقيقية من داخله.
           </p>
 
           {/* السعر فوق الطية — وضوح كامل قبل أي زر */}
