@@ -3,9 +3,9 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { goUrl, TRIAL_DAYS, PRICE_FROM_YEAR, PRICE_FROM_MONTH } from "@/lib/constants";
+import { goUrl, TRIAL_DAYS, PRICE_FROM_YEAR, PRICE_FROM_MONTH, PLANS } from "@/lib/constants";
 import { trackWhatsAppClick } from "@/components/Analytics";
-import { WhatsAppIcon, CheckIcon, ChartIcon, ReceiptIcon } from "@/components/Icons";
+import { WhatsAppIcon, CheckIcon, SparkleIcon, ReceiptIcon } from "@/components/Icons";
 
 // الفيلم الترويجي: حزمة منفصلة تُجلب بعد التفاعل الأول، ولا تُصيَّر على الخادم.
 // لو دخل في حزمة الهيرو لأخّر أثقلَ ما فوق الطية (العنوان + زر التجربة) خلف
@@ -33,7 +33,7 @@ export default function Hero() {
                 على السطح يصير 5.25، والحدّ الذهبي يحفظ الطابع نفسه. */}
             <div className="inline-flex items-center gap-[9px] py-2 px-4 bg-surface border border-[rgba(133,101,18,0.35)] rounded-full text-[14px] font-semibold text-primary">
               <span className="w-[7px] h-[7px] rounded-full bg-green animate-[pulse-dot_2s_infinite]" />
-              نظام نقاط بيع متكامل · صُمّم في الأردن
+              نظام إدارة أعمال ذكي · صُمّم في الأردن
             </div>
             <div className="inline-flex items-center gap-2 py-2 px-4 bg-surface border border-[rgba(19,116,74,0.35)] rounded-full text-[14px] font-semibold text-text">
               <ReceiptIcon className="w-4 h-4 text-green" />
@@ -41,21 +41,23 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* 2026-11-12 — العنوان كان «أدِر مقهاك ومطعمك بضغطة زر واحدة»: يصلح لأي
-              نظام كاشير ويُسقط السوبرماركت. الآن يحمل الفارقَين اللذين لا يملكهما
-              المنافس العالمي (يبيع بلا إنترنت + جوفوترة)، والقطاعات الثلاثة في
-              الشارة فوقه والفقرة تحته. عنوان الصفحة في <title> لم يتغيّر (كلمات بحث).
-              leading 1.25 هو الحد الآمن للعربية المشكولة — 1.13 كان يقصّها. */}
+          {/* 2026-11-12 (قرار المالك) — التموضع: «نظام إدارة أعمال ذكي للمحلات والمطاعم،
+              مع مساعد AI يفهم مشروعك وأرقامك». لم نعد نبيع «كاشيراً» في العنوان: الكاشير
+              صار سطراً في الفقرة، والمساعد هو الوعد. الفارقان القديمان (بلا إنترنت،
+              جوفوترة) باقيان في الفقرة والأرقام تحت الأزرار وقسم جوفوترة.
+              ⚠️ المساعد ميزة البزنس والشاملة (ai_assistant)، والسعر المعروض تحته سعر
+              الأساسية — لذلك السطر الصريح تحت السعر. لا تحذفه ما دام العنوان يَعِد بالمساعد.
+              عنوان <title> لم يتغيّر (كلمات بحث). leading 1.25 حدّ العربية المشكولة. */}
           <h1 className="reveal d1 text-[clamp(36px,5.2vw,62px)] font-black leading-[1.25] tracking-[-0.5px] mb-[22px]">
-            يبيع بلا إنترنت،
+            نظام ذكي يدير محلّك،
             <br />
             <span className="bg-gradient-to-l from-[#8a6a14] via-[#c49b25] to-[#8a6a14] bg-clip-text text-transparent">
-              ومربوط بجوفوترة.
+              ويفهم أرقامك.
             </span>
           </h1>
 
           <p className="reveal d2 text-[clamp(16px,2vw,19px)] text-muted max-w-[520px] mb-[30px]">
-            لمطعمك أو مقهاك أو سوبرماركتك: الكاشير والمخزون والتقارير في نظام واحد، باشتراك سنوي بالدينار — والصور اللي بتشوفها لقطات حقيقية من داخله.
+            نظام إدارة أعمال للمحلات والمطاعم: كاشير ومخزون ومشتريات وتقارير في مكان واحد، ومعه مساعد ذكاء اصطناعي يفهم مشروعك — تسأله بالعربي عن مبيعاتك وأرباحك فيجاوبك من أرقامك. يبيع بلا إنترنت ومربوط بجوفوترة.
           </p>
 
           {/* السعر فوق الطية — وضوح كامل قبل أي زر */}
@@ -68,6 +70,12 @@ export default function Hero() {
               <span className="num font-bold text-text">{TRIAL_DAYS}</span> يوماً قبلها
             </span>
           </div>
+          <p className="reveal d2 -mt-2 mb-5 text-[13px] text-muted">
+            المساعد الذكي ضمن باقتَي {PLANS[1].title} و{PLANS[2].title} —{" "}
+            <Link href="/ai-assistant" className="hit-44 font-bold text-primary no-underline hover:underline">
+              شوف كيف يشتغل
+            </Link>
+          </p>
 
           {/* CTA — زر أساسي واحد فقط.
               قبل التعديل كان في الصفحة 7 أزرار /signup مقابل 7 أزرار واتساب
@@ -146,11 +154,12 @@ export default function Hero() {
 
             <div className="absolute bottom-2 left-[-34px] z-4 bg-[rgba(255,252,244,0.94)] backdrop-blur-[10px] border border-[rgba(168,128,26,0.3)] rounded-[14px] py-[11px] px-[15px] flex items-center gap-2.5 shadow-[0_18px_40px_-16px_rgba(60,45,12,0.4)] animate-[floaty2_6s_ease-in-out_infinite_0.8s] max-[560px]:hidden">
               <div className="w-[34px] h-[34px] rounded-[10px] bg-[rgba(168,128,26,0.12)] flex items-center justify-center text-primary">
-                <ChartIcon className="w-[18px] h-[18px]" />
+                <SparkleIcon className="w-[18px] h-[18px]" />
               </div>
+              {/* كان «+18٪ مبيعات هذا الأسبوع» — رقم توضيحي يُقرأ كوعد. الآن سؤال يُطرح على المساعد. */}
               <div>
-                <div className="text-xs font-bold">+18٪ مبيعات</div>
-                <div className="text-[12px] text-muted">هذا الأسبوع</div>
+                <div className="text-xs font-bold">«كم ربحت اليوم؟»</div>
+                <div className="text-[12px] text-muted">اسأل مساعدك الذكي</div>
               </div>
             </div>
 
