@@ -58,7 +58,10 @@ body {
   color: var(--color-text);
   font-family: var(--font-ar);
   line-height: 1.65;
+  /* hidden يجعل body حاوية تمرير فيتعطّل position:sticky (الفهارس الجانبية لم تكن
+     تثبت). clip يقصّ بلا حاوية تمرير؛ السطر الأول احتياط لمتصفح لا يعرف clip. */
   overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
 

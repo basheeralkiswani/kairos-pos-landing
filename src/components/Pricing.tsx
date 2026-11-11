@@ -17,24 +17,28 @@ import PlanWaLink from "@/components/PlanWaLink";
 
 // صفوف المقارنة: قيمة نصية أو true/false. مختصرة (لا تسرد كل شيء).
 const COMPARE: { label: string; values: [string | boolean, string | boolean, string | boolean] }[] = [
+  // 2026-11-12 — أُعيد اشتقاق الصفوف من PLANS و tier كل وحدة في server/features.js.
+  // كان الجدول يناقض البطاقات فوقه (Excel ولوحة التحكّم «غير متاحين» في الأساسية،
+  // «حتى 10» فروع، وصفّ «دعم بالأولوية» الذي أُلغي كفارق في 2026-09-04).
+  // ⚠️ أي تعديل على PLANS.features يُعاد هنا — الجدول لا يُشتقّ آلياً.
   { label: "عدد الأجهزة", values: ["1", "3", "10"] },
-  { label: "عدد الفروع", values: ["1", "1", "حتى 10"] },
-  { label: "الكاشير والمخزون والتقارير الأساسية", values: [true, true, true] },
+  { label: "الفروع المشمولة في السعر", values: ["1", "1", "2"] },
+  { label: "الكاشير والمخزون والمشتريات والتقارير الأساسية", values: [true, true, true] },
+  { label: "لوحة تحكّم من المتصفّح وتصدير Excel", values: [true, true, true] },
   { label: "ربط جوفوترة والعمل بدون إنترنت", values: [true, true, true] },
   { label: "شاشة العميل", values: [true, true, true] },
-  // 2026-11-11 — promotions في FEATURE_CATALOG = core (كل الباقات)؛ ai_assistant = business.
   { label: "العروض والكوبونات ووجبات الكومبو", values: [true, true, true] },
+  { label: "إدارة الطاولات ومخطط الصالة", values: [false, true, true] },
   { label: "المنيو الرقمي QR والطلب الذاتي", values: [false, true, true] },
   { label: "شاشة المطبخ KDS", values: [false, true, true] },
-  { label: "المزامنة السحابية ولوحة التحكّم", values: [false, true, true] },
-  { label: "تطبيق المدير والصلاحيات", values: [false, true, true] },
-  { label: "إدارة الطاولات", values: [false, true, true] },
+  { label: "تطبيق المدير وحسابات «عرض فقط»", values: [false, true, true] },
+  { label: "تنبيهات تلغرام وسجل التدقيق", values: [false, true, true] },
+  { label: "إقرار ضريبة المبيعات", values: [false, true, true] },
   { label: "المساعد الذكي (Claude أو ChatGPT)", values: [false, true, true] },
-  { label: "تصدير Excel و PDF", values: [false, true, true] },
-  { label: "تعدد الفروع", values: [false, false, true] },
-  { label: "تطبيق الويتر", values: [false, false, true] },
+  { label: "تعدد الفروع (+90 ديناراً لكل فرع إضافي)", values: [false, false, true] },
+  { label: "مستودع مركزي وتحويلات مخزون", values: [false, false, true] },
+  { label: "تطبيق الويتر على التابلت", values: [false, false, true] },
   { label: "التقارير المتقدمة", values: [false, false, true] },
-  { label: "الدعم الفني", values: ["عادي", "بالأولوية", "بالأولوية"] },
 ];
 
 function Cell({ v }: { v: string | boolean }) {
