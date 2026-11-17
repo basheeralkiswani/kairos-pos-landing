@@ -137,6 +137,7 @@ export default function PosRocketAlternativePage() {
       faq={FAQ}
       ctaMsg={CTA_MSG}
       readAlso={[
+        { href: "/best-pos-jordan", label: "أفضل نظام نقاط بيع في الأردن 2026: دليل الاختيار والمقارنة" },
         { href: "/esal-alternative", label: "بديل إيصال (Esal) في الأردن" },
         { href: "/foodics-alternative", label: "بديل فودكس (Foodics) في الأردن" },
         { href: "/download", label: "تحميل الكاشير لويندوز وأندرويد" },

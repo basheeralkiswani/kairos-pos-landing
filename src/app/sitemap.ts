@@ -13,6 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // الظهور في البحث الإنجليزي ممكناً أصلاً (جوجل تحدّد اللغة من النصّ لا الوسوم).
     { url: `${BASE}/en`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     // صفحات محتوى تستهدف البحث العضوي (عنقود موضوعي).
+    // دليل «أفضل نظام نقاط بيع في الأردن» (2026-11-18) — رأس العنقود الموضوعي.
+    { url: `${BASE}/best-pos-jordan`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/jofotara`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/foodics-alternative`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/esal-alternative`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },

@@ -133,6 +133,7 @@ export default function EsalAlternativePage() {
       faq={FAQ}
       ctaMsg={CTA_MSG}
       readAlso={[
+        { href: "/best-pos-jordan", label: "أفضل نظام نقاط بيع في الأردن 2026: دليل الاختيار والمقارنة" },
         { href: "/posrocket-alternative", label: "بديل POSRocket في الأردن" },
         { href: "/foodics-alternative", label: "بديل فودكس (Foodics) في الأردن" },
         { href: "/sales-channels", label: "قنوات البيع: سعر مختلف لكل قناة (صالة، تيك أواي، توصيل)" },
