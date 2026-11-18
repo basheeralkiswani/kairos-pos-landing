@@ -17,7 +17,9 @@
 // only the ROOT layout render <html>, so the override has to live here).
 import type { Metadata } from "next";
 import Link from "next/link";
-import { APP_URL, WA_NUMBER, PRICE_FROM_YEAR, PRICE_FROM_MONTH, TRIAL_DAYS, CLIENT_COUNT } from "@/lib/constants";
+import { EnHeader, EnFooter } from "@/components/EnChrome";
+import { ORG_ID } from "@/lib/org";
+import { WA_NUMBER, PRICE_FROM_YEAR, PRICE_FROM_MONTH, TRIAL_DAYS, CLIENT_COUNT } from "@/lib/constants";
 
 const SITE = "https://www.kairos-pos.com";
 
@@ -142,6 +144,7 @@ export default function EnglishPage() {
                   description: `Plans from ${PRICE_FROM_YEAR} JOD/year with a ${TRIAL_DAYS}-day free trial`,
                 },
                 areaServed: { "@type": "Country", name: "Jordan" },
+                publisher: { "@id": ORG_ID },
               },
               {
                 "@type": "FAQPage",
@@ -156,32 +159,8 @@ export default function EnglishPage() {
         }}
       />
 
-      {/* ── header ─────────────────────────────────────────────────────────── */}
-      <header className="border-b border-secondary bg-surface/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-[1100px] mx-auto px-5 h-[72px] flex items-center justify-between gap-4">
-          <Link href="/en" className="text-[19px] font-extrabold text-text no-underline tracking-tight">
-            Kairos <span className="text-primary">Space</span>
-          </Link>
-          <nav className="flex items-center gap-1 sm:gap-4">
-            <Link
-              href="/"
-              hrefLang="ar"
-              className="text-[14px] font-semibold text-muted hover:text-primary no-underline px-2 py-2 transition-colors"
-            >
-              العربية
-            </Link>
-            <a
-              href={APP_URL}
-              className="hidden sm:inline-flex text-[14px] font-semibold text-muted hover:text-primary no-underline px-2 py-2 transition-colors"
-            >
-              Sign in
-            </a>
-            <a href={wa} target="_blank" rel="noopener noreferrer" className="btn-gold !py-[10px] !px-[18px] !text-[14px] whitespace-nowrap">
-              Talk to us
-            </a>
-          </nav>
-        </div>
-      </header>
+      <EnHeader />
+
 
       <main className="max-w-[1100px] mx-auto px-5">
         {/* ── hero ─────────────────────────────────────────────────────────── */}
@@ -295,20 +274,7 @@ export default function EnglishPage() {
         </section>
       </main>
 
-      {/* ── footer ─────────────────────────────────────────────────────────── */}
-      <footer className="border-t border-secondary py-10">
-        <div className="max-w-[1100px] mx-auto px-5 flex flex-wrap items-center justify-between gap-4 text-[14px]">
-          <p className="text-muted">© Kairos Space — point of sale for Jordan.</p>
-          <nav className="flex flex-wrap items-center gap-5">
-            <Link href="/" hrefLang="ar" className="text-muted hover:text-primary no-underline">
-              الموقع بالعربية
-            </Link>
-            <Link href="/jofotara" className="text-muted hover:text-primary no-underline">JoFotara</Link>
-            <Link href="/support" className="text-muted hover:text-primary no-underline">Support</Link>
-            <a href={APP_URL} className="text-muted hover:text-primary no-underline">Sign in</a>
-          </nav>
-        </div>
-      </footer>
+      <EnFooter />
     </div>
   );
 }

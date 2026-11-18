@@ -1,3 +1,4 @@
+import { ORG_ID, SITE_URL, organizationLd } from "@/lib/org";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Trust from "@/components/Trust";
@@ -36,6 +37,9 @@ export default function Home() {
         تخطَّ إلى المحتوى
       </a>
 
+      {/* كيان الشركة — مرة واحدة هنا، والصفحات الأخرى تشير إليه بـORG_ID (src/lib/org.ts). */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd()) }} />
+
       {/* البيانات المهيكلة للمنتج — تخصّ هذه الصفحة وحدها (نُقلت من التخطيط الجذر). */}
       <script
         type="application/ld+json"
@@ -43,9 +47,13 @@ export default function Home() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
+            "@id": `${SITE_URL}/#software`,
             name: "Kairos Space POS",
             applicationCategory: "BusinessApplication",
-            operatingSystem: "Windows",
+            operatingSystem: "Windows, Android, Web",
+            url: SITE_URL,
+            publisher: { "@id": ORG_ID },
+            areaServed: { "@type": "Country", name: "Jordan" },
             offers: PLANS.map((p) => ({
               "@type": "Offer",
               price: String(p.price),

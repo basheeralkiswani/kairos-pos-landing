@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import RevealObserver from "@/components/RevealObserver";
 import { CLIENT_COUNT, PLANS, SUPPORT_HOURS, TRIAL_DAYS, waUrl } from "@/lib/constants";
+import { ORG_ID, SITE_URL } from "@/lib/org";
 
 // دليل «أفضل نظام نقاط بيع في الأردن» (2026-11-18). كُتب لأن أدلة «أفضل POS في الأردن»
 // التي ينشرها الآخرون صارت هي ما يتصدّر البحث ويقرأه ChatGPT، وأغلبها لا يذكر كايروس.
@@ -32,7 +33,10 @@ export const metadata: Metadata = {
     "نظام كاشير يعمل بدون إنترنت",
     "best POS system Jordan",
   ],
-  alternates: { canonical: "/best-pos-jordan" },
+  alternates: {
+    canonical: "/best-pos-jordan",
+    languages: { "ar-JO": "/best-pos-jordan", en: "/en/best-pos-jordan", "x-default": "/best-pos-jordan" },
+  },
   openGraph: {
     type: "article",
     locale: "ar_JO",
@@ -158,8 +162,8 @@ export default function BestPosJordanPage() {
     inLanguage: "ar",
     datePublished: UPDATED_ISO,
     dateModified: UPDATED_ISO,
-    author: { "@type": "Organization", name: "Kairos Space", url: "https://www.kairos-pos.com" },
-    publisher: { "@type": "Organization", name: "Kairos Space", url: "https://www.kairos-pos.com" },
+    author: { "@type": "Organization", "@id": ORG_ID, name: "Kairos Space POS", url: SITE_URL },
+    publisher: { "@type": "Organization", "@id": ORG_ID, name: "Kairos Space POS", url: SITE_URL },
     mainEntityOfPage: "https://www.kairos-pos.com/best-pos-jordan",
     description:
       "دليل لاختيار نظام نقاط البيع في الأردن: الربط مع جوفوترة، البيع بدون إنترنت، كلفة السنة بالدينار، الأجهزة، ونوع النشاط.",
