@@ -164,13 +164,12 @@ export const DOWNLOAD_THIN_APK = `${DOWNLOAD_BASE}/KairosCashierThin.apk`;
 // ولهذا لا مزامنة فيه أساساً، ولا يبيع عند انقطاع الخط. اختيار بين مقايضتين، لا
 // بين قديم وجديد.
 //
-// ⚠️ الرابطان أدناه لا يعملان حتى يرفع المالك الملفين ويجهّز قناة التحديث
-// (online-updates.kairos-pos.com + دلو R2). البطاقتان في صفحة التحميل تعرضان
-// اليوم زرّ «اطلب التفعيل» عبر واتساب بدل رابط مباشر — والميزة نفسها مطفأة لكل
-// مستأجر حتى يفعّلها المشغّل، فرابط عامّ الآن يعطي 404 ويَعِد بما لا يُسلَّم.
-// بعد الرفع: بدّل الزرّين بهذين الثابتين، وأضف رقم الإصدار كما في الخفيف.
 export const DOWNLOAD_ONLINE_EXE = `${DOWNLOAD_BASE}/Kairos-Cashier-Online-Setup.exe`;
 export const DOWNLOAD_ONLINE_APK = `${DOWNLOAD_BASE}/KairosCashierOnline.apk`;
+// منذ 2026-11-19 (قرار المالك) الرابطان معروضان مباشرةً في صفحة التحميل؛ الميزة
+// نفسها ما زالت تُفعَّل لكل مستأجر، والبطاقة تقول ذلك. الرقم يُقرأ من قناة الأونلاين.
+export const ONLINE_UPDATES_MANIFEST = "https://online-updates.kairos-pos.com/latest.yml";
+export const ONLINE_FALLBACK_VERSION = "1.16.0";
 // يُقرأ من mobile/android/app/build.gradle عند كل إصدار — لا مصدر ثانٍ.
 export const THIN_APK_VERSION = "0.3.62";
 // قناة الكاشير الخفيف — منفصلة عن قناة الديسكتوب عمداً. القناة القديمة

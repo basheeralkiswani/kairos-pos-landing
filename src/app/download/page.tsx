@@ -9,6 +9,10 @@ import {
   DOWNLOAD_CASHIER_APK,
   DOWNLOAD_KDS_APK,
   DOWNLOAD_THIN_APK,
+  DOWNLOAD_ONLINE_EXE,
+  DOWNLOAD_ONLINE_APK,
+  ONLINE_UPDATES_MANIFEST,
+  ONLINE_FALLBACK_VERSION,
   THIN_APK_VERSION,
   CASHIER_MIN_POS_VERSION,
   DOWNLOAD_EXE,
@@ -31,14 +35,17 @@ export const metadata: Metadata = {
 // عند نشر نسخة جديدة. يُعاد التحقق كل ساعة، وأي تعذّر يسقط للاحتياطي بصمت.
 export const revalidate = 3600;
 
-async function liveVersion(): Promise<string> {
+async function liveVersion(
+  manifest: string = UPDATES_MANIFEST,
+  fallback: string = FALLBACK_VERSION,
+): Promise<string> {
   try {
-    const res = await fetch(UPDATES_MANIFEST, { next: { revalidate } });
-    if (!res.ok) return FALLBACK_VERSION;
+    const res = await fetch(manifest, { next: { revalidate } });
+    if (!res.ok) return fallback;
     const match = (await res.text()).match(/^version:\s*(.+)$/m);
-    return match?.[1]?.trim() || FALLBACK_VERSION;
+    return match?.[1]?.trim() || fallback;
   } catch {
-    return FALLBACK_VERSION;
+    return fallback;
   }
 }
 
@@ -49,7 +56,10 @@ function Card({ children }: { children: React.ReactNode }) {
 }
 
 export default async function DownloadPage() {
-  const version = await liveVersion();
+  const [version, onlineVersion] = await Promise.all([
+    liveVersion(),
+    liveVersion(ONLINE_UPDATES_MANIFEST, ONLINE_FALLBACK_VERSION),
+  ]);
 
   return (
     <>
@@ -265,7 +275,7 @@ export default async function DownloadPage() {
             <div className="flex items-center gap-2">
               <span className="text-blue text-[13px] font-bold">تِلّ أونلاين · ويندوز وأندرويد</span>
               <span className="text-[11px] font-bold text-primary border border-primary/40 rounded-full px-2 py-0.5">
-                بالطلب
+                يحتاج تفعيلاً
               </span>
             </div>
             <h2 className="text-[24px] font-extrabold mt-2">كاشير كايروس الأونلاين</h2>
@@ -275,12 +285,20 @@ export default async function DownloadPage() {
               من الأساس — لا تأخير ولا تعارض ولا فاتورة تنتظر الرفع. مقابل ذلك: يحتاج
               اتصالاً مستقرّاً، وزرّ الدفع يتعطّل عند انقطاعه.
             </p>
-            <a
-              href={waUrl(WA_MESSAGES.online)}
-              className="mt-6 flex items-center justify-center bg-primary text-background py-4 px-6 rounded-xl font-bold text-[16px] no-underline transition-all duration-250 hover:-translate-y-0.5"
-            >
-              اطلب التفعيل
-            </a>
+            <div className="mt-6 grid sm:grid-cols-2 gap-3">
+              <a
+                href={DOWNLOAD_ONLINE_EXE}
+                className="flex items-center justify-center bg-primary text-background py-4 px-4 rounded-xl font-bold text-[15px] no-underline transition-all duration-250 hover:-translate-y-0.5"
+              >
+                ويندوز · <span className="num mx-1.5">87</span> ميجابايت
+              </a>
+              <a
+                href={DOWNLOAD_ONLINE_APK}
+                className="flex items-center justify-center bg-surface-2 border border-secondary text-text py-4 px-4 rounded-xl font-bold text-[15px] no-underline transition-all duration-250 hover:border-primary/50 hover:-translate-y-0.5"
+              >
+                أندرويد APK · <span className="num mx-1.5">3</span> ميجابايت
+              </a>
+            </div>
             <dl className="mt-6 pt-5 border-t border-white/6 text-[14px] space-y-2.5">
               <div className="flex justify-between gap-4">
                 <dt className="text-muted">الأجهزة</dt>
@@ -298,12 +316,20 @@ export default async function DownloadPage() {
                 <dt className="text-muted">يتطلّب</dt>
                 <dd className="font-medium">حساب على لوحة كايروس + تفعيل الميزة</dd>
               </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted">الإصدار</dt>
+                <dd className="font-medium num">{onlineVersion}</dd>
+              </div>
             </dl>
-            {/* لا رابط مباشر عن قصد: الميزة تُفعَّل لكل محلّ على حدة، فزرّ تنزيل
-                عامّ يَعِد بشيء لا يعمل قبل التفعيل. */}
+            {/* الرابطان مباشران منذ 2026-11-19 (قرار المالك)، لكن الميزة ما زالت
+                تُفعَّل لكل محلّ على حدة — فيقال ذلك صراحةً بجانب الزرّين. */}
             <p className="text-muted text-[13px] mt-5 leading-[1.7]">
-              يُفعَّل لكل محلّ على حدة، فنرسل لك رابط التثبيت بعد تجهيز حسابك. إن كان
-              خطّك ينقطع أحياناً، الكاشير الخفيف أعلاه هو الخيار الأنسب.
+              الميزة تُفعَّل لكل محلّ على حدة، فالتطبيق لا يعمل قبل تفعيلها على حسابك —{" "}
+              <a href={waUrl(WA_MESSAGES.online)} className="text-primary font-bold">
+                اطلب التفعيل
+              </a>
+              . نسخة الأندرويد تُثبَّت يدوياً خارج Google Play. إن كان خطّك ينقطع أحياناً،
+              الكاشير الخفيف أعلاه هو الخيار الأنسب.
             </p>
           </Card>
         </div>
