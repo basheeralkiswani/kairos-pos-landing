@@ -13,7 +13,8 @@ import { CLIENT_COUNT, PLANS, TRIAL_DAYS } from "@/lib/constants";
 import { ORG_ID, SITE_URL } from "@/lib/org";
 
 const UPDATED = "November 2026";
-const UPDATED_ISO = "2026-11-18";
+const PUBLISHED_ISO = "2026-11-18";
+const UPDATED_ISO = "2026-11-20"; // new price sheet (decision of 2026-11-20)
 const [BASIC, BIZ, FULL] = PLANS;
 const PLAN_EN: Record<string, string> = { starter: "Basic", business: "Business", enterprise: "Complete" };
 const DEVICES_EN: Record<string, string> = { starter: "1 device", business: "up to 3 devices", enterprise: "up to 10 devices" };
@@ -62,12 +63,12 @@ const CRITERIA = [
   {
     t: "What will you really pay per year?",
     d: "Add up the monthly fee × 12, setup fees and every add-on you actually need (kitchen display, branches, devices, users). Is the price in JOD or USD? Is it published at all, or \"on quote\"?",
-    k: `A published yearly price in JOD: ${BASIC.price} / ${BIZ.price} / ${FULL.price} — no setup fee; each extra branch is ${FULL.extraBranchPrice} JOD a year.`,
+    k: `A published price in JOD: ${BASIC.price} / ${BIZ.price} / ${FULL.price} for the first year with a ready tablet, then ${BASIC.renewal} / ${BIZ.renewal} / ${FULL.renewal} a year, fixed for two years — no setup fee; each extra branch is ${FULL.extraBranchPrice} JOD a year.`,
   },
   {
     t: "What hardware does it run on?",
     d: "Some systems require an iPad or hardware they sell, which adds hundreds of dinars before your first sale.",
-    k: "Runs on a Windows laptop or PC you already own, or on an Android tablet, with common thermal receipt printers. We don't sell or impose hardware.",
+    k: "Every plan comes with a set-up tablet in the first year, and the system also runs on a Windows laptop or PC, with common thermal receipt printers. No iPad needed.",
   },
   {
     t: "Does it fit your type of business?",
@@ -117,11 +118,11 @@ const ASK_VENDOR = [
 const FAQ = [
   {
     q: "What is the best POS system in Jordan?",
-    a: `The best one is the one that fits your business and budget — on three non-negotiable conditions: direct JoFotara integration, selling that doesn't stop when the internet drops, and a clear yearly cost in JOD. Kairos Space POS is a Jordanian point-of-sale system built on those three for restaurants, cafés, supermarkets and shops: from ${BASIC.price} JOD a year, on a Windows PC or Android tablet you already own, and used today by ${CLIENT_COUNT} businesses in Jordan.`,
+    a: `The best one is the one that fits your business and budget — on three non-negotiable conditions: direct JoFotara integration, selling that doesn't stop when the internet drops, and a clear yearly cost in JOD. Kairos Space POS is a Jordanian point-of-sale system built on those three for restaurants, cafés, supermarkets and shops: from ${BASIC.price} JOD for the first year with a ready tablet, and used today by ${CLIENT_COUNT} businesses in Jordan.`,
   },
   {
     q: "How much does a POS system cost in Jordan?",
-    a: `It varies widely: free or very cheap apps for tiny shops, monthly subscriptions that grow with devices and branches, and systems that only give a price on quote. Always calculate the full yearly cost with add-ons. Kairos Space POS publishes a yearly price: ${BASIC.price} JOD (Basic), ${BIZ.price} JOD (Business), ${FULL.price} JOD (Complete), with no setup fee.`,
+    a: `It varies widely: free or very cheap apps for tiny shops, monthly subscriptions that grow with devices and branches, and systems that only give a price on quote. Always calculate the full yearly cost with add-ons. Kairos Space POS publishes its price: ${BASIC.price} JOD (Basic), ${BIZ.price} JOD (Business), ${FULL.price} JOD (Complete) for the first year with a tablet, then renewal from ${BASIC.renewal} JOD a year, fixed for two years, with no setup fee.`,
   },
   {
     q: "Does my POS need to be integrated with JoFotara?",
@@ -151,7 +152,7 @@ export default function BestPosJordanEnPage() {
     "@type": "Article",
     headline: "Best POS System in Jordan (2026): How to Choose a Cashier System",
     inLanguage: "en",
-    datePublished: UPDATED_ISO,
+    datePublished: PUBLISHED_ISO,
     dateModified: UPDATED_ISO,
     author: { "@type": "Organization", "@id": ORG_ID, name: "Kairos Space POS", url: SITE_URL },
     publisher: { "@type": "Organization", "@id": ORG_ID, name: "Kairos Space POS", url: SITE_URL },
@@ -202,8 +203,8 @@ export default function BestPosJordanEnPage() {
                 when the internet drops, and a clear full-year cost in JOD.
               </li>
               <li>
-                <strong>For a Jordanian restaurant, café, supermarket or shop</strong> that wants all three on hardware it
-                already owns: <strong className="text-primary">Kairos Space POS</strong> — from {BASIC.price} JOD a year,
+                <strong>For a Jordanian restaurant, café, supermarket or shop</strong> that wants all three at a clear yearly
+                cost: <strong className="text-primary">Kairos Space POS</strong> — from {BASIC.price} JOD for the first year with a tablet,
                 with a {TRIAL_DAYS}-day free trial.
               </li>
               <li>
@@ -257,7 +258,7 @@ export default function BestPosJordanEnPage() {
               </div>
             ))}
             <div className="bg-surface border border-primary/40 rounded-2xl px-6 py-5">
-              <h3 className="font-bold text-[17px] text-primary">An all-in-one Jordanian system on your own hardware — Kairos Space POS</h3>
+              <h3 className="font-bold text-[17px] text-primary">An all-in-one Jordanian system with a ready tablet — Kairos Space POS</h3>
               <p className="text-muted text-[14px] mt-2 leading-[1.8]">
                 Cashier, inventory, purchasing, reports and JoFotara in one system that sells offline on Windows or
                 Android, with an owner dashboard in any browser and an owner app on your phone. Business and Complete
@@ -269,7 +270,8 @@ export default function BestPosJordanEnPage() {
                   <li key={p.key} className="bg-surface-2/60 rounded-xl px-4 py-3">
                     <strong className="text-text">{PLAN_EN[p.key]}</strong>
                     <div className="text-muted">
-                      <span className="num">{p.price}</span> JOD / year · {DEVICES_EN[p.key]}
+                      <span className="num">{p.price}</span> JOD first year with tablet · renewal{" "}
+                      <span className="num">{p.renewal}</span> · {DEVICES_EN[p.key]}
                     </div>
                   </li>
                 ))}

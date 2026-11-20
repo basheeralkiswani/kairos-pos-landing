@@ -58,8 +58,8 @@ export default function Home() {
               "@type": "Offer",
               price: String(p.price),
               priceCurrency: "JOD",
-              name: `باقة ${p.title} — اشتراك سنوي`,
-              description: p.tagline,
+              name: `باقة ${p.title} — السنة الأولى مع تابلت`,
+              description: `${p.tagline} التجديد ${p.renewal} ديناراً في السنة، ثابت لسنتين.`,
             })),
             description:
               "نظام نقاط بيع متكامل للمطاعم والمقاهي والمتاجر في الأردن",

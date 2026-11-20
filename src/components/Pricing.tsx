@@ -1,10 +1,20 @@
 import Link from "next/link";
-import { goUrl, TRIAL_DAYS, PLANS } from "@/lib/constants";
+import {
+  goUrl,
+  TRIAL_DAYS,
+  PLANS,
+  SUPPORT_HOURS,
+  RENEWAL_MAX_RAISE_PCT,
+  HARDWARE_UPGRADE_PRICE,
+  MONTHLY_FROM_YEAR2_PCT,
+} from "@/lib/constants";
 import { CheckBoldIcon, ClockIcon } from "@/components/Icons";
 import PlanWaLink from "@/components/PlanWaLink";
 
-// ثلاث باقات متدرّجة (نظام الباقات 2026-08-24): الأساسية 180 · البزنس 250 ·
-// الشاملة 340 ديناراً في السنة — بلا رسوم تفعيل.
+// ثلاث باقات متدرّجة. ورقة الأسعار بقرار 2026-11-20 (مجلس «خريطة الشركة»): السنة
+// الأولى 250 / 380 / 540 ومعها تابلت مركّب، والتجديد 200 / 300 / 420 ثابت لسنتين.
+// الأرقام كلها من PLANS وثوابت الشروط في constants.ts — لا رقم مكتوب هنا يدوياً.
+// لا يُعرض هنا: «على أجهزة الزبون −70» (لا يُعلَن) ولا أي ضمان (داخل عقود التجارب فقط).
 //
 // ⚠️ مفتاح «شهري/سنوي» أُزيل مع هذه النسخة. كان يعرض رقمين لكل باقة (ستة
 // أسعار على الشاشة) ويطلب من الزائر قراراً ثانياً — أي دورة — قبل القرار
@@ -21,6 +31,8 @@ const COMPARE: { label: string; values: [string | boolean, string | boolean, str
   // كان الجدول يناقض البطاقات فوقه (Excel ولوحة التحكّم «غير متاحين» في الأساسية،
   // «حتى 10» فروع، وصفّ «دعم بالأولوية» الذي أُلغي كفارق في 2026-09-04).
   // ⚠️ أي تعديل على PLANS.features يُعاد هنا — الجدول لا يُشتقّ آلياً.
+  { label: "السنة الأولى (معها تابلت مركّب)", values: PLANS.map((p) => String(p.price)) as [string, string, string] },
+  { label: "التجديد السنوي (ثابت لسنتين)", values: PLANS.map((p) => String(p.renewal)) as [string, string, string] },
   { label: "عدد الأجهزة", values: ["1", "3", "10"] },
   { label: "الفروع المشمولة في السعر", values: ["1", "1", "2"] },
   { label: "الكاشير والمخزون والمشتريات والتقارير الأساسية", values: [true, true, true] },
@@ -68,7 +80,7 @@ export default function Pricing() {
         <div className="section-head reveal">
           <span className="eyebrow">الأسعار</span>
           <h2>اختر الباقة المناسبة لمحلّك</h2>
-          <p>سعر واحد لكل باقة، سنوي، بلا رسوم تفعيل ولا رسوم خفية.</p>
+          <p>السنة الأولى ومعها تابلت جاهز للبيع، والتجديد بسعر ثابت لسنتين. بلا رسوم تفعيل ولا رسوم خفية.</p>
         </div>
 
         {/* على الموبايل تنزل الشارات الأربع سطراً لكل واحدة (أربعة أسطر
@@ -90,7 +102,7 @@ export default function Pricing() {
         {/* ما قبل الشراء (المرحلة 0، 2026-09-06): التجهيز والتدريب مشمولان في كل
             باقة، والتزام الخدمة مكتوب — سطر واحد يربطهما بالسعر بدل أن يبحث الزائر. */}
         <p className="text-center text-[14px] text-muted mb-[46px] leading-[1.8] reveal">
-          التجهيز والتدريب مشمولان مع كل باقة —{" "}
+          التجهيز والتدريب مشمولان مع كل باقة، والدعم على واتساب {SUPPORT_HOURS} —{" "}
           <Link href="/onboarding" className="text-primary font-bold no-underline hover:underline">
             كيف يتم
           </Link>
@@ -106,7 +118,6 @@ export default function Pricing() {
         <div className="grid grid-cols-3 gap-7 max-w-[1100px] mx-auto items-stretch max-[980px]:grid-cols-1 max-[980px]:max-w-[460px]">
           {PLANS.map((p, i) => {
             const featured = "popular" in p && p.popular;
-            const perMonth = Math.round(p.price / 12);
             return (
               <div
                 key={p.key}
@@ -130,10 +141,11 @@ export default function Pricing() {
                     {p.price}
                   </span>
                   <span className="text-lg font-bold text-muted mb-1">دينار</span>
-                  <span className="text-sm text-muted mb-1.5">/ السنة</span>
+                  <span className="text-sm text-muted mb-1.5 whitespace-nowrap">/ السنة الأولى</span>
                 </div>
-                <div className="text-sm text-muted mt-2.5">
-                  أي ما يعادل <span className="num font-bold text-text">≈{perMonth}</span> ديناراً في الشهر
+                <div className="text-sm text-muted mt-2.5">معها تابلت مركّب وجاهز للبيع</div>
+                <div className="text-sm text-muted mt-1">
+                  التجديد <span className="num font-bold text-text">{p.renewal}</span> ديناراً في السنة، ثابت لسنتين
                 </div>
 
                 <div className="flex gap-2 flex-wrap mt-6 mb-6 text-xs text-muted">
@@ -236,7 +248,16 @@ export default function Pricing() {
           </div>
         </details>
 
-        <p className="text-center text-sm text-muted mt-8 reveal">
+        {/* شروط ورقة الأسعار (قرار 2026-11-20) — سطر واحد بدل جدول ثانٍ. */}
+        <p className="text-center text-sm text-muted mt-8 leading-[1.9] max-w-[820px] mx-auto reveal">
+          ترقية الجهاز إلى ويندوز أو شاشة ثانية:{" "}
+          <span className="num font-bold text-text">+{HARDWARE_UPGRADE_PRICE}</span> ديناراً فوق أي باقة
+          {" "}· بعد السنتين، أي زيادة على التجديد بحد أقصى{" "}
+          <span className="num font-bold text-text">{RENEWAL_MAX_RAISE_PCT}%</span> في السنة
+          {" "}· الدفع الشهري متاح من السنة الثانية بزيادة{" "}
+          <span className="num font-bold text-text">{MONTHLY_FROM_YEAR2_PCT}%</span>
+        </p>
+        <p className="text-center text-sm text-muted mt-3 reveal">
           تقدر ترقّي باقتك في أي وقت — المزايا الجديدة تنزل على جهازك تلقائياً بلا إعادة تثبيت.
         </p>
       </div>
