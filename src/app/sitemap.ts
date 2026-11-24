@@ -23,6 +23,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // صفحتا ما قبل الشراء (المرحلة 0 من دراسة المنافسين، 2026-09-06).
     { url: `${BASE}/onboarding`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/sla`, lastModified: now, changeFrequency: "yearly", priority: 0.6 },
+    // مطلوبة لبطاقة Google Play، وفيها رابط طلب حذف الحساب (#delete).
+    { url: `${BASE}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.4 },
     { url: `${BASE}/sales-channels`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/ai-assistant`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/docs`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },

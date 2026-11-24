@@ -34,6 +34,7 @@ export default function Footer() {
                 { href: "/posrocket-alternative", label: "بديل POSRocket", hash: false },
                 { href: "/onboarding", label: "التجهيز والتدريب", hash: false },
                 { href: "/sla", label: "التزامنا بالخدمة", hash: false },
+                { href: "/privacy", label: "سياسة الخصوصية", hash: false },
                 { href: "/#contact", label: "تواصل معنا", hash: true },
               ].map((l) => (
                 <li key={l.href}>
