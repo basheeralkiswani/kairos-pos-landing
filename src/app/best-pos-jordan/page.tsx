@@ -391,6 +391,7 @@ export default function BestPosJordanPage() {
             <h2 className="text-[18px] font-extrabold">اقرأ أيضاً</h2>
             <ul className="mt-4 space-y-2.5 text-[15px]">
               {[
+                { href: "/restaurant-pos-jordan", label: "نظام كاشير للمطاعم والكافيهات: ماذا يقدّم كايروس" },
                 { href: "/jofotara", label: "جوفوترة: دليل الفوترة الوطنية للمطاعم والمتاجر" },
                 { href: "/ai-assistant", label: "المساعد الذكي: اسأل عن مبيعاتك بالعربي" },
                 { href: "/sales-channels", label: "قنوات البيع: سعر مختلف للصالة والتيك أواي والتوصيل" },
